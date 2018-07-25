@@ -94,7 +94,7 @@ if (@ini_get('register_globals') == '1' || strtolower(@ini_get('register_globals
 // this is a security precaution to prevent someone
 // trying to break out of a SQL statement.
 //
-if( !get_magic_quotes_gpc() )
+if( true ) //!get_magic_quotes_gpc() )
 {
 	if( is_array($HTTP_GET_VARS) )
 	{

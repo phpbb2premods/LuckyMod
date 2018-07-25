@@ -243,7 +243,7 @@ if (!isset($HTTP_POST_VARS) && isset($_POST))
 }
 
 // Slash data if it isn't slashed
-if (!get_magic_quotes_gpc())
+if (true) // !get_magic_quotes_gpc())
 {
 	if (is_array($HTTP_GET_VARS))
 	{
