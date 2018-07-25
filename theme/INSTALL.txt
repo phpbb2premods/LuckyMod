@@ -1,0 +1,4678 @@
+##############################################################
+## MOD Title: Attached forums or pseudo sub-forums MOD
+## MOD Author: niekas <> () http://www.freedomlist.com 
+## MOD Description: This mod allows you to "attach" specific forums to another so that they are not displayed on the main index page but inside another forum. This emulates the sub-forums features but does not really create true sub-forum functionality.
+##
+## MOD Version: 1.0.6 (beta)
+## Files To Edit:    
+##                  templates/subSilver/index_body.tpl
+##                  templates/subSilver/viewforum_body.tpl
+##		    templates/subSilver/viewtopic_body.tpl
+##	            templates/subSilver/admin/forum_edit_body.tpl
+##		    templates/subSilver/admin/forum_admin_body.tpl
+##		    templates/subSilver/posting_body.tpl
+##
+## Included Files: (n/a)
+##############################################################
+#
+#-----[ OUVRIR ]------------------------------------------------
+#
+   /templates/subSilver/admin/forum_admin_body.tpl
+
+#
+#-----[ TROUVER ]------------------------------------------------
+#
+		<td class="row2"><span class="gen"><a href="{catrow.forumrow.U_VIEWFORUM}" target="_new">{catrow.forumrow.FORUM_NAME}</a></span><br /><span class="gensmall">{catrow.forumrow.FORUM_DESC}</span></td>
+
+
+#
+#-----[ REMPLACER PAR ]------------------------------------------
+#
+		<td class="row2"><span class="gen">
+	<!-- BEGIN switch_attached_forum -->
+		&nbsp;&nbsp;|__
+	<!-- END switch_attached_forum -->
+	<!-- BEGIN switch_error -->
+		ERROR
+	<!-- END switch_error -->
+<a href="{catrow.forumrow.U_VIEWFORUM}" target="_new">{catrow.forumrow.FORUM_NAME}</a></span><br />
+<span class="gensmall">		
+<!-- BEGIN switch_attached_forum -->
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<!-- END switch_attached_forum -->
+{catrow.forumrow.FORUM_DESC}</span></td>
+
+
+#
+#-----[ OUVRIR ]------------------------------------------------
+#
+   /templates/subSilver/admin/forum_edit_body.tpl
+
+
+#
+#-----[ TROUVER ]------------------------------------------------
+#
+
+   <tr>
+     <td class="row1">{L_CATEGORY}</td>
+     <td class="row2"><select name="c">{S_CAT_LIST}</select></td>
+   </tr>
+
+#
+#-----[ APRES, AJOUTER ]------------------------------------------
+#
+
+	<tr>
+		<td class="row1">{L_ATTACHED_FORUM}</td>
+		<td class="row2">
+		<!-- BEGIN switch_attached_yes -->
+		<select name="attached_forum_id">{S_ATTACHED_FORUM_ID}</select>
+		<!-- END switch_attached_yes -->
+		<!-- BEGIN switch_attached_no -->
+		{L_DETACH_DESC} <input type="checkbox" name="detach_enabled" value="1" {S_DETACH_ENABLED} /><br />
+		<!-- END switch_attached_no -->
+		{L_ATTACHED_DESC}
+		</td>
+	</tr>
+
+
+#
+#-----[ OUVRIR ]------------------------------------------------
+#
+   /templates/subSilver/index_body.tpl
+
+
+#
+#-----[ TROUVER ]------------------------------------------------
+#
+
+</span><span class="gensmall">{catrow.forumrow.L_MODERATOR} {catrow.forumrow.MODERATORS}</span></td>
+
+
+#
+#-----[ REMPLACER PAR ]------------------------------------------------
+#
+	  </span><span class="gensmall">{catrow.forumrow.L_MODERATOR} {catrow.forumrow.MODERATORS}</span>
+	  <!-- BEGIN switch_attached_forums -->
+	  <!-- BEGIN br -->
+	  <br />
+	  <!-- END br -->
+	  <span class="genmed">{catrow.forumrow.switch_attached_forums.L_ATTACHED_FORUMS}:
+	       <!-- BEGIN attached_forums -->
+	        <a class="nav" href="{catrow.forumrow.switch_attached_forums.attached_forums.U_VIEWFORUM}"><img alt="{catrow.forumrow.switch_attached_forums.attached_forums.L_FORUM_IMAGE}" border="0" src="{catrow.forumrow.switch_attached_forums.attached_forums.FORUM_IMAGE}" title="{catrow.forumrow.switch_attached_forums.attached_forums.L_FORUM_IMAGE}" />{catrow.forumrow.switch_attached_forums.attached_forums.FORUM_NAME}</a>
+	       <!-- END attached_forums -->
+	  <span class="genmed">
+	  <!-- END switch_attached_forums -->
+</td>
+
+#
+#-----[ OUVRIR ]------------------------------------------------
+#
+   /templates/subSilver/viewforum_body.tpl
+
+#
+#-----[ TROUVER ]------------------------------------------------
+#
+
+	  <td align="left" valign="middle" class="nav" width="100%"><span class="nav">&nbsp;&nbsp;&nbsp;<a href="{U_INDEX}" class="nav">{L_INDEX}</a> -> <a class="nav" href="{U_VIEW_FORUM}">{FORUM_NAME}</a></span></td>
+
+#
+#-----[ REMPLACER PAR ]------------------------------------------------
+#
+
+	  <td align="left" valign="middle" class="nav" width="100%"><span class="nav">&nbsp;&nbsp;&nbsp;<a href="{U_INDEX}" class="nav">{L_INDEX}</a>
+
+	  	  <!-- BEGIN switch_parent_link -->
+	  	   -> <a class="nav" href="{PARENT_URL}">{PARENT_NAME}</a>
+	  	  <!-- END switch_parent_link -->
+ -> <a class="nav" href="{U_VIEW_FORUM}">{FORUM_NAME}</a></span></td>
+ 
+#
+#-----[ TROUVER ]------------------------------------------------
+#
+   <table border="0" cellpadding="4" cellspacing="1" width="100%" class="forumline">
+
+#
+#-----[ AVANT, AJOUTER ]-----------------------------------------
+#
+   
+<!-- BEGIN switch_attached_list -->
+   <br />
+   <table width="100%" border="0" cellpadding="4" cellspacing="1" width="100%" class="forumline">
+     <tr>
+		<th colspan="2" class="thCornerL" height="15" nowrap="nowrap">&nbsp;{switch_attached_list.L_ATTACHED_FORUM}&nbsp;</th>
+		<th width="50" class="thTop" nowrap="nowrap">&nbsp;{switch_attached_list.L_ATTACHED_TOPICS}&nbsp;</th>
+		<th width="50" class="thTop" nowrap="nowrap">&nbsp;{switch_attached_list.L_ATTACHED_POSTS}&nbsp;</th>
+		<th width="50" class="thTop" nowrap="nowrap">&nbsp;{switch_attached_list.L_LAST_POST}&nbsp;</th>
+     </tr>
+	<!-- BEGIN switch_attached_present -->
+	<tr>
+		<td class="row1" align="center" valign="middle" height="38"><img src="{switch_attached_list.switch_attached_present.FORUM_FOLDER_IMG}" width="46" height="25" alt="{switch_attached_list.switch_attached_present.L_FORUM_FOLDER_ALT}" title="{switch_attached_list.switch_attached_present.L_FORUM_FOLDER_ALT}" /></td>
+		<td class="row1" width="75%"><span class="forumlink"><a class="forumlink" href="{switch_attached_list.switch_attached_present.U_VIEWFORUM}">{switch_attached_list.switch_attached_present.FORUM_NAME}</a></span><br /><span class="genmed">{switch_attached_list.switch_attached_present.FORUM_DESC}</span></td>
+		<td class="row2" align="center" valign="middle"><span class="gensmall">{switch_attached_list.switch_attached_present.TOPICS}</span></td>
+		<td class="row2" align="center" valign="middle"><span class="gensmall">{switch_attached_list.switch_attached_present.POSTS}</span></td>
+		<td class="row2" align="center" nowrap="nowrap" valign="middle"><span class="gensmall">{switch_attached_list.switch_attached_present.LAST_POST_ID}</span></td>
+	</tr>
+	<!-- END switch_attached_present -->
+   </table>
+   <br />
+<!-- END switch_attached_list -->
+
+ 
+#
+#-----[ TROUVER ]------------------------------------------------
+#
+	  <td align="left" valign="middle" width="100%"><span class="nav">&nbsp;&nbsp;&nbsp;<a href="{U_INDEX}" class="nav">{L_INDEX}</a> -> <a class="nav" href="{U_VIEW_FORUM}">{FORUM_NAME}</a></span></td>
+
+#
+#-----[ REMPLACER PAR ]------------------------------------------------
+#
+	  <td align="left" valign="middle" width="100%"><span class="nav">&nbsp;&nbsp;&nbsp;<a href="{U_INDEX}" class="nav">{L_INDEX}</a>
+	  	  <!-- BEGIN switch_parent_link -->
+	  	   -> <a class="nav" href="{PARENT_URL}">{PARENT_NAME}</a>
+	  	  <!-- END switch_parent_link -->
+ -> <a class="nav" href="{U_VIEW_FORUM}">{FORUM_NAME}</a></span></td>
+
+
+#
+#-----[ OUVRIR ]------------------------------------------------
+#
+   /templates/subSilver/viewtopic_body.tpl
+
+#
+#-----[ TROUVER ]------------------------------------------------
+#
+	<td align="left" valign="middle" width="100%"><span class="nav">&nbsp;&nbsp;&nbsp;<a href="{U_INDEX}" class="nav">{L_INDEX}</a> 
+	  -> <a href="{U_VIEW_FORUM}" class="nav">{FORUM_NAME}</a></span></td>
+
+#
+#-----[ REMPLACER PAR ]------------------------------------------------
+#
+	<td align="left" valign="middle" width="100%"><span class="nav">&nbsp;&nbsp;&nbsp;<a href="{U_INDEX}" class="nav">{L_INDEX}</a> 
+	 
+	  	  <!-- BEGIN switch_parent_link -->
+ -> <a class="nav" href="{PARENT_URL}">{PARENT_NAME}</a>
+	  	  <!-- END switch_parent_link -->
+ -> <a href="{U_VIEW_FORUM}" class="nav">{FORUM_NAME}</a></span></td>
+#
+#-----[ TROUVER ]------------------------------------------------
+#
+	<td align="left" valign="middle" width="100%"><span class="nav">&nbsp;&nbsp;&nbsp;<a href="{U_INDEX}" class="nav">{L_INDEX}</a> 
+	  -> <a href="{U_VIEW_FORUM}" class="nav">{FORUM_NAME}</a></span></td> 
+	  
+
+#
+#-----[ REMPLACER PAR ]------------------------------------------------
+#
+	<td align="left" valign="middle" width="100%"><span class="nav">&nbsp;&nbsp;&nbsp;<a href="{U_INDEX}" class="nav">{L_INDEX}</a> 
+	  	  <!-- BEGIN switch_parent_link -->
+	  -> <a class="nav" href="{PARENT_URL}">{PARENT_NAME}</a>
+	  	  <!-- END switch_parent_link -->
+	  -> <a href="{U_VIEW_FORUM}" class="nav">{FORUM_NAME}</a></span></td> 
+
+#
+#-----[ OUVRIR ]------------------------------------------------
+#
+   /templates/subSilver/posting_body.tpl
+
+#
+#-----[ TROUVER ]------------------------------------------------
+#
+<td align="left"><span  class="nav"><a href="{U_INDEX}" class="nav">{L_INDEX}</a>
+#
+#-----[ APRES, AJOUTER ]------------------------------------------------
+#
+	  	  <!-- BEGIN switch_parent_link -->
+	  -> <a class="nav" href="{PARENT_URL}">{PARENT_NAME}</a>
+	  	  <!-- END switch_parent_link -->
+# 
+#-----[ SAUVEGARDER/FERMER TOUS LES FICHIERS ]---------------- 
+# 
+#FdM
+
+################################################################# 
+## MOD Title: File Attachment Mod v2 
+## MOD Author: Acyd Burn < N/A > (Meik Sievertsen) http://www.opentools.de/
+## Files To Edit (12):    modcp_body.tpl, posting_body.tpl, 
+##         posting_preview.tpl, posting_topic_review.tpl, privmsgs_body.tpl, privmsgs_preview.tpl, privmsgs_read_body.tpl, 
+##         profile_view_body.tpl, viewforum_body.tpl, viewtopic_body.tpl, admin/group_edit_body.tpl, admin/user_edit_body.tpl
+
+
+# 
+#-----[ OPEN ]---------------------------------------------
+# 
+templates/subSilver/modcp_body.tpl
+
+#
+#-----[ FIND ]---------------------------------------------
+# around line 27 
+	  <td class="row1">&nbsp;<span class="topictitle">{topicrow.TOPIC_TYPE}<a href="{topicrow.U_VIEW_TOPIC}" class="topictitle">{topicrow.TOPIC_TITLE}</a></span></td>
+
+# 
+#-----[ IN-LINE FIND ]---------------------------------------------
+# around line 27 (directly in that line)
+{topicrow.TOPIC_TYPE}
+
+# 
+#-----[ IN-LINE BEFORE, ADD ]---------------------------------------
+# 
+{topicrow.TOPIC_ATTACHMENT_IMG}
+
+# 
+#-----[ OPEN ]---------------------------------------------
+# 
+templates/subSilver/posting_body.tpl
+
+# 
+#-----[ FIND ]---------------------------------------------
+# around line 258
+<form action="{S_POST_ACTION}" method="post" name="post" onsubmit="return checkForm(this)">
+
+# 
+#-----[ REPLACE WITH ]---------------------------------------
+# 
+<form action="{S_POST_ACTION}" method="post" name="post" onsubmit="return checkForm(this)" {S_FORM_ENCTYPE}>
+
+# 
+#-----[ FIND ]---------------------------------------------
+# around line 462
+	{POLLBOX} 
+
+# 
+#-----[ BEFORE, ADD ]---------------------------------------
+# 
+	{ATTACHBOX}
+
+# 
+#-----[ OPEN ]---------------------------------------------
+# 
+templates/subSilver/posting_preview.tpl
+
+# 
+#-----[ FIND ]---------------------------------------------
+# around line 13
+					<span class="postbody">{MESSAGE}</span>
+
+# 
+#-----[ AFTER, ADD ]---------------------------------------
+# Do NOT make one line out of this, a <!-- --> template statement has to be on one seperate line
+					<!-- BEGIN postrow -->
+					{ATTACHMENTS}
+					<!-- END postrow -->
+
+# 
+#-----[ OPEN ]---------------------------------------------
+# 
+templates/subSilver/posting_topic_review.tpl
+
+# 
+#-----[ FIND ]---------------------------------------------
+# around line 26
+				<td colspan="2"><span class="postbody">{postrow.MESSAGE}</span></td>
+
+# 
+#-----[ IN-LINE FIND ]---------------------------------------------
+# around line 26 (directly in that line)
+{postrow.MESSAGE}</span>
+
+# 
+#-----[ IN-LINE AFTER, ADD ]---------------------------------------
+# 
+{postrow.ATTACHMENTS}
+
+# 
+#-----[ OPEN ]---------------------------------------------
+# 
+templates/subSilver/privmsgs_body.tpl
+
+# 
+#-----[ FIND ]---------------------------------------------
+# around line 15
+<table border="0" cellspacing="0" cellpadding="0" align="center" width="100%">
+  <tr> 
+
+# 
+#-----[ AFTER, ADD ]---------------------------------------
+# 
+	<td align="right"> 
+	<!-- BEGIN switch_box_size_notice -->
+	<table width="175" cellspacing="1" cellpadding="2" border="0" class="bodyline">
+	<tr> 
+		<td colspan="3" width="175" class="row1" nowrap="nowrap"><span class="gensmall">{ATTACH_BOX_SIZE_STATUS}</span></td>
+	</tr>
+	<tr> 
+		<td colspan="3" width="175" class="row2">
+			<table cellspacing="0" cellpadding="1" border="0">
+			<tr> 
+				<td bgcolor="{T_TD_COLOR2}"><img src="templates/subSilver/images/spacer.gif" width="{ATTACHBOX_LIMIT_IMG_WIDTH}" height="8" alt="{ATTACH_LIMIT_PERCENT}" /></td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	<tr> 
+		<td width="33%" class="row1"><span class="gensmall">0%</span></td>
+		<td width="34%" align="center" class="row1"><span class="gensmall">50%</span></td>
+		<td width="33%" align="right" class="row1"><span class="gensmall">100%</span></td>
+	</tr>
+	</table>
+	<!-- END switch_box_size_notice -->
+	</td>
+
+# 
+#-----[ FIND ]---------------------------------------------
+# around line 106
+	  <td width="55%" valign="middle" class="{listrow.ROW_CLASS}"><span class="topictitle">&nbsp;<a href="{listrow.U_READ}" class="topictitle">{listrow.SUBJECT}</a></span></td>
+
+# 
+#-----[ IN-LINE FIND ]---------------------------------------------
+# around line 106 (directly in that line)
+<span class="topictitle">&nbsp;<a href="{listrow.U_READ}" class="topictitle">{listrow.SUBJECT}
+
+# 
+#-----[ IN-LINE BEFORE, ADD ]---------------------------------------
+# 
+{listrow.PRIVMSG_ATTACHMENTS_IMG}
+
+# 
+#-----[ OPEN ]---------------------------------------------
+# 
+templates/subSilver/privmsgs_preview.tpl
+
+# 
+#-----[ FIND ]---------------------------------------------
+# around line 23
+	<td valign="top" colspan="2" class="row1"><span class="postbody">{MESSAGE}</span></td>
+
+# 
+#-----[ REPLACE WITH ]---------------------------------------
+# Do NOT make one line out of this, a <!-- --> template statement has to be on one seperate line
+	<td valign="top" colspan="2" class="row1"><span class="postbody">{MESSAGE}</span>
+	<!-- BEGIN postrow -->
+	{ATTACHMENTS}
+	<!-- END postrow -->
+	</td>
+
+# 
+#-----[ OPEN ]---------------------------------------------
+# 
+templates/subSilver/privmsgs_read_body.tpl
+
+# 
+#-----[ FIND ]---------------------------------------------
+# around line 47
+	  <td valign="top" colspan="3" class="row1"><span class="postbody">{MESSAGE}</span></td>
+
+# 
+#-----[ REPLACE WITH ]---------------------------------------
+# Do NOT make one line out of this, a <!-- --> template statement has to be on one seperate line
+	  <td valign="top" colspan="3" class="row1"><span class="postbody">{MESSAGE}</span>
+<!-- BEGIN postrow -->
+	{ATTACHMENTS}
+<!-- END postrow -->
+	  </td>
+
+# 
+#-----[ FIND ]---------------------------------------------
+# around line 74
+		<input type="submit" name="delete" value="{L_DELETE_MSG}" class="liteoption" />
+
+# 
+#-----[ AFTER, ADD ]---------------------------------------
+# Do NOT make one line out of this, a <!-- --> template statement has to be on one seperate line
+<!-- BEGIN switch_attachments -->
+		&nbsp; 
+		<input type="submit" name="pm_delete_attach" value="{L_DELETE_ATTACHMENTS}" class="liteoption" />
+<!-- END switch_attachments -->
+
+# 
+#-----[ OPEN ]---------------------------------------------
+# 
+templates/subSilver/profile_view_body.tpl
+
+# 
+#-----[ FIND ]---------------------------------------------
+# around line 41
+		  <td> <b><span class="gen">{INTERESTS}</span></b></td>
+		</tr>
+
+# 
+#-----[ AFTER, ADD ]---------------------------------------
+# 
+<!-- BEGIN switch_upload_limits -->
+		<tr> 
+			<td valign="top" align="right" nowrap="nowrap"><span class="gen">{L_UPLOAD_QUOTA}:</span></td>
+			<td> 
+				<table width="175" cellspacing="1" cellpadding="2" border="0" class="bodyline">
+				<tr> 
+					<td colspan="3" width="100%" class="row2">
+						<table cellspacing="0" cellpadding="1" border="0">
+						<tr> 
+							<td bgcolor="{T_TD_COLOR2}"><img src="templates/subSilver/images/spacer.gif" width="{UPLOAD_LIMIT_IMG_WIDTH}" height="8" alt="{UPLOAD_LIMIT_PERCENT}" /></td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				<tr> 
+					<td width="33%" class="row1"><span class="gensmall">0%</span></td>
+					<td width="34%" align="center" class="row1"><span class="gensmall">50%</span></td>
+					<td width="33%" align="right" class="row1"><span class="gensmall">100%</span></td>
+				</tr>
+				</table>
+				<b><span class="genmed">[{UPLOADED} / {QUOTA} / {PERCENT_FULL}]</span> </b><br />
+				<span class="genmed"><a href="{U_UACP}" class="genmed">{L_UACP}</a></span></td>
+			</td>
+		</tr>
+<!-- END switch_upload_limits -->
+
+# 
+#-----[ OPEN ]---------------------------------------------
+# 
+templates/subSilver/viewforum_body.tpl
+
+# 
+#-----[ FIND ]---------------------------------------------
+# around line 26
+	  <td class="row1" width="100%"><span class="topictitle">{topicrow.NEWEST_POST_IMG}{topicrow.TOPIC_TYPE}<a href="{topicrow.U_VIEW_TOPIC}" class="topictitle">{topicrow.TOPIC_TITLE}</a></span><span class="gensmall"><br />
+
+# 
+#-----[ IN-LINE FIND ]---------------------------------------------
+# around line 26 (directly in that line)
+{topicrow.NEWEST_POST_IMG}
+
+# 
+#-----[ IN-LINE AFTER, ADD ]---------------------------------------
+# 
+{topicrow.TOPIC_ATTACHMENT_IMG}
+
+# 
+#-----[ OPEN ]---------------------------------------------
+# 
+templates/subSilver/viewtopic_body.tpl
+
+# 
+#-----[ FIND ]---------------------------------------------
+# around line 39
+				<td colspan="2"><span class="postbody">{postrow.MESSAGE}{postrow.SIGNATURE}</span><span class="gensmall">{postrow.EDITED_MESSAGE}</span></td>
+
+# 
+#-----[ IN-LINE FIND ]---------------------------------------------
+# around line 39 (directly in that line)
+{postrow.SIGNATURE}
+
+# 
+#-----[ IN-LINE BEFORE, ADD ]---------------------------------------
+# 
+</span>{postrow.ATTACHMENTS}<span class="postbody">
+
+# 
+#-----[ OPEN ]---------------------------------------------
+# 
+templates/subSilver/admin/group_edit_body.tpl
+
+# 
+#-----[ FIND ]---------------------------------------------
+# around line 48
+	<!-- END group_edit -->
+
+# 
+#-----[ BEFORE, ADD ]---------------------------------------
+# 
+	<tr> 
+	  <td class="row1"><span class="gen">{L_UPLOAD_QUOTA}</span></td>
+	  <td class="row2">{S_SELECT_UPLOAD_QUOTA}</td>
+	</tr>
+	<tr> 
+	  <td class="row1"><span class="gen">{L_PM_QUOTA}</span></td>
+	  <td class="row2">{S_SELECT_PM_QUOTA}</td>
+	</tr>
+
+# 
+#-----[ OPEN ]---------------------------------------------
+# 
+templates/subSilver/admin/user_edit_body.tpl
+
+# 
+#-----[ FIND ]---------------------------------------------
+# around line 267
+	  <td class="row1" colspan="2"><span class="gensmall">{L_SPECIAL_EXPLAIN}</span></td>
+	</tr>
+
+# 
+#-----[ AFTER, ADD ]---------------------------------------
+# 
+	<tr> 
+	  <td class="row1"><span class="gen">{L_UPLOAD_QUOTA}</span></td>
+	  <td class="row2">{S_SELECT_UPLOAD_QUOTA}</td>
+	</tr>
+	<tr> 
+	  <td class="row1"><span class="gen">{L_PM_QUOTA}</span></td>
+	  <td class="row2">{S_SELECT_PM_QUOTA}</td>
+	</tr>
+
+# 
+#-----[ SAVE/CLOSE ALL FILES ]------------------------------------------ 
+# 
+
+################################################################# 
+## MOD Title: Gf-Portail Mod v1.1
+## MOD Author: Giefca <giefca@hotmail.com> (Giefca) http://www.gf-phpbb.com
+## MOD Version: 1.1.1
+##
+## Files To Edit: 
+##		      templates/subSilver/admin/index_navigate.tpl
+##		      templates/subSilver/overall_header.tpl
+##		      templates/subSilver/subSilver.cfg
+##		      
+##
+## Included Files: 
+##			templates/subSilver/images/icon_mini_house.gif
+##			templates/subSilver/images/gfportail.jpg
+##			templates/subSilver/images/gfpic.jpg
+##			templates/subSilver/portal_body.tpl
+##			templates/subSilver/admin/admin_links_list_body.tpl
+##			templates/subSilver/admin/block_edit_body.tpl
+##			templates/subSilver/admin/link_edit_body.tpl
+##			templates/subSilver/admin/modules_addnew_body.tpl
+##			templates/subSilver/admin/modules_manage_body.tpl
+##			templates/subSilver/admin/page_edit_body.tpl
+##			templates/subSilver/admin/pages_manage_body.tpl
+##			templates/subSilver/admin/portal_config_body.tpl
+##			templates/subSilver/admin/struct_portal_body.tpl
+##			templates/subSilver/admin/welcome_msg_body.tpl
+##			templates/subSilver/modportal/index.html
+##			templates/subSilver/modportal/mod_bienvenue.tpl
+##			templates/subSilver/modportal/mod_change_style.tpl
+##			templates/subSilver/modportal/mod_entete.tpl
+##			templates/subSilver/modportal/mod_liens.tpl
+##			templates/subSilver/modportal/mod_login.tpl
+##			templates/subSilver/modportal/mod_navigation.tpl
+##			templates/subSilver/modportal/mod_news.tpl
+##			templates/subSilver/modportal/mod_recent_topics.tpl
+##			templates/subSilver/modportal/mod_sondage.tpl
+##			templates/subSilver/modportal/standard.tpl
+##			templates/subSilver/modportal/mod_statistiques.tpl
+##			templates/subSilver/modportal/mod_welcome.tpl
+##			templates/subSilver/modportal/mod_whoisonline.tpl
+# 
+#-----[ OUVRIR ]--------------------------------------------- 
+# 
+templates/subSilver/admin/index_navigate.tpl
+
+# 
+#-----[ TROUVER ]--------------------------------------------- 
+# 
+		<tr> 
+		  <td class="row1"><span class="genmed"><a href="{U_FORUM_INDEX}" target="_parent" class="genmed">{L_FORUM_INDEX}</a></span></td>
+		</tr>
+		<tr> 
+		  <td class="row1"><span class="genmed"><a href="{U_FORUM_INDEX}" target="main" class="genmed">{L_PREVIEW_FORUM}</a></span></td>
+		</tr>
+# 
+#-----[ APRES, AJOUTER ]--------------------------------------------- 
+# 
+
+		<tr>
+		  <td class="row1"><a href="{U_PORTAL_INDEX}" target="_parent" class="genmed">{L_PORTAL_INDEX}</a></td>
+		</tr>
+		<tr> 
+		  <td class="row1"><a href="{U_PORTAL_INDEX}" target="main" class="genmed">{L_PREVIEW_PORTAL}</a></td>
+		</tr>
+
+# 
+#-----[ OUVRIR ]--------------------------------------------- 
+# 
+templates/subSilver/overall_header.tpl
+
+
+# 
+#-----[ TROUVER ]--------------------------------------------- 
+# 
+&nbsp;<a href="{U_FAQ}" class="mainmenu"><img src="templates/subSilver/images/icon_mini_faq.gif" width="12" height="13" border="0" alt="{L_FAQ}" hspace="3" />{L_FAQ}</a>
+
+# 
+#-----[ DANS LA LIGNE, TROUVER ]--------------------------------------------- 
+# 
+&nbsp;<a href="{U_FAQ}" class="mainmenu">
+
+# 
+#-----[ DANS LA LIGNE AVANT, AJOUTER ]--------------------------------------- 
+# 
+&nbsp;<a href="{U_PORTAL}" class="mainmenu"><img src="templates/subSilver/images/icon_mini_house.gif" width="13" height="13" border="0" alt="{L_HOME}" hspace="3" />{L_HOME}</a>&nbsp;
+
+# 
+#-----[ OUVRIR ]--------------------------------------------- 
+# 
+templates/subSilver/subSilver.cfg
+
+# 
+#-----[ TROUVER ]--------------------------------------------- 
+# 
+?>
+
+# 
+#-----[ AVANT, AJOUTER ]------------------------------------------ 
+# 
+// Class d'entete de module sur le portail
+$board_config['portal_class_balise'] = "td" ; //td ou th
+$board_config['portal_class_title'] = "catLeft" ;// une classe correspondant à la balise
+# 
+#-----[ SAUVEGARDER/FERMER TOUS LES FICHIERS ]---------------- 
+# 
+#FdM
+##############################################################
+## MOD Title: Addon Gf-portail
+## MOD Author: Vgamerz <planetvgamerz@hotmail.com>
+## MOD Description: Permet de désactiver le portail avec une option dans l'administration générale
+## MOD Version: 1.0
+##
+## Files to Edit: 
+##                 templates/subSilver/admin/board_config_body.tpl,
+##
+## Included Files: (n/a)
+#
+#-----[ OUVRIR ]------------------------------------------
+#
+templates/subSilver/admin/board_config_body.tpl
+#
+#-----[ TROUVER ]------------------------------------------
+#
+	<tr>
+		<td class="row1">{L_DISABLE_BOARD}<br /><span class="gensmall">{L_DISABLE_BOARD_EXPLAIN}</span></td>
+		<td class="row2"><input type="radio" name="board_disable" value="1" {S_DISABLE_BOARD_YES} /> {L_YES}&nbsp;&nbsp;<input type="radio" name="board_disable" value="0" {S_DISABLE_BOARD_NO} /> {L_NO}</td>
+	</tr>
+#
+#-----[ APRES, AJOUTER ]------------------------------------------
+#
+	<tr>
+		<td class="row1">{L_ACTIVEPORTAIL}</td>
+		<td class="row2"><input type="radio" name="activeportail" value="1" {ACTIVEPORTAIL_YES} /> {L_YES}&nbsp;&nbsp;<input type="radio" name="activeportail" value="0" {ACTIVEPORTAIL_NO} /> {L_NO}</td>
+	</tr>
+# 
+#-----[ SAUVEGARDER/FERMER TOUS LES FICHIERS ]---------------- 
+# 
+#FdM
+
+##############################################################
+## MOD Titre:  Arcade v2.1.2
+## MOD Auteur: Giefca - giefca@hotmail.com - http://www.gf-phpbb.com
+## Support IBPro (type 4) : Ours < bigours@hotmail.fr > 
+##                          origine : JRSweets < JRSweets@gmail.com > 
+##                          trad : < maliktaallah@hotmail.com > 
+## Correctif pour afficher le dernier record sur l'index avec Categories Hierarchy 2.1.x : Ours <bigours@hotmail.fr> 
+## Correctif de la suppression des scores d'un membre supprimé avec Categories Hierarchy 2.1.x : Ours <bigours@hotmail.fr> 
+## Désactivation du clic-droit sur les jeux : Ours <bigours@hotmail.fr> 
+##
+## Regroupement V1 + V2 + correctifs + gestion IBPro :  Cig - cigalou@gmail.com - http://www.gf-phpbb.com
+## 
+## MOD Description:
+## Permet d'ajouter des jeux en flash sur votre forum en
+## gérant les différents scores des membres. 
+## Les jeux doivent avoir été spécifiquement adaptés à ce MOD pour que
+## les scores puissent s'enregistrer.
+## Vous trouverez des centaines de jeux adaptés sur http://www.gf-phpbb.com
+## et sur http://crazyarcade.c.la
+## 
+## 
+## Fichier à modifier : 
+##                         templates/theme/profile_view_body.tpl
+##                         templates/theme/index_body.tpl
+##
+## Fichier inclus :
+## ----------------
+##
+##          templates/xxx/arcade_body.tpl
+##          templates/xxx/arcade_cat_body.tpl
+##          templates/xxx/games_body.tpl
+##          templates/xxx/scoreboard_body.tpl
+##          templates/xxx/statarcade_body.tpl
+##          templates/xxx/toparcade_body.tpl
+##          templates/xxx/whoisplaying_body.tpl
+##
+##          templates/xxx/admin/admin_edit_games.tpl
+##          templates/xxx/admin/arcade_cat_delete_body.tpl
+##          templates/xxx/admin/arcade_cat_manage_body.tpl
+##          templates/xxx/admin/arcade_catedit_body.tpl
+##          templates/xxx/admin/arcade_config_body.tpl
+##          templates/xxx/admin/arcade_manage_body.tpl
+##          templates/xxx/admin/auth_arcade_body.tpl
+##          templates/xxx/admin/auth_select_body.tpl
+##
+##          templates/xxx/images/couronne.gif
+##          templates/xxx/images/loupe.gif
+##          templates/xxx/images/scoreboard.gif
+# 
+#-----[ OUVRIR ]-----------------------------------------
+# 
+
+      templates/subSilver/profile_view_body.tpl
+
+# 
+#-----[ TROUVER ]----------------------------------------- 
+#
+
+		<tr>
+		  <td valign="top" align="right" nowrap="nowrap"><span class="gen">{L_INTERESTS}:</span></td>
+		  <td> <b><span class="gen">{INTERESTS}</span></b></td>
+		</tr>
+
+#
+#-----[ APRES, AJOUTER ]----------------------------------- 
+# 
+
+		<tr>
+		  <td valign="top" align="right" nowrap="nowrap"><span class="gen">{L_ARCADE}:</span></td>
+		  <td><span class="gen">{URL_STATS}</span></b></td>
+		</tr>
+
+#
+#-----[ OUVRIR ]-----------------------------------------
+#
+
+      templates/theme/index_body.tpl  
+
+# 
+#-----[ TROUVER ]-----------------------------------------
+#
+
+  <!-- END forumrow -->
+
+# 
+#-----[ APRES, AJOUTER ]----------------------------------- 
+#
+
+  <!-- BEGIN arcaderow --> 
+  <tr>
+   <td class="row1" align="center" valign="middle" height="75">{catrow.arcaderow.FOLDER}</td> 
+   <td class="row1" colspan="1" width="100%" height="50"><span class="forumlink"> <a href="{catrow.arcaderow.U_VIEWFORUM}" class="forumlink">{catrow.arcaderow.FORUM_NAME}</a><br /> 
+     </span> <span class="genmed">{catrow.arcaderow.FORUM_DESC}</span><br /> 
+     <span class="forumlink"> <a href="{catrow.arcaderow.U_TOPARCADE}" class="forumlink">{catrow.arcaderow.BEST_SCORES}</a> 
+   </td> 
+   <td class="row2" colspan="3" width="100%" height="50" align="center"> 
+  <!-- BEGIN bestscore -->    
+      <span class="gensmall"> 
+        {catrow.arcaderow.bestscore.LAST_SCOREDATE}<br />{catrow.arcaderow.bestscore.LAST_SCOREUSER}<br />
+      a réalisé un score de<br />{catrow.arcaderow.bestscore.LAST_SCORE} à {catrow.arcaderow.bestscore.LAST_SCOREGAME} 
+     </span> 
+  <!-- END bestscore -->        
+   </td> 
+  </tr>
+  <!-- END arcaderow --> 
+  # 
+  #-----[ SAUVEGARDER/FERMER TOUS LES FICHIERS ]---------------- 
+  # 
+  #FdM
+############################################################## 
+## MOD Title:          Arcade Championnat
+## MOD Author:         NiCo[L-aS] < neointhematrix@fr.st > (http://www.neointhematrix.fr.st)
+## MOD Description:    Ce mod vous permet de proposer un championnat sur tous les jeux du mod arcade 
+## MOD Version:        1.0.5
+## MOD Compatibility:  2.0.6->2.0.13
+##
+## Installation Level: Medium
+##	templates/votre_thème/admin/arcade_config_body.tpl
+##	templates/votre_thème/arcade__body.tpl
+##	templates/votre_thème/arcade_cat_body.tpl
+##	templates/votre_thème/games_body.tpl
+# 
+#--[ OPEN ]
+# 
+
+templates/votre_thème/admin/arcade_config_body.tpl
+
+# 
+#--[ FIND ]
+# 
+
+<tr> 
+<td class="cat" colspan="2" align="center">{S_HIDDEN_FIELDS} 
+<input type="submit" name="submit" value="{L_SUBMIT}" class="mainoption" />
+&nbsp;&nbsp; 
+<input type="reset" value="{L_RESET}" class="button" />
+</td>
+</tr>
+</table>
+</form>
+<br clear="all" />
+
+# 
+#--[ BEFORE, ADD ]
+#
+
+<tr> 
+<th colspan="2">{L_ARCADE_CHAMPIONNAT_AREA_SETTINGS}</th>
+</tr>
+<tr> 
+<td class="row1" width="38%">{L_CHAMPIONNAT_USE}<br />
+<span class="gensmall">{L_CHAMPIONNAT_USE_EXPLAIN}</span>
+</td>
+<td class="row2" width="62%"> 
+<input type="radio" name="championnat_use" value="1" {S_CHAMPIONNAT_USE_YES} />
+{L_YES}&nbsp;&nbsp; 
+<input type="radio" name="championnat_use" value="0" {S_CHAMPIONNAT_USE_NO} />
+{L_NO}
+</td>
+</tr>
+<tr>
+<td class="row1" width="38%">{L_CHAMPIONNAT_POINTS_ONE}<br /><span class="gensmall">{L_CHAMPIONNAT_POINTS_ONE_EXPLAIN}</span></td>
+<td class="row2"> <input type="text" maxlength="100" name="championnat_points_one" value="{S_CHAMPIONNAT_POINTS_ONE}" /> 
+</td>
+</tr>
+<tr>
+<td class="row1" width="38%">{L_CHAMPIONNAT_POINTS_TWO}<br /><span class="gensmall">{L_CHAMPIONNAT_POINTS_TWO_EXPLAIN}</span></td>
+<td class="row2"> <input type="text" maxlength="100" name="championnat_points_two" value="{S_CHAMPIONNAT_POINTS_TWO}" /> 
+</td>
+</tr>
+<tr>
+<td class="row1" width="38%">{L_CHAMPIONNAT_POINTS_THREE}<br /><span class="gensmall">{L_CHAMPIONNAT_POINTS_THREE_EXPLAIN}</span></td>
+<td class="row2"> <input type="text" maxlength="100" name="championnat_points_three" value="{S_CHAMPIONNAT_POINTS_THREE}" /> 
+</td>
+</tr>
+<tr>
+<td class="row1" width="38%">{L_CHAMPIONNAT_POINTS_FOUR}<br /><span class="gensmall">{L_CHAMPIONNAT_POINTS_FOUR_EXPLAIN}</span></td>
+<td class="row2"> <input type="text" maxlength="100" name="championnat_points_four" value="{S_CHAMPIONNAT_POINTS_FOUR}" /> 
+</td>
+</tr>
+<tr>
+<td class="row1" width="38%">{L_CHAMPIONNAT_POINTS_FIVE}<br /><span class="gensmall">{L_CHAMPIONNAT_POINTS_FIVE_EXPLAIN}</span></td>
+<td class="row2"> <input type="text" maxlength="100" name="championnat_points_five" value="{S_CHAMPIONNAT_POINTS_FIVE}" /> 
+</td>
+</tr>
+<tr>
+<td class="catBottom" colspan="6" align="center">{S_HIDDEN_FIELDS}<input type="submit" name="reset" value="{L_CHAMPIONNAT_RESET}" class="mainoption" /></td>
+</tr>
+<tr> 
+<td class="row1" width="38%">{L_USE_CAGNOTTE_MOD}<br />
+<span class="gensmall">{L_USE_CAGNOTTE_MOD_EXPLAIN}</span>
+</td>
+<td class="row2" width="62%"> 
+<input type="radio" name="use_cagnotte_mod" value="1" {S_USE_CAGNOTTE_MOD_YES} />
+{L_YES}&nbsp;&nbsp; 
+<input type="radio" name="use_cagnotte_mod" value="0" {S_USE_CAGNOTTE_MOD_NO} />
+{L_NO}
+</td>
+</tr>
+<tr>
+<td class="row1" width="38%">{L_CAGNOTTE}<br /><span class="gensmall">{L_CAGNOTTE_EXPLAIN}</span></td>
+<td class="row2"> <input type="text" maxlength="100" name="cagnotte" value="{S_CAGNOTTE}" /> 
+</td>
+</tr>
+<tr> 
+<td class="row1" width="38%">{L_USE_POINTS_CAGNOTTE}<br />
+<span class="gensmall">{L_USE_POINTS_CAGNOTTE_EXPLAIN}</span>
+</td>
+<td class="row2" width="62%"> 
+<input type="radio" name="use_points_cagnotte" value="1" {S_USE_POINTS_CAGNOTTE_YES} />
+{L_YES}&nbsp;&nbsp; 
+<input type="radio" name="use_points_cagnotte" value="0" {S_USE_POINTS_CAGNOTTE_NO} />
+{L_NO}
+</td>
+</tr>
+<tr>
+<td class="catBottom" colspan="6" align="center">{S_HIDDEN_FIELDS}<input type="submit" name="cagnotte_distrib" value="{L_CAGNOTTE_DISTRIB}" class="mainoption" /></td>
+</tr>
+<tr> 
+<td class="row1" width="38%">{L_CAT_USE}<br />
+<span class="gensmall">{L_CAT_USE_EXPLAIN}</span>
+</td>
+<td class="row2" width="62%"> 
+<input type="radio" name="cat_use" value="1" {S_CAT_USE_YES} />
+{L_YES}&nbsp;&nbsp; 
+<input type="radio" name="cat_use" value="0" {S_CAT_USE_NO} />
+{L_NO}
+</td>
+</tr>
+<tr>
+	<td class="row1" width="38%">{L_CHAMPIONNAT_CATEGORIE}<br />
+<span class="gensmall">{L_CHAMPIONNAT_CATEGORIE_EXPLAIN}</span>
+</td>
+	<td class="row2" width="62%">{CHAMPIONNAT_CAT_SELECT}</td>
+</tr>
+<tr>
+<td class="row1" width="38%">{L_CHAMPIONNAT_TAUX}<br /><span class="gensmall">{L_CHAMPIONNAT_TAUX_EXPLAIN}</span></td>
+</td>
+<td class="row2" width="62%"></td>
+</tr>
+<tr>
+<td class="row1" width="38%">{L_CHAMPIONNAT_TAUX_UN}</td>
+<td class="row2"> <input type="text" maxlength="100" name="championnat_taux_un" value="{S_CHAMPIONNAT_TAUX_UN}" /> 
+</td>
+</tr>
+<tr>
+<td class="row1" width="38%">{L_CHAMPIONNAT_TAUX_DEUX}</td>
+<td class="row2"> <input type="text" maxlength="100" name="championnat_taux_deux" value="{S_CHAMPIONNAT_TAUX_DEUX}" /> 
+</td>
+</tr>
+<tr>
+<td class="row1" width="38%">{L_CHAMPIONNAT_TAUX_TROIS}</td>
+<td class="row2"> <input type="text" maxlength="100" name="championnat_taux_trois" value="{S_CHAMPIONNAT_TAUX_TROIS}" /> 
+</td>
+</tr>
+<tr>
+<td class="row1" width="38%">{L_CHAMPIONNAT_TAUX_QUATRE}</td>
+<td class="row2"> <input type="text" maxlength="100" name="championnat_taux_quatre" value="{S_CHAMPIONNAT_TAUX_QUATRE}" /> 
+</td>
+</tr>
+<tr>
+<td class="row1" width="38%">{L_CHAMPIONNAT_TAUX_CINQ}</td>
+<td class="row2"> <input type="text" maxlength="100" name="championnat_taux_cinq" value="{S_CHAMPIONNAT_TAUX_CINQ}" /> 
+</td>
+</tr>
+<tr>
+<td class="row1" width="38%">{L_CHAMPIONNAT_TAUX_SIX}</td>
+<td class="row2"> <input type="text" maxlength="100" name="championnat_taux_six" value="{S_CHAMPIONNAT_TAUX_SIX}" /> 
+</td>
+</tr>
+<tr>
+<td class="row1" width="38%">{L_CHAMPIONNAT_TAUX_SEPT}</td>
+<td class="row2"> <input type="text" maxlength="100" name="championnat_taux_sept" value="{S_CHAMPIONNAT_TAUX_SEPT}" /> 
+</td>
+</tr>
+<tr>
+<td class="row1" width="38%">{L_CHAMPIONNAT_TAUX_HUIT}</td>
+<td class="row2"> <input type="text" maxlength="100" name="championnat_taux_huit" value="{S_CHAMPIONNAT_TAUX_HUIT}" /> 
+</td>
+</tr>
+<tr>
+<td class="row1" width="38%">{L_CHAMPIONNAT_TAUX_NEUF}</td>
+<td class="row2"> <input type="text" maxlength="100" name="championnat_taux_neuf" value="{S_CHAMPIONNAT_TAUX_NEUF}" /> 
+</td>
+</tr>
+<tr>
+<td class="row1" width="38%">{L_CHAMPIONNAT_TAUX_DIX}</td>
+<td class="row2"> <input type="text" maxlength="100" name="championnat_taux_dix" value="{S_CHAMPIONNAT_TAUX_DIX}" /> 
+</td>
+</tr>
+<tr> 
+<td class="row1" width="38%">{L_USE_AUTO_DISTRIB}<br />
+<span class="gensmall">{L_USE_AUTO_DISTRIB_EXPLAIN}</span>
+</td>
+<td class="row2" width="62%"> 
+<input type="radio" name="use_auto_distrib" value="1" {S_USE_AUTO_DISTRIB_YES} />
+{L_YES}&nbsp;&nbsp; 
+<input type="radio" name="use_auto_distrib" value="0" {S_USE_AUTO_DISTRIB_NO} />
+{L_NO}
+</td>
+</tr>
+<tr>
+<td class="row1" width="38%">{L_DAY_DISTRIB}<br /><span class="gensmall">{L_DAY_DISTRIB_EXPLAIN}</span></td>
+<td class="row2"> <input type="text" maxlength="100" name="day_distrib" value="{S_DAY_DISTRIB}" /> 
+</td>
+</tr>
+# 
+#--[ OPEN ]
+#
+
+templates/votre_thème/arcade_cat_body.tpl
+
+# 
+#--[ FIND ]
+#
+
+  <table width="100%" cellpadding="2" cellspacing="3" border="0">
+<!-- BEGIN cat_row -->
+    <tr>
+	<td>
+	  <table width="100%" cellpadding="2" cellspacing="1" border="0" class="bodyline">
+	  <tr>
+	    <td class="cat" colspan="5"><span class="cattitle">{cat_row.CATTITLE}</span></td>
+	  </tr>
+<!-- BEGIN game_row -->
+
+# 
+#--[ BEFORE, ADD ]
+#
+
+{CHAMPIONNATARCADE}
+<br />
+
+# 
+#--[ OPEN ]
+#
+
+templates/votre_thème/arcade_body.tpl
+
+# 
+#--[ FIND ]
+#
+
+<table width="100%" cellpadding="2" cellspacing="1" border="0" class="forumline">
+  <tr> 
+	<th class="thTop" colspan="5" nowrap="nowrap">&nbsp;{L_ARCADE}&nbsp;</th>
+  </tr>
+  <!-- BEGIN use_category_mod -->
+  <tr> 
+	<td class="cat" colspan="5" nowrap="nowrap" align="center"><span class="cattitle">{CATTITLE}</span></td>
+  </tr>
+  <!-- END use_category_mod -->
+  <tr> 
+
+# 
+#--[ BEFORE, ADD ]
+#
+
+{CHAMPIONNATARCADE}
+<br />
+
+# 
+#--[ OPEN ]
+#
+
+templates/votre_thème/games_body.tpl
+
+# 
+#--[ FIND ]
+#
+
+<table width="100%" cellpadding="2" cellspacing="1" border="0" class="forumline">
+  <tr> 
+	<th class="thTop" height="28" align="center">{L_GAME}</th>
+  </tr>
+  <tr>
+ 	<td align="center">
+		<table width="100%">
+			<tr>
+				<!-- BEGIN avatar_best_player_left -->
+
+# 
+#--[ BEFORE, ADD ]
+#
+
+{CHAMPIONNATARCADE}
+<br />
+
+# 
+#-----[ SAVE/CLOSE ALL FILES ]------------------------------------------ 
+# 
+# EoM
+
+
+############################################################## 
+## MOD Title:		BBcode Box Reloaded (BBcBxR)
+## MOD Author: reddog < N/A > (N/A) http://www.reddevboard.com
+## MOD Description:	this MOD replaces basic bbcode buttons by images
+##			in posting display, several options are available
+##			from the Admin Control Panel
+## MOD Version:		1.2.2a
+## MOD Compatibility:	2.0.18
+## 
+## Installation Level:	Intermediate
+## Files To Edit:	
+##	templates/subSilver/bbcode.tpl
+##	templates/subSilver/overall_header.tpl
+##	templates/subSilver/posting_body.tpl
+##	templates/subSilver/simple_header.tpl
+
+#
+#-----[ OPEN ]------------------------------------------------
+#
+templates/subSilver/bbcode.tpl
+#
+#-----[ FIND ]------------------------------------------------
+#
+# This is a partial search: the full lines are longer
+#
+<!-- BEGIN quote_username_open --></span>
+<table
+<tr> 
+	  {USERNAME} {L_WROTE}
+	</tr>
+	<tr>
+	  <!-- END quote_username_open -->
+<!-- BEGIN quote_open --></span>
+<table
+<tr> 
+	  {L_QUOTE}
+	</tr>
+	<tr>
+	  <!-- END quote_open -->
+<!-- BEGIN quote_close --></td>
+	</tr>
+</table>
+<span class="postbody"><!-- END quote_close -->
+
+<!-- BEGIN code_open --></span>
+<table
+<tr> 
+	  {L_CODE}
+	</tr>
+	<tr>
+	  <!-- END code_open -->
+<!-- BEGIN code_close --></td>
+	</tr>
+</table>
+<span class="postbody"><!-- END code_close -->
+#
+#-----[ REPLACE WITH ]----------------------------------------
+#
+<!-- BEGIN quote_username_open --></span>
+<div align="center">
+	<div class="quotetitle"><nobr>&laquo; {USERNAME} &raquo; {L_WROTE}:</nobr></div>
+	<div class="quotediv">
+<!-- END quote_username_open -->
+<!-- BEGIN quote_open --></span>
+<div align="center">
+	<div class="quotetitle">{L_QUOTE}:</div>
+	<div class="quotediv">
+<!-- END quote_open -->
+<!-- BEGIN quote_close -->
+	</div>
+</div><span class="postbody"><!-- END quote_close -->
+
+<!-- BEGIN code_open --></span>
+<script type="text/javascript" src="templates/bbc_box/divexpand.js"></script> 
+<div align="center">
+	<script type="text/javascript">
+	var codetext = '{L_CODE}';
+	var expand = '{L_EXPAND}';
+	var expand_more = '{L_EXPAND_MORE}';
+	var contract = '{L_CONTRACT}';
+	var select_all = '{L_SELECT_ALL}';
+	codeDivStart()
+	</script>
+<!-- END code_open --> 
+<!-- BEGIN code_close -->
+	</div>
+</div><span class="postbody"><!-- END code_close -->
+#
+#-----[ FIND ]------------------------------------------------
+#
+<!-- END email -->
+# 
+#-----[ AFTER, ADD ]------------------------------------------
+#
+# on a new line after <!-- END email --> (not the same line)
+#
+<!-- BEGIN s_open --><span style="text-decoration: line-through"><!-- END s_open -->
+<!-- BEGIN s_close --></span><!-- END s_close -->
+
+<!-- BEGIN spoil_open --></span>
+<div align="center">
+<div class="spoiltitle"><b>{L_BBCBXR_SPOIL}:</b>&nbsp;
+<input class="spoilbtn" type="button" value="{L_BBCBXR_SHOW}" onClick="javascript:if (this.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display != '') { this.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display = ''; this.innerText = ''; this.value = '{L_BBCBXR_HIDE}'; } else { this.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display = 'none'; this.innerText = ''; this.value = '{L_BBCBXR_SHOW}'; }" onfocus="this.blur();">
+</div>
+<div class="spoildiv">
+<div style="display: none;"><!-- END spoil_open -->
+<!-- BEGIN spoil_close --></div>
+</div>
+</div>
+<span class="postbody"><!-- END spoil_close -->
+
+<!-- BEGIN fade_open -->
+<span style="width:100%; -moz-opacity:0.3; opacity:0.3; -khtml-opacity:0.3; filter:alpha(opacity=30);" onmouseout="fade2(this,30);" onmouseover="fade2(this,100);">
+<!-- END fade_open -->
+<!-- BEGIN fade_close -->
+</span>
+<!-- END fade_close -->
+
+<!-- BEGIN align_open --><div style="text-align:{ALIGN}"><!-- END align_open -->
+<!-- BEGIN align_close --></div><!-- END align_close -->
+
+<!-- BEGIN anchor_link --><a class="postlink" href="#{ANCHOR}">{DESCRIPTION}</a><!-- END anchor_link -->
+<!-- BEGIN anchor_target --><a name="{ANCHOR}" id="{ANCHOR}">{DESCRIPTION}</a><!-- END anchor_target -->
+
+<!-- BEGIN marq_open --><marquee direction="{MARQ}" scrolldelay="120"><!-- END marq_open -->
+<!-- BEGIN marq_close --></marquee><!-- END marq_close -->
+
+<!-- BEGIN flash -->
+<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0" width="{WIDTH}" height="{HEIGHT}">
+	<param name="allowScriptAccess" value="never" />
+	<param name="movie" value="{URL}" />
+	<param name="quality" value="high" />
+	<param name="scale" value="noborder" />
+	<param name="wmode" value="transparent" />
+	<param name="bgcolor" value="#000000" />
+	<embed type="application/x-shockwave-flash" src="{URL}" width="{WIDTH}" height="{HEIGHT}" pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" allowScriptAccess="never" quality="high" scale="noborder" wmode="transparent" bgcolor="#000000"></embed> 
+</object><!-- END flash -->
+
+<!-- BEGIN video -->
+<object id="NSPlay" classid="clsid:22d6f312-b0f6-11d0-94ab-0080c74c7e95" codebase="http://www.microsoft.com/netshow/download/en/nsasfinf.cab#Version=2,0,0,912" viewastext="" width="{WIDTH}" height="{HEIGHT}">
+	<param name="ControlType" value="1">
+	<param name="filename" value="{URL}">
+	<param name="AutoStart" value="0">
+	<param name="ShowControls" value="1">
+	<param name="ShowStatusBar" value="1">
+	<param name="AnimationStart" value="1">
+	<param name="TransparentAtStart" value="0">
+	<embed type="video/x-ms-asf-plugin" src="{URL}" width="{WIDTH}" height="{HEIGHT}" filename="{URL}" pluginspage="http://www.microsoft.com/windows/mediaplayer/download/default.asp" showcontrols="1" controltype="1" autostart="0" transparentatstart="1" animationatstart="1" animationstart="1" showstatusbar="1" displaysize="4"></embed>
+</object><!-- END video -->
+
+<!-- BEGIN stream -->
+<object id="wmp" classid="clsid:22d6f312-b0f6-11d0-94ab-0080c74c7e95" codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=6,0,0,0" standby="Loading Microsoft Windows Media Player components..." type="application/x-oleobject" width="300" height="70"> 
+	<param name="FileName" value="{URL}"> 
+	<param name="ShowControls" value="1"> 
+	<param name="ShowDisplay" value="0"> 
+	<param name="ShowStatusBar" value="1"> 
+	<param name="AutoSize" value="1"> 
+        <embed type="application/x-mplayer2" src="{URL}" width="300" height="70" pluginspage="http://www.microsoft.com/windows95/downloads/contents/wurecommended/s_wufeatured/mediaplayer/default.asp" name="MediaPlayer2" showcontrols="1" autostart="0" showdisplay="0" showstatusbar="1" autosize="1" visible="1" animationatstart="0" transparentatstart="1" loop="0"></embed>
+</object><!-- END stream -->
+
+<!-- BEGIN ram -->
+	<embed src="{URL}" width="{WIDTH}" height="{HEIGHT}" nojava="1" controls="ImageWindow" console="one"></embed>
+	<embed src="{URL}" width="{WIDTH}" height="36" nojava="1" controls="ControlPanel" console="one" autostart="0"></embed>
+<!-- END ram -->
+
+<!-- BEGIN quick -->
+<object classid=clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B codebase="http://www.apple.com/qtactivex/qtplugin.cab#version=6,0,2,0" align="center" width="{WIDTH}" height="{HEIGHT}">
+	<param name="controller" value="1">
+	<param name="type" value="video/quicktime">
+	<param name="autoplay" value="0">
+	<param name="target" value="myself">
+	<param name="src" value="{URL}">
+	<param name="pluginspage" value="http://www.apple.com/quicktime/download/indext.html">
+	<param name="kioskmode" value="true">
+	<embed type="video/quicktime" src="{URL}" width="{WIDTH}" height="{HEIGHT}" pluginspage="http://www.apple.com/quicktime/download/indext.html" align="center" border="0" kioskmode="1" controller="1" target="myself"></embed>
+</object><!-- END quick -->
+
+<!-- BEGIN sup_open --><sup><!-- END sup_open -->
+<!-- BEGIN sup_close --></sup><!-- END sup_close -->
+
+<!-- BEGIN sub_open --><sub><!-- END sub_open -->
+<!-- BEGIN sub_close --></sub><!-- END sub_close -->
+
+<!-- BEGIN hr --><hr width="80%" size="1" /><!-- END hr -->
+
+<!-- BEGIN bcolor_open --><span style="background-color: {COLOR}"><!-- END bcolor_open -->
+<!-- BEGIN bcolor_close --></span><!-- END bcolor_close -->
+
+<!-- BEGIN font_open --><span style="font-family:{FONT}"><!-- END font_open --> 
+<!-- BEGIN font_close --></span><!-- END font_close -->
+# 
+#-----[ OPEN ]------------------------------------------------
+#
+templates/subSilver/overall_header.tpl
+#
+#-----[ FIND ]------------------------------------------------
+#
+</head>
+#
+#-----[ BEFORE, ADD ]-----------------------------------------
+#
+<link rel="stylesheet" href="{BBC_BOX_SHEET}" type="text/css">
+<script language="javascript" src="templates/bbc_box/fade.js" type="text/javascript"></script>
+# 
+#-----[ OPEN ]------------------------------------------------
+#
+templates/subSilver/posting_body.tpl
+#
+#-----[ FIND ]------------------------------------------------
+#
+# this is a partial search : the full lines are longer
+#
+<script language="JavaScript" type="text/javascript">
+<!--
+// bbCode control by
+// subBlue design
+// www.subBlue.com
+
+//
+var imageTag
+var theSelection
+
+//
+//
+var clientPC =
+var clientVer =
+
+var is_ie =
+var is_nav =
+                &&
+                &&
+var is_moz =
+
+var is_win =
+var is_mac =
+
+//
+b_help =
+i_help =
+u_help =
+q_help =
+c_help =
+l_help =
+o_help =
+p_help =
+w_help =
+a_help =
+s_help =
+f_help =
+
+//
+bbcode =
+bbtags =
+imageTag =
+
+//
+function helpline(
+	document.post.helpbox.value =
+}
+
+
+//
+function getarraysize(
+	for
+		if
+			return
+		}
+	return
+}
+
+//
+//
+function arraypush(
+	thearray[
+}
+
+//
+//
+function arraypop(
+	thearraysize =
+	retval =
+	delete thearray[
+	return
+}
+
+
+function checkForm(
+
+	formErrors =
+
+	if
+		formErrors =
+	}
+
+	if
+		alert(
+		return
+	} else
+		bbstyle
+		//
+		//
+		return
+	}
+}
+
+function emoticon(
+	var txtarea =
+	text =
+	if
+		var caretPos =
+		caretPos.text =
+		txtarea.focus(
+	} else
+		txtarea.value
+		txtarea.focus(
+	}
+}
+
+function bbfontstyle(
+	var txtarea =
+
+	if
+		theSelection =
+		if
+			txtarea.value
+			txtarea.focus(
+			return
+		}
+		document.selection.createRange(
+		txtarea.focus(
+		return
+	}
+	else if
+	{
+		mozWrap(
+		return
+	}
+	else
+	{
+		txtarea.value
+		txtarea.focus(
+	}
+	storeCaret(
+}
+
+
+function bbstyle(
+	var txtarea =
+
+	txtarea.focus(
+	donotinsert =
+	theSelection =
+	bblast =
+
+	if (bbnumber
+		while
+			butnumber =
+			txtarea.value
+			buttext =
+			eval('
+		}
+		imageTag =
+		txtarea.focus(
+		return
+	}
+
+	if ((clientVer >= 4
+	{
+		theSelection =
+		if
+			//
+			document.selection.createRange(
+			txtarea.focus(
+			theSelection =
+			return
+		}
+	}
+	else if
+	{
+		mozWrap(
+		return
+	}
+	
+	//
+	for (i
+		if (bbcode[i]
+			bblast =
+			donotinsert =
+		}
+	}
+
+	if (donotinsert
+		while
+				butnumber =
+				txtarea.value
+				buttext =
+				eval('
+				imageTag =
+			}
+			txtarea.focus(
+			return
+	} else
+	
+		if (imageTag
+			txtarea.value
+			lastValue =
+			document.post.addbbcode14.value =
+			imageTag =
+		}
+		
+		//
+		txtarea.value
+		if ((bbnumber
+		arraypush(
+		eval('
+		txtarea.focus(
+		return
+	}
+	storeCaret(
+}
+
+//
+function mozWrap(
+{
+	var selLength =
+	var selStart =
+	var selEnd =
+	if (selEnd
+		selEnd =
+
+	var s1 =
+	var s2 =
+	var s3 =
+	txtarea.value =
+	return
+}
+
+//
+//
+function storeCaret(
+	if (textEl.createTextRange
+}
+
+//-->
+</script>
+# 
+#-----[ REPLACE WITH ]----------------------------------------
+#
+{BBC_JS_BOX}
+#
+#-----[ FIND ]------------------------------------------------
+#
+# this is a partial search : the full lines are longer
+#
+	  <td class="row2" valign="top"
+		<table width="450" border="0"
+		  <tr
+			<td>
+			  <input type="button" class="button" accesskey="b"
+			  </span></td>
+			<td>
+			  <input type="button" class="button" accesskey="i"
+			  </span></td>
+			<td>
+			  <input
+			  </span></td>
+			<td>
+			  <input
+			  </span></td>
+			<td>
+			  <input
+			  </span></td>
+			<td>
+			  <input
+			  </span></td>
+			<td>
+			  <input
+			  </span></td>
+			<td>
+			  <input
+			  </span></td>
+			<td>
+			  <input
+			  </span></td>
+		  </tr>
+		  <tr> 
+			<td colspan
+			  <table
+				<tr> 
+				  <td>
+					<select name="addbbcode18"
+					  <option style=
+					  <option style=
+					  <option style=
+					  <option style=
+					  <option style=
+					  <option style=
+					  <option style=
+					  <option style=
+					  <option style=
+					  <option style=
+					  <option style=
+					  <option style=
+					  <option style=
+					  <option style=
+					  <option style=
+					</select>
+					  <option value="7"
+					  <option value=
+					  <option value=
+					  <option value=
+					  <option  value=
+					</select>
+					</span></td>
+				  <td nowrap="nowrap"
+				</tr>
+			  </table>
+			</td>
+		  </tr>
+		  <tr>
+			<td colspan="9"
+			  <input type="text" name="helpbox"
+			  </td>
+		  </tr>
+		  <tr>
+			<td colspan="9"
+			  <textarea name="message"
+			  </td>
+		  </tr>
+		</table>
+		</span></td>
+#
+#-----[ REPLACE WITH ]----------------------------------------
+#
+	  <td class="row2" valign="top"><table cellspacing="0" cellpadding="2" border="0">
+		{BBC_DISPLAY_BOX}
+		<tr>
+			<td><textarea name="message" rows="15" cols="76" wrap="virtual" style="width:450px" tabindex="3" class="post" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);">{MESSAGE}</textarea></td>
+		</tr>
+	  </table></td>
+# 
+#-----[ OPEN ]------------------------------------------------
+#
+templates/subSilver/simple_header.tpl
+#
+#-----[ FIND ]------------------------------------------------
+#
+</head>
+# 
+#-----[ BEFORE, ADD ]-----------------------------------------
+#
+<link rel="stylesheet" href="{BBC_BOX_SHEET}" type="text/css">
+<script language="javascript" src="templates/bbc_box/fade.js" type="text/javascript"></script>
+#_____________________________________________________________
+#
+# Please ensure the install_bbc_box/ directory is deleted
+# Veuillez vous assurer que le dossier install_bbc_box/ est effacé
+#_____________________________________________________________
+#
+#
+#-----[ SAVE/CLOSE ALL FILES ]--------------------------------
+#
+# EoM
+
+
+############################################################## 
+## MOD Title:          Last visit
+## MOD Author:         Niels < ncr@db9.dk > (Niels Chr. Rød) http://mods.db9.dk 
+## MOD Description:    This mod will register when the user last
+##                     logged in, allong with the info about how
+##                     many users have visited the board.
+## MOD Version:        1.2.8
+## Files To Edit:     
+##                   templates/subSilver/index_body.tpl 
+##                   templates/subSilver/member_body.tpl    
+##                   templates/subSilver/profile_view_body.tpl  
+##                   templates/subSilver/admin/board_config_body.tpl    
+##
+## Included Files:     0
+# 
+#-----[ OUVRIR ]------------------------------------------------ 
+# 
+templates/subSilver/index_body.tpl
+
+# 
+#-----[ TROUVER ]------------------------------------------------ 
+# 
+rowspan
+
+# 
+#-----[ DANS LA LIGNE, TROUVER ]---------------------------------------- 
+#
+rowspan="2"
+
+# 
+#-----[ DANS LA LIGNE, REMPLACER PAR ]-------------------------------- 
+# 
+rowspan="3"
+
+# 
+#-----[ TROUVER ]------------------------------------------------ 
+# 
+{NEWEST_USER}</span>
+</td>
+</tr>
+
+# 
+#-----[ APRES, AJOUTER ]------------------------------------------ 
+#
+
+<!-- Start add - Last visit MOD -->
+<tr> 
+	<td class="row1" align="left"><span class="gensmall">{L_USERS_TODAY}&nbsp;{L_USERS_LASTHOUR}<br />{USERS_TODAY_LIST}</br></span></td>    
+</tr> 
+<!-- End add - Last visit MOD -->
+
+# 
+#-----[ OUVRIR ]------------------------------------------------ 
+# 
+templates/subSilver/memberlist_body.tpl
+
+# 
+#-----[ TROUVER ]------------------------------------------------ 
+#
+{L_POSTS}
+
+# 
+#-----[ APRES, AJOUTER ]------------------------------------------ 
+#
+
+<!-- Start add - Last visit MOD -->
+<th class="thTop" nowrap="nowrap">{L_LOGON}</th> 
+<!-- End add - Last visit MOD -->
+
+# 
+#-----[ TROUVER ]------------------------------------------------ 
+# 
+{memberrow.POSTS}
+
+# 
+#-----[ APRES, AJOUTER ]------------------------------------------ 
+#
+
+<!-- Start add - Last visit MOD -->
+<td class="{memberrow.ROW_CLASS}" align="center" valign="middle"><span class="gensmall">{memberrow.LAST_LOGON}</span></td> 
+<!-- End add - Last visit MOD -->
+   
+# 
+#-----[ TROUVER ]------------------------------------------------ 
+# 
+<td class="catBottom"
+
+# 
+#-----[ DANS LA LIGNE, TROUVER ]---------------------------------------- 
+#
+colspan="8"
+
+# 
+#-----[ DANS LA LIGNE, REMPLACER PAR ]-------------------------------- 
+# 
+colspan="9"
+
+# 
+#-----[ OUVRIR ]------------------------------------------------ 
+#
+templates/subSilver/profile_view_body.tpl
+
+# 
+#-----[ TROUVER ]------------------------------------------------ 
+# 
+<td width="100%"><b><span class="gen">{JOINED}</span></b></td>
+</tr>
+
+# 
+#-----[ APRES, AJOUTER ]------------------------------------------ 
+# 
+
+<!-- Start add - Last visit MOD -->
+<tr> 
+	<td valign="middle" align="right"><span class="gen">{L_LOGON}:&nbsp;</span></td> 
+	<td width="100%"><b><span class="gen">{LAST_LOGON}</span></b></td> 
+</tr>
+<!-- BEGIN switch_user_is_moderator -->
+<tr> 
+  <td valign="middle" align="right"><span class="gen">{L_TOTAL_ONLINE_TIME}:&nbsp;</span></td> 
+  <td width="100%"><b><span class="gen">{TOTAL_ONLINE_TIME}</span></b></td> 
+</tr> 
+<tr> 
+  <td valign="middle" align="right"><span class="gen">{L_LAST_ONLINE_TIME}:&nbsp;</span></td> 
+  <td width="100%"><b><span class="gen">{LAST_ONLINE_TIME}</span></b></td> 
+</tr> 
+<tr> 
+  <td valign="middle" align="right"><span class="gen">{L_NUMBER_OF_VISIT}:&nbsp;</span></td> 
+  <td width="100%"><b><span class="gen">{NUMBER_OF_VISIT}</span></b></td> 
+</tr> 
+<tr> 
+<td valign="middle" align="right"><span class="gen">{L_NUMBER_OF_PAGES}:&nbsp;</span></td> 
+<td width="100%"><b><span class="gen">{NUMBER_OF_PAGES}</span></b></td> 
+</tr> 
+<!-- END switch_user_is_moderator -->
+<!-- End add - Last visit MOD -->
+
+# 
+#-----[ OUVRIR ]------------------------------------------------ 
+# 
+templates/subSilver/admin/board_config_body.tpl 
+
+# 
+#-----[ TROUVER ]------------------------------------------------ 
+# 
+{PRUNE_NO} /> {L_NO}</td>
+</tr>
+
+# 
+#-----[ APRES, AJOUTER ]------------------------------------------ 
+#
+
+<!-- Start add - Last visit MOD -->
+<tr> 
+   <td class="row1">{L_HIDDE_LAST_LOGON}<br /><span class="gensmall">{L_HIDDE_LAST_LOGON_EXPLAIN}</span></td> 
+   <td class="row2"><input type="radio" name="hidde_last_logon" value="1" {HIDDE_LAST_LOGON_YES} /> {L_YES}&nbsp;&nbsp;<input type="radio" name="hidde_last_logon" value="0" {HIDDE_LAST_LOGON_NO} /> {L_NO}</td> 
+</tr> 
+<!-- End add - Last visit MOD -->
+# 
+#-----[ SAUVEGARDER/FERMER TOUS LES FICHIERS ]---------------- 
+# 
+#FdM
+
+############################################################## 
+## MOD Titre: Avatar transparant si hors-ligne
+## MOD Titre original: Offline fade Avatar
+## MOD Auteur: VINS    E-mail : vincent111@wanadoo.fr
+## MOD Description: Ce Mod affiche l'avatar de vos membres avec un effet "fade" (transparent à 50%)
+## 		    quand ceux-ci sont hors-ligne
+##         	    dans les sujets, dans la liste des membres, et dans viewprofil
+##
+## MOD Version: 1.0.0 
+##
+## Fichier(s) à éditer :- 
+##                             templates/subSilver/overall_header.tpl 
+##
+## Fichier(s) inclus (0)
+#
+#-----[ OUVRIR ]------------------------------------------ 
+#
+
+/templates/"votre Template"/overall_header.tpl
+
+
+#
+#-----[ TROUVER ]------------------------------------------ 
+#
+
+.helpline { background-color: {T_TR_COLOR2}; border-style: none; }
+
+
+#
+#-----[ APRES, AJOUTER ]------------------------------------------ 
+#
+
+.imgfade{filter:alpha(opacity=50); -moz-opacity:0.5}
+.imgfull{filter:alpha(opacity=100); -moz-opacity:1}
+# 
+#-----[ SAUVEGARDER/FERMER TOUS LES FICHIERS ]---------------- 
+# 
+#FdM
+
+############################################################## 
+## MOD Title:          Birthday 
+## MOD Author:         Niels < ncr@db9.dk > (Niels Chr. Rød) http://mods.db9.dk 
+## MOD Description:    This mod will add a birthday field into your
+##                     user's profile and make users age viewable
+##                     to others when viewing posts.
+## MOD Version:        1.5.7
+##
+## Files To Edit:      
+##
+##      templates/subSilver/index_body.tpl
+##      templates/subSilver/overall_header.tpl
+##      templates/subSilver/profile_add_body.tpl
+##      templates/subSilver/profile_view_body.tpl
+##      templates/subSilver/admin/board_config_body.tpl
+##      templates/subSilver/admin/user_edit_body.tpl
+##      
+## Included Files:     
+##	            templates/subSilver/greeting_popup.tpl
+#
+#-----[ OUVRIR ]------------------------------------------------
+#
+# Make sure to edit this file for every theme you use!
+#
+templates/subSilver/index_body.tpl
+
+#
+#-----[ TROUVER ]------------------------------------------------
+#
+<td class="row1" align="center" valign="middle" rowspan
+
+#
+#-----[ DANS LA LIGNE, TROUVER ]----------------------------------------
+#
+# This value can be different, if other mods, add +1 to the value
+#
+2
+
+#
+#-----[ DANS LA LIGNE, REMPLACER PAR ]--------------------------------
+#
+# The TROUVER value can be different, if other mods, add +1 to the value
+#
+3
+
+#
+#-----[ TROUVER ]------------------------------------------------
+#
+{LOGGED_IN_USER_LIST}</span></td>
+  </tr>
+
+#
+#-----[ APRES, AJOUTER ]------------------------------------------
+#
+
+<!-- Start add - Birthday MOD -->
+  <tr>
+	<td class="row1" align="left"><span class="gensmall">{L_WHOSBIRTHDAY_TODAY}<br />{L_WHOSBIRTHDAY_WEEK}</span></td>
+  </tr>
+<!-- End add - Birthday MOD -->
+
+#
+#-----[ OUVRIR ]------------------------------------------------
+#
+# Make sure to edit this file for every theme you use!
+#
+templates/subSilver/overall_header.tpl
+
+#
+#-----[ TROUVER ]------------------------------------------------
+#
+<!-- END switch_enable_pm_popup -->
+
+#
+#-----[ APRES, AJOUTER ]------------------------------------------
+#
+
+<!-- Start add - Birthday MOD -->
+{GREETING_POPUP}
+<!-- End add - Birthday MOD -->
+
+#
+#-----[ OUVRIR ]------------------------------------------------
+#
+# Make sure to edit this file for every theme you use!
+#
+templates/subSilver/profile_add_body.tpl
+
+#
+#-----[ TROUVER ]------------------------------------------------
+#
+		<input type="text" class="post"style="width: 200px"  name="interests" size="35" maxlength="150" value="{INTERESTS}" />
+	  </td>
+	</tr>
+
+#
+#-----[ APRES, AJOUTER ]------------------------------------------
+#
+
+<!-- Start add - Birthday MOD -->
+	<tr>
+	  <td class="row1"><span class="gen">{L_BIRTHDAY}:{BIRTHDAY_REQUIRED}</span></td>
+	  <td class="row2"><span class="gen">{S_BIRTHDAY}</span></td>
+	</tr>
+<!-- End add - Birthday MOD -->
+
+#
+#-----[ OUVRIR ]------------------------------------------------
+#
+# Make sure to edit this file for every theme you use!
+#
+templates/subSilver/profile_view_body.tpl
+
+#
+#-----[ TROUVER ]------------------------------------------------
+#
+		  <td> <b><span class="gen">{INTERESTS}</span></b></td>
+		</tr>
+
+#
+#-----[ APRES, AJOUTER ]------------------------------------------
+#
+
+<!-- Start add - Birthday MOD -->
+		<tr>
+		  <td valign="top" align="right" nowrap="nowrap"><span class="gen">{L_BIRTHDAY}:</span></td>
+		  <td><b><span class="gen">{BIRTHDAY}</span></b></td>
+		</tr>
+<!-- End add - Birthday MOD -->
+
+#
+#-----[ OUVRIR ]------------------------------------------------
+#
+# Make sure to edit this file for every theme you use!
+#
+templates/subSilver/admin/board_config_body.tpl
+
+#
+#-----[ TROUVER ]------------------------------------------------
+#
+{PRUNE_NO} /> {L_NO}</td>
+	</tr>
+
+#
+#-----[ APRES, AJOUTER ]------------------------------------------
+#
+
+<!-- Start add - Birthday MOD -->
+	<tr>
+		<td class="row1">{L_BIRTHDAY_REQUIRED}<br /></td>
+		<td class="row2"><input type="radio" name="birthday_required" value="1" {BIRTHDAY_REQUIRED_YES} /> {L_YES}&nbsp;&nbsp;<input type="radio" name="birthday_required" value="0" {BIRTHDAY_REQUIRED_NO} /> {L_NO}</td>
+	</tr>
+	<tr>
+		<td class="row1">{L_ENABLE_BIRTHDAY_GREETING}<br /><span class="gensmall">{L_BIRTHDAY_GREETING_EXPLAIN}</span></td>
+		<td class="row2"><input type="radio" name="birthday_greeting" value="1" {BIRTHDAY_GREETING_YES} /> {L_YES}&nbsp;&nbsp;<input type="radio" name="birthday_greeting" value="0" {BIRTHDAY_GREETING_NO} /> {L_NO}</td>
+	</tr>
+	<tr>
+		<td class="row1">{L_MAX_USER_AGE}<br /></td>
+		<td class="row2"><input class="post" type="text" size="4" maxlength="4" name="max_user_age" value="{MAX_USER_AGE}" /></td>
+	</tr>
+	<tr>
+		<td class="row1">{L_MIN_USER_AGE}<br /><span class="gensmall">{L_MIN_USER_AGE_EXPLAIN}</span></td>
+		<td class="row2"><input class="post" type="text" size="4" maxlength="4" name="min_user_age" value="{MIN_USER_AGE}" /></td>
+	</tr>
+	<tr>
+		<td class="row1">{L_BIRTHDAY_LOOKFORWARD}<br /><span class="gensmall">{L_BIRTHDAY_LOOKFORWARD_EXPLAIN}</span></td>
+		<td class="row2"><input class="post" type="text" size="3" maxlength="3" name="birthday_check_day" value="{BIRTHDAY_LOOKFORWARD}" /></td>
+	</tr>
+<!-- End add - Birthday MOD -->
+
+#
+#-----[ OUVRIR ]------------------------------------------------
+#
+# Make sure to edit this file for every theme you use!
+#
+templates/subSilver/admin/user_edit_body.tpl
+
+#
+#-----[ TROUVER ]------------------------------------------------
+#
+		<input class="post" type="text" name="interests" size="35" maxlength="150" value="{INTERESTS}" />
+	  </td>
+	</tr>
+
+#
+#-----[ APRES, AJOUTER ]------------------------------------------
+#
+
+<!-- Start add - Birthday MOD -->
+	<tr>
+	  <td class="row1"><span class="gen">{L_BIRTHDAY}</span></td>
+	  <td class="row2">{S_BIRTHDAY}</td>
+	</tr>
+	<tr>
+	  <td class="row1"><span class="gen">{L_NEXT_BIRTHDAY_GREETING}:</span><br /><span class="gensmall">{L_NEXT_BIRTHDAY_GREETING_EXPLAIN}<br /></span></td>
+	  <td class="row2"><input class="post" type="text" name="next_birthday_greeting" size="5" maxlength="4" value="{NEXT_BIRTHDAY_GREETING}" /></td>
+	</tr>
+<!-- End add - Birthday MOD -->
+# 
+#-----[ SAUVEGARDER/FERMER TOUS LES FICHIERS ]---------------- 
+# 
+#FdM
+############################################################## 
+## MOD Titre: Add-on pour Birthday 
+## MOD Auteur: Pentium_4 <albanmaire@wanadoo.fr> (Maire Alban) http://www.forum.ffx.com/
+## MOD Auteur de support: Dr DLP http://www.drdlpsite.levillage.org/phpBB2/index.php
+## MOD Description: Le fichier Part 6 permet d'afficher l'age ainsi que son signe astrologique normal et chinois de l'utilisateur dans le memberlist.php  
+## MOD Version: 1.0.1 
+## 
+## Niveau d'installation: (facile) 
+## Temps d'installation: 10 Minutes 
+## Fichier(s) à éditer:
+##                         templates/subSilver/memberlist_body.tpl 
+## Fichier(s) inclus: (Aucun) 
+# 
+#-----[ OUVRIR ]------------------------------------------ 
+#
+
+templates/votre_template/memberlist_body.tpl
+
+# 
+#-----[ TROUVER ]-------------------------------------- 
+#
+
+<th>{L_JOINED}</th>
+
+# 
+#-----[ AJOUTER, APRES ]---------------------------------- 
+#
+
+<!-- début mod : Add-on pour Birthday -->
+<!-- ajouter -->
+<th>{L_AGE}</th>
+<!-- fin mod : Add-on pour Birthday -->
+
+# 
+#-----[ TROUVER ]-------------------------------------- 
+#
+
+<td class="{memberrow.ROW_CLASS}" align="center" valign="middle"><span class="gensmall">{memberrow.JOINED}</span></td>
+
+# 
+#-----[ AJOUTER, APRES ]---------------------------------- 
+#
+
+<!-- début mod : Add-on pour Birthday -->
+<!-- ajouter -->
+<td class="{memberrow.ROW_CLASS}" align="center"><span class="gensmall">{memberrow.POSTER_AGE} {memberrow.ZODIAC_IMG} {memberrow.CHINESE_IMG}</span></td>
+<!-- fin mod : Add-on pour Birthday -->
+
+# 
+#-----[ TROUVER ]-------------------------------------- 
+#
+
+<td class="cat" colspan="9">
+
+# 
+#-----[ REMPLACER PAR ]----------------------------------- 
+# AJOUTER +1 A CHAQUE FOIS SI VOUS AVEZ AJOUTER D'AUTRE
+# MODS DANS LE MEMBERLIST
+
+<td class="cat" colspan="10">
+# 
+#-----[ SAUVEGARDER/FERMER TOUS LES FICHIERS ]---------------- 
+# 
+#FdM
+
+############################################################## 
+## MOD Title:          Birthday ADD-ON zodiac's
+## MOD Author:         Niels < ncr@db9.dk > (Niels Chr. Rød) http://mods.db9.dk
+## MOD Description:    if the user have filled a birthday date, a zodiac image will be displayed in the users profile/beside users posts
+##                     this is a ADD-ON and will require Birthday mod to be installed before it will work
+##
+## MOD Version:        1.0.5
+##
+## Files To Edit: 
+##		templates/subSilver/subSilver.cfg
+##		templates/subSilver/profile_view_body.tpl
+##
+## Included files: 12
+##		templates/subSilver/images/icon_zodiac_capricorn.gif
+##		templates/subSilver/images/icon_zodiac_aquarius.gif
+##		templates/subSilver/images/icon_zodiac_pisces.gif
+##		templates/subSilver/images/icon_zodiac_aries.gif
+##		templates/subSilver/images/icon_zodiac_taurus.gif
+##		templates/subSilver/images/icon_zodiac_gemini.gif
+##		templates/subSilver/images/icon_zodiac_cancer.gif
+##		templates/subSilver/images/icon_zodiac_leo.gif
+##		templates/subSilver/images/icon_zodiac_virgo.gif
+##		templates/subSilver/images/icon_zodiac_libra.gif
+##		templates/subSilver/images/icon_zodiac_scorpio.gif
+##		templates/subSilver/images/icon_zodiac_sagittarius.gif
+#
+#-----[ OUVRIR FILE ]------------------------------------------
+#
+templates/subSilver/subSilver.cfg
+
+#
+#-----[ TROUVER ]------------------------------------------
+#
+?>
+
+#
+#-----[ AVANT, AJOUTER ]------------------------------------------
+#
+
+//added for birthday mod
+$images['Capricorn'] = "$current_template_images/icon_zodiac_capricorn.gif";
+$images['Aquarius'] = "$current_template_images/icon_zodiac_aquarius.gif";
+$images['Pisces'] = "$current_template_images/icon_zodiac_pisces.gif";
+$images['Aries'] = "$current_template_images/icon_zodiac_aries.gif";
+$images['Taurus'] = "$current_template_images/icon_zodiac_taurus.gif";
+$images['Gemini'] = "$current_template_images/icon_zodiac_gemini.gif";
+$images['Cancer'] = "$current_template_images/icon_zodiac_cancer.gif";
+$images['Leo'] = "$current_template_images/icon_zodiac_leo.gif";
+$images['Virgo'] = "$current_template_images/icon_zodiac_virgo.gif";
+$images['Libra'] = "$current_template_images/icon_zodiac_libra.gif";
+$images['Scorpio'] = "$current_template_images/icon_zodiac_scorpio.gif";
+$images['Sagittarius'] = "$current_template_images/icon_zodiac_sagittarius.gif";
+
+#
+#-----[ OUVRIR FILE ]------------------------------------------
+#
+templates/subSilver/profile_view_body.tpl
+
+#
+#-----[ TROUVER ]------------------------------------------
+#
+		  <td><b><span class="gen">{BIRTHDAY}</span></b></td>
+		</tr>
+
+#
+#-----[ APRES, AJOUTER ]------------------------------------------
+#
+
+		<tr>
+		  <td valign="middle" align="right" nowrap="nowrap"><span class="gen">{L_ZODIAC}:&nbsp;</span></td>
+		  <td><b><span class="gen">{ZODIAC}&nbsp;{ZODIAC_IMG}</b></span></td>
+		</tr>
+# 
+#-----[ SAUVEGARDER/FERMER TOUS LES FICHIERS ]---------------- 
+# 
+#FdM
+
+########################################################
+## MOD Title:          Birthday ADD-ON Chinese zodiac
+## MOD Author:         Niels < ncr@db9.dk > (Niels Chr. Rød) http://mods.db9.dk
+## MOD Description:   
+## Description:  if the user have filled a birthday date, a chinese zodiac image will be displayed in the users profile
+##               this is a ADD-ON and will require Birthday mod to be installed before it will work
+##
+## MOD Version:        1.0.1.
+##
+## Files To Edit: 4
+##		templates/subSilver/subSilver.cfg
+##		templates/subSilver/profile_view_body.tpl 
+##
+## Included files: 13
+##		includes/chinese.php
+##		templates/subSilver/images/icon_chinese_rat.gif
+##		templates/subSilver/images/icon_chinese_buffalo.gif
+##		templates/subSilver/images/icon_chinese_tiger.gif
+##		templates/subSilver/images/icon_chinese_cat.gif
+##		templates/subSilver/images/icon_chinese_dragon.gif
+##		templates/subSilver/images/icon_chinese_snake.gif
+##		templates/subSilver/images/icon_chinese_horse.gif
+##		templates/subSilver/images/icon_chinese_goat.gif
+##		templates/subSilver/images/icon_chinese_monkey.gif
+##		templates/subSilver/images/icon_chinese_cock.gif
+##		templates/subSilver/images/icon_chinese_dog.gif
+##		templates/subSilver/images/icon_chinese_pig.gif
+#
+#-----[ OUVRIR ]------------------------------------------
+#
+templates/subSilver/subSilver.cfg
+
+#
+#-----[ TROUVER ]------------------------------------------
+#
+?>
+
+#
+#-----[ AVANT, AJOUTER ]------------------------------------------
+#
+
+//added for birthday mod
+$images['Rat'] = "$current_template_images/icon_chinese_rat.gif";
+$images['Buffalo'] = "$current_template_images/icon_chinese_buffalo.gif";
+$images['Tiger'] = "$current_template_images/icon_chinese_tiger.gif";
+$images['Cat'] = "$current_template_images/icon_chinese_cat.gif";
+$images['Dragon'] = "$current_template_images/icon_chinese_dragon.gif";
+$images['Snake'] = "$current_template_images/icon_chinese_snake.gif";
+$images['Horse'] = "$current_template_images/icon_chinese_horse.gif";
+$images['Goat'] = "$current_template_images/icon_chinese_goat.gif";
+$images['Monkey'] = "$current_template_images/icon_chinese_monkey.gif";
+$images['Cock'] = "$current_template_images/icon_chinese_cock.gif";
+$images['Dog'] = "$current_template_images/icon_chinese_dog.gif";
+$images['Pig'] = "$current_template_images/icon_chinese_pig.gif";
+
+#
+#-----[ OUVRIR ]------------------------------------------
+#
+templates/subSilver/profile_view_body.tpl
+
+#
+#-----[ TROUVER ]------------------------------------------
+#
+		  <td><b><span class="gen">{BIRTHDAY}</span></b></td>
+		</tr>
+
+#
+#-----[ APRES, AJOUTER ]------------------------------------------
+#
+
+		<tr>
+		  <td valign="middle" align="right" nowrap="nowrap"><span class="gen">{L_CHINESE}:&nbsp;</span></td>
+		  <td><b><span class="gen">{CHINESE}&nbsp;{CHINESE_IMG}</b></span></td>
+		</tr>
+
+# 
+#-----[ SAUVEGARDER/FERMER TOUS LES FICHIERS ]---------------- 
+# 
+#FdM
+
+############################################################## 
+## Titre MOD : Cash Mod
+## Auteur MOD : Xore < mods@xore.ca > (Robert Hetzler) http://www.xore.ca
+## Description MOD : Mod Argent permettant aux utilisateurs de gagner de l'argent/des points en postant 
+## Version MOD : 2.2.3
+## 
+## 
+## Fichiers A Editer: 
+##                templates/subSilver/memberlist_body.tpl
+##                templates/subSilver/profile_view_body.tpl
+## Fichiers Inclus: 
+##                 templates/subSilver/cash_donate.tpl
+##                 templates/subSilver/cash_exchange.tpl
+##                 templates/subSilver/cash_modedit.tpl
+##                 templates/subSilver/cash_viewprofile.tpl
+##                 templates/subSilver/cash_viewtopic.tpl
+##                 templates/subSilver/admin/cash_config.tpl
+##                 templates/subSilver/admin/cash_currencies.tpl
+##                 templates/subSilver/admin/cash_event.tpl
+##                 templates/subSilver/admin/cash_events.tpl
+##                 templates/subSilver/admin/cash_exchange.tpl
+##                 templates/subSilver/admin/cash_forum.tpl
+##                 templates/subSilver/admin/cash_group.tpl
+##                 templates/subSilver/admin/cash_groups.tpl
+##                 templates/subSilver/admin/cash_help.tpl
+##                 templates/subSilver/admin/cash_log.tpl
+##                 templates/subSilver/admin/cash_menu.tpl
+##                 templates/subSilver/admin/cash_navbar.tpl
+##                 templates/subSilver/admin/cash_reset.tpl
+##                 templates/subSilver/admin/cash_resetting.tpl
+##                 templates/subSilver/admin/cash_settings.tpl
+
+# 
+#-----[ OUVRIR ]------------------------------------------ 
+#
+templates/subSilver/memberlist_body.tpl
+
+# 
+#-----[ TROUVER ]------------------------------------------ 
+# dans SubSilver, la ligne complète est 
+#	  <th class="thTop" nowrap="nowrap">{L_POSTS}</th>
+#
+	{L_POSTS}
+
+# 
+#-----[ APRES, AJOUTER ]------------------------------------------ 
+# sur la ligne suivante
+#
+	  <!-- BEGIN cashrow -->
+	  <th class="thTop" nowrap="nowrap">{cashrow.NAME}</th>
+	  <!-- END cashrow -->
+
+# 
+#-----[ TROUVER ]------------------------------------------ 
+# dans SubSilver, la ligne complète est 
+#	  <td class="{memberrow.ROW_CLASS}" align="center" valign="middle"><span class="gen">{memberrow.POSTS}</span></td>
+#
+	 {memberrow.POSTS}
+
+# 
+#-----[ APRES, AJOUTER ]------------------------------------------ 
+# sur la ligne suivante
+#
+	  <!-- BEGIN cashrow -->
+	  <td class="{memberrow.ROW_CLASS}" align="center" valign="middle"><span class="gen">{memberrow.cashrow.CASH_DISPLAY}</span></td>
+	  <!-- END cashrow -->
+
+# 
+#-----[ TROUVER ]------------------------------------------ 
+# dans SubSilver, la ligne complète est 
+#	  <td class="catBottom" colspan="8" height="28">&nbsp;</td>
+# 
+colspan="8"
+
+# 
+#-----[ DANS LA LIGNE TROUVER ]------------------------------------------ 
+# 
+8
+
+# 
+#-----[ DANS LA LIGNE, REMPLACER PAR ]------------------------------------------ 
+#
+{NUM_COLUMNS}
+
+# 
+#-----[ OUVRIR ]------------------------------------------ 
+#
+templates/subSilver/profile_view_body.tpl
+
+# 
+#-----[ TROUVER ]------------------------------------------ 
+# dans SubSilver, la ligne complète est 
+#		  <td> <b><span class="gen">{INTERESTS}</span></b></td>
+# 
+{INTERESTS}
+
+# 
+#-----[ TROUVER ]------------------------------------------ 
+# (sur la ligne suivante)
+# 
+		</tr>
+# 
+#-----[ APRES, AJOUTER ]------------------------------------------ 
+#
+		{CASH}
+
+# 
+#-----[ SAUVEGARDER/FERMER TOUS LES FICHIERS ]---------------- 
+# 
+#FdM
+
+############################################################## 
+## MOD Title:          Miniland  et Mood
+## MOD Author:         caro1978 <caro7800@hotmail.com> http://www.phpbb.biz/
+## MOD Description:    Ce mod ajoute le drapeaux du pays francophone du membre
+## Files To Edit: 
+##			templates/subSilver/profile_add_body.tpl
+##			templates/subSilver/profile_view_body.tpl
+##			templates/subSilver/subSilver.cfg
+##			templates/subSilver/viewtopic_body.tpl
+##			templates/subSilver/admin/user_edit_body.tpl
+
+# 
+#-----[ OPEN ]------------------------------------------------ 
+# 
+
+templates/SubSilver/profile_add_body.tpl
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+value="{INTERESTS}"
+</td>
+</tr>
+# 
+#-----[ AFTER, ADD ]------------------------------------------ 
+#
+	         <!-- Start add - Miniland MOD -->
+                 <tr> 
+                       <td class="row1"><span class="gen">{L_MINILAND}:</span></td> 
+                       <td class="row2"> 
+
+                       <input type="radio" name="miniland" value="0" {MINILAND_NO_SPECIFY_CHECKED}/> 
+                       <span class="gen">{L_MINILAND_NOT_SPECIFY}</span>&nbsp;&nbsp; 
+
+                       <input type="radio" name="miniland" value="1" {MINILAND_BE_CHECKED}/> 
+                       <span class="gen">{L_MINILAND_BE}</span>&nbsp;&nbsp; 
+
+                       <input type="radio" name="miniland" value="2" {MINILAND_FR_CHECKED}/> 
+                       <span class="gen">{L_MINILAND_FR}</span>&nbsp;&nbsp; 
+
+
+                 <br />
+
+                       <input type="radio" name="miniland" value="3" {MINILAND_CA_CHECKED}/> 
+                       <span class="gen">{L_MINILAND_CA}</span>&nbsp;&nbsp; 
+
+                       <input type="radio" name="miniland" value="4" {MINILAND_CH_CHECKED}/> 
+                       <span class="gen">{L_MINILAND_CH}</span>&nbsp;&nbsp; 
+
+                       <input type="radio" name="miniland" value="5" {MINILAND_LU_CHECKED}/> 
+                       <span class="gen">{L_MINILAND_LU}</span> 
+ 
+
+               </td> 
+         </tr>
+        <!-- End add - Miniland MOD -->
+        <!-- Start add - Mood MOD -->
+	<tr> 
+		<td class="row1"><span class="gen">{L_MOOD}:</span></td> 
+		<td class="row2"> 
+
+			<input type="radio"  name="mood" value="0" {MOOD_NO_SPECIFY_CHECKED}/> <span class="gen">{L_MOOD_NOT_SPECIFY}</span>&nbsp;&nbsp; 
+			<input type="radio" name="mood" value="1" {MOOD_SAD_CHECKED}/> <span class="gen">{L_MOOD_SAD}</span>&nbsp;&nbsp;
+			<input type="radio" name="mood" value="2" {MOOD_HAPPY_CHECKED}/> <span class="gen">{L_MOOD_HAPPY}</span>&nbsp;&nbsp; 
+			<input type="radio" name="mood" value="3" {MOOD_ANGRY_CHECKED}/> <span class="gen">{L_MOOD_ANGRY}</span>&nbsp;&nbsp; 
+			<input type="radio" name="mood" value="4" {MOOD_COOL_CHECKED}/> <span class="gen">{L_MOOD_COOL}</span>&nbsp;&nbsp;<br />
+			<input type="radio" name="mood" value="5" {MOOD_DEVIL_CHECKED}/> <span class="gen">{L_MOOD_DEVIL}</span>&nbsp;&nbsp; 
+              		<input type="radio" name="mood" value="6" {MOOD_ILL_CHECKED}/> <span class="gen">{L_MOOD_ILL}</span>&nbsp;&nbsp; 
+			<input type="radio" name="mood" value="7" {MOOD_LOVE_CHECKED}/> <span class="gen">{L_MOOD_LOVE}</span>&nbsp;&nbsp; 
+			<input type="radio" name="mood" value="8" {MOOD_SLEEP_CHECKED}/> <span class="gen">{L_MOOD_SLEEP}</span>&nbsp;&nbsp; 
+			<input type="radio" name="mood" value="9" {MOOD_SURPRISED_CHECKED}/> <span class="gen">{L_MOOD_SURPRISED}</span>
+	   	</td> 
+	</tr>
+	<!-- End add - Mood MOD -->
+# 
+#-----[ OPEN ]------------------------------------------------ 
+# 
+
+templates/SubSilver/profile_view_body.tpl
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+{INTERESTS}
+</tr>
+# 
+#-----[ AFTER, ADD ]------------------------------------------ 
+#
+		<!-- Start add - Miniland  MOD --> 
+                 <tr> 
+	                <td valign="top" align="right" nowrap="nowrap"><span class="gen">{L_MINILAND}:</span></td>
+	                <td> <b><span class="gen">{MINILAND}</span></b></td>
+                </tr>
+                 <!-- End add - Miniland  MOD -->
+                 <!-- Start add - Mood  MOD --> 
+		<tr> 
+		  	<td valign="top" align="right" nowrap="nowrap"><span class="gen">{L_MOOD}:</span></td>
+		  	<td> <b><span class="gen">{MOOD}</span></b></td>
+		</tr>
+		<!-- End add - Mood  MOD -->
+# 
+#-----[ OPEN ]------------------------------------------------ 
+# 
+
+templates/SubSilver/SubSilver.cfg
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+?>
+# 
+#-----[ BEFORE, ADD ]----------------------------------------- 
+#
+
+$images['icon_be'] = "$current_template_images/icon_be.gif"; 
+$images['icon_fr'] = "$current_template_images/icon_fr.gif";
+$images['icon_ca'] = "$current_template_images/icon_ca.gif";
+$images['icon_ch'] = "$current_template_images/icon_ch.gif";
+$images['icon_lu'] = "$current_template_images/icon_lu.gif";
+// Start add - Mood  MOD
+$images['icon_sad'] = "$current_template_images/icon_sad.gif"; 
+$images['icon_happy'] = "$current_template_images/icon_happy.gif";
+$images['icon_angry'] = "$current_template_images/icon_angry.gif";
+$images['icon_cool'] = "$current_template_images/icon_cool.gif";
+$images['icon_devil'] = "$current_template_images/icon_devil.gif";
+$images['icon_ill'] = "$current_template_images/icon_ill.gif";
+$images['icon_love'] = "$current_template_images/icon_love.gif";
+$images['icon_sleep'] = "$current_template_images/icon_sleep.gif";
+$images['icon_surprised'] = "$current_template_images/icon_surprised.gif";
+// End add - Mood  MOD
+
+# 
+#-----[ OPEN ]------------------------------------------------ 
+# 
+
+templates/SubSilver/admin/user_edit_body.tpl
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+value="{INTERESTS}"
+</td>
+</tr>
+# 
+#-----[ AFTER, ADD ]------------------------------------------ 
+#
+	
+                <!-- Start add - Miniland  MOD -->
+                <tr> 
+                        <td class="row1"><span class="gen">{L_MINILAND}:</span></td> 
+                        <td class="row2"> 
+
+                        <input type="radio" name="miniland" value="0" {MINILAND_NO_SPECIFY_CHECKED}/> 
+                        <span class="gen">{L_MINILAND_NOT_SPECIFY}</span>&nbsp;&nbsp; 
+
+                        <input type="radio" name="miniland" value="1" {MINILAND_BE_CHECKED}/> 
+                        <span class="gen">{L_MINILAND_BE}</span>&nbsp;&nbsp; 
+
+                        <input type="radio" name="miniland" value="2" {MINILAND_FR_CHECKED}/> 
+                        <span class="gen">{L_MINILAND_FR}</span>&nbsp;&nbsp;
+
+                        <br />
+                        <input type="radio" name="miniland" value="3" {MINILAND_CA_CHECKED}/> 
+                        <span class="gen">{L_MINILAND_CA}</span>&nbsp;&nbsp; 
+
+                        <input type="radio" name="miniland" value="4" {MINILAND_CH_CHECKED}/> 
+                        <span class="gen">{L_MINILAND_CH}</span>&nbsp;&nbsp; 
+
+                        <input type="radio" name="miniland" value="5" {MINILAND_LU_CHECKED}/> 
+                        <span class="gen">{L_MINILAND_LU}</span>
+
+
+
+               </td> 
+        </tr>
+           <!-- End add - Miniland  MOD --> 
+           <!-- Start add - Mood  MOD -->
+	<tr> 
+		<td class="row1"><span class="gen">{L_MOOD}:</span></td> 
+          	<td class="row2"> 
+			<input type="radio" name="mood " value="0" {MOOD_NO_SPECIFY_CHECKED}/> <span class="gen">{L_MOOD_NOT_SPECIFY}</span>&nbsp;&nbsp; 
+			<input type="radio" name="mood" value="1" {MOOD_SAD_CHECKED}/> <span class="gen">{L_MOOD_SAD}</span>&nbsp;&nbsp; 
+			<input type="radio" name="mood" value="2" {MOOD_HAPPY_CHECKED}/> <span class="gen">{L_MOOD_HAPPY}</span>&nbsp;&nbsp;
+			<input type="radio" name="mood" value="3" {MOOD_ANGRY_CHECKED}/> <span class="gen">{L_MOOD_ANGRY}</span>&nbsp;&nbsp; 
+			<input type="radio" name="mood" value="4" {MOOD_COOL_CHECKED}/> <span class="gen">{L_MOOD_COOL}</span>&nbsp;&nbsp;<br />
+          		<input type="radio" name="mood" value="5" {MOOD_DEVIL_CHECKED}/> <span class="gen">{L_MOOD_DEVIL}</span>&nbsp;&nbsp; 
+          		<input type="radio" name="mood" value="6" {MOOD_ILL_CHECKED}/> <span class="gen">{L_MOOD_ILL}</span>&nbsp;&nbsp; 
+          		<input type="radio" name="mood" value="7" {MOOD_LOVE_CHECKED}/> <span class="gen">{L_MOOD_LOVE}</span>&nbsp;&nbsp; 
+          		<input type="radio" name="mood" value="8" {MOOD_SLEEP_CHECKED}/> <span class="gen">{L_MOOD_SLEEP}</span>&nbsp;&nbsp; 
+			<input type="radio" name="mood" value="9" {MOOD_SURPRISED_CHECKED}/> <span class="gen">{L_MOOD_SURPRISED}</span>
+	  	</td> 
+	</tr>
+	<!-- End add - Mood  MOD -->
+# 
+#-----[ OPEN ]-------------------------------- 
+# 
+#
+
+templates/SubSilver/memberlist.tpl  
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+
+            <th class="thTop" nowrap="nowrap">{L_FROM}</th>
+
+# 
+#-----[ AFTER, ADD ]------------------------------------------ 
+#
+
+            <th class="thTop" nowrap="nowrap">{L_MINILAND}</th>
+            <th class="thTop" nowrap="nowrap">{L_GENDER}</th>
+
+# 
+#-----[ FIND ]------------------------------------------------ 
+# 
+
+           <td class="{memberrow.ROW_CLASS}" align="center" valign="middle"><span class="gen">{memberrow.FROM}</span></td>
+
+# 
+#-----[ AFTER, ADD ]------------------------------------------ 
+#
+
+ 
+           <td class="{memberrow.ROW_CLASS}" align="center" valign="middle"><span class="gensmall">{memberrow.MINILAND}</span></td>
+           <td class="{memberrow.ROW_CLASS}" align="center" valign="middle"><span class="gensmall">{memberrow.GENDER}</span></td>
+
+############################################################## 
+## MOD Title:          Gender
+## MOD Author:         Niels < ncr@db9.dk > (Niels Chr. Rød) http://mods.db9.dk
+## MOD Description:    This mod will add a Gender field into
+##                     users' profile, and display "Gender: |image|"
+##                     in posts too. 
+## MOD Version:        1.2.6
+##
+## Files To Edit:       
+##      templates/SubSilver/profile_add_body.tpl
+##      templates/SubSilver/profile_view_body.tpl
+##      templates/subSliver/subSilver.cfg
+##      templates/subSilver/admin/user_edit_body.tpl
+##
+## Included Files:     
+##      root/templates/subSliver/images/icon_minigender_male.gif 
+##      root/templates/subSliver/images/icon_minigender_female.gif 
+
+# 
+#-----[ OUVRIR ]------------------------------------------------ 
+# 
+templates/subSilver/profile_add_body.tpl
+
+# 
+#-----[ TROUVER ]------------------------------------------------ 
+# 
+value="{INTERESTS}"
+</td>
+</tr>
+
+# 
+#-----[ APRES, AJOUTER ]------------------------------------------ 
+#
+
+<!-- Start add - Gender MOD -->
+<tr> 
+      <td class="row1"><span class="gen">{L_GENDER}:</span></td> 
+      <td class="row2"> 
+      <input type="radio" {LOCK_GENDER} name="gender" value="0" {GENDER_NO_SPECIFY_CHECKED}/> 
+      <span class="gen">{L_GENDER_NOT_SPECIFY}</span>&nbsp;&nbsp; 
+      <input type="radio" name="gender" value="1" {GENDER_MALE_CHECKED}/> 
+      <span class="gen">{L_GENDER_MALE}</span>&nbsp;&nbsp; 
+      <input type="radio" name="gender" value="2" {GENDER_FEMALE_CHECKED}/> 
+      <span class="gen">{L_GENDER_FEMALE}</span></td> 
+</tr>
+<!-- End add - Gender MOD -->
+
+# 
+#-----[ OUVRIR ]------------------------------------------------ 
+# 
+templates/subSilver/profile_view_body.tpl
+
+# 
+#-----[ TROUVER ]------------------------------------------------ 
+# 
+{INTERESTS}
+</tr>
+
+# 
+#-----[ APRES, AJOUTER ]------------------------------------------ 
+#
+
+<!-- Start add - Gender MOD --> 
+<tr> 
+	<td valign="top" align="right" nowrap="nowrap"><span class="gen">{L_GENDER}:</span></td>
+	<td> <b><span class="gen">{GENDER}</span></b></td>
+</tr>
+<!-- End add - Gender MOD -->
+
+# 
+#-----[ OUVRIR ]------------------------------------------------ 
+# 
+templates/subSilver/subSilver.cfg
+
+# 
+#-----[ TROUVER ]------------------------------------------------ 
+# 
+?>
+
+# 
+#-----[ AVANT, AJOUTER ]----------------------------------------- 
+#
+
+// Start add - Gender MOD
+$images['icon_minigender_male'] = "$current_template_images/icon_minigender_male.gif"; 
+$images['icon_minigender_female'] = "$current_template_images/icon_minigender_female.gif";
+// End add - Gender MOD
+
+# 
+#-----[ OUVRIR ]------------------------------------------------ 
+# 
+templates/subSilver/admin/user_edit_body.tpl
+
+# 
+#-----[ TROUVER ]------------------------------------------------ 
+# 
+value="{INTERESTS}"
+</td>
+</tr>
+
+# 
+#-----[ APRES, AJOUTER ]------------------------------------------ 
+#
+
+<!-- Start add - Gender MOD -->
+<tr> 
+      <td class="row1"><span class="gen">{L_GENDER}:</span></td> 
+      <td class="row2"> 
+      <input type="radio" name="gender" value="0" {GENDER_NO_SPECIFY_CHECKED}/> 
+      <span class="gen">{L_GENDER_NOT_SPECIFY}</span>&nbsp;&nbsp; 
+      <input type="radio" name="gender" value="1" {GENDER_MALE_CHECKED}/> 
+      <span class="gen">{L_GENDER_MALE}</span>&nbsp;&nbsp; 
+      <input type="radio" name="gender" value="2" {GENDER_FEMALE_CHECKED}/> 
+      <span class="gen">{L_GENDER_FEMALE}</span></td> 
+</tr>
+<!-- End add - Gender MOD -->
+# 
+#-----[ SAUVEGARDER/FERMER TOUS LES FICHIERS ]---------------- 
+# 
+#FdM
+
+##############################################################
+## MOD Title:		Extend rank color
+## MOD Author:		Gendo < gendo@denturax.com > (Matthieu V.) http://www.denturax.com
+## MOD Author:		BigZ  < bigz@denturax.com > (Romain R.) http://www.denturax.com
+## MOD Description:
+##			Ce mod vous permet d'ajouter des couleurs dans le who is online et dans 
+##			la partie utilisateurs connectés en bas de l'index. Vous pouvez créer des 
+##			types d'utilisteurs via l'ACP. Il vous permet aussi de mettre en couleur 
+##			vous différents groupes d'utilisateurs sur l'index et le whoisonline, 
+##			ceci est désactivable depuis l'admin.
+##
+## MOD Version:		2.0.0
+## Files To Edit: 
+## 			templates/subSilver/index_body.tpl  
+## 			templates/subSilver/admin/user_edit_body.tpl 	
+## 			templates/subSilver/admin/group_edit_body.tpl	
+## 			templates/subSilver/admin/board_config_body.tpl
+##
+## Included Files: 
+## 			
+## 			templates/subSilver/admin/whosonline_ranks_edit_body.tpl
+## 			templates/subSilver/admin/whosonline_ranks_list_body.tpl
+# 
+#-----[ OUVRIR ]----- 
+# 
+templates/subSilver/index_body.tpl  
+
+# 
+#-----[ TROUVER ]----- 
+# 
+	<td class="row1" align="left"><span class="gensmall">{TOTAL_USERS_ONLINE} &nbsp; [ {L_WHOSONLINE_ADMIN} ] &nbsp; [ {L_WHOSONLINE_MOD} ]<br />{RECORD_USERS}<br />{LOGGED_IN_USER_LIST}</span></td>
+
+#
+#-----[ REMPLACER PAR ]------------------------------------------
+#
+	<td class="row1" align="left"><span class="gensmall">{TOTAL_USERS_ONLINE}<br />
+ &nbsp; [ {L_WHOSONLINE_ADMIN} ] &nbsp; [ {L_WHOSONLINE_MOD} ] &nbsp;{WHOSONLINE_LEGEND}<br />
+{RECORD_USERS}<br />{LOGGED_IN_USER_LIST}</span></td>
+
+# 
+#-----[ OUVRIR ]----- 
+# 
+templates/subSilver/admin/user_edit_body.tpl
+
+# 
+#-----[ TROUVER ]----- 
+# 
+	<tr>
+		<td class="row1"><span class="gen">{L_SELECT_RANK}</span></td>
+		<td class="row2"><select name="user_rank">{RANK_SELECT_BOX}</select></td>
+	</tr>
+
+#
+#-----[ APRES, AJOUTER ]------------------------------------------
+#
+	<tr>
+	  <td class="row1"><span class="gen">{L_WHOSONLINE_RANK}</span></td>
+	  <td class="row2">{WHOSONLINE_RANK}</td>
+	</tr>
+
+# 
+#-----[ OUVRIR ]----- 
+# 
+templates/subSilver/admin/group_edit_body.tpl
+
+# 
+#-----[ TROUVER ]----- 
+# 
+	<tr> 
+	  <td class="row1" width="38%"><span class="gen">{L_GROUP_NAME}:</span></td>
+	  <td class="row2" width="62%"> 
+		<input class="post" type="text" name="group_name" size="35" maxlength="40" value="{GROUP_NAME}" />
+	  </td>
+	</tr>
+
+#
+#-----[ APRES, AJOUTER ]------------------------------------------
+#
+	<tr>
+		<td class="row1" width="38%"><span class="gen">{L_RANK_COLOR}:</span></td>
+		<td class="row2">
+			<select name="whosonline_rank" class="gensmall">
+			<!-- BEGIN whosonline_rank -->
+			<option {whosonline_rank.SELECT} value="{whosonline_rank.VALUE}" style="color:{whosonline_rank.STYLE}" >{whosonline_rank.NAME}</option>
+			<!-- END whosonline_rank -->
+			</select>
+		</td>
+	</tr>
+
+#
+#-----[ OUVRIR ]-----
+#
+templates/subSilver/admin/board_config_body.tpl
+
+#
+#-----[ TROUVER ]-----
+#
+		<td class="row2"><input type="radio" name="prune_enable" value="1" {PRUNE_YES} /> {L_YES}&nbsp;&nbsp;<input type="radio" name="prune_enable" value="0" {PRUNE_NO} /> {L_NO}</td>
+	</tr>
+
+#
+#-----[ APRES, AJOUTER ]------------------------------------------
+#
+	<tr>
+		<td class="row1">{L_ALLOW_GROUP_INDEX}</span></td>
+		<td class="row2"><input type="radio" name="allow_group_index" value="1" {ALLOW_GROUP_INDEX_YES} /> {L_ENABLED}&nbsp;&nbsp;<input type="radio" name="allow_group_index" value="0" {ALLOW_GROUP_INDEX_NO} /> {L_DISABLED}</td>
+	</tr>
+# 
+#-----[ SAUVEGARDER/FERMER TOUS LES FICHIERS ]---------------- 
+# 
+#FdM
+
+############################################################## 
+## MOD Title:		Totally ERC 
+## MOD Author:		reddog (n/a) http://www.reddevboard.com/ 
+## MOD Description:	This addon displays colors added by Extend
+##			Rank Color MOD everywhere on your board. 
+##
+## MOD Version:		1.1.8
+##
+## Files To Edit	4
+##
+##	templates/subSilver/index_body.tpl
+##	templates/subSilver/modcp_body.tpl
+##	templates/subSilver/admin/board_config_body.tpl
+##	templates/subSilver/admin/styles_edit_body.tpl
+##
+## Included Files:	0
+##
+#
+#-----[ OPEN ]------------------------------------------------
+#
+templates/subSilver/index_body.tpl
+#
+#-----[ FIND ]------------------------------------------------
+#
+# this is a partial search: the full lines are longer
+#
+rowspan="{%:1}"
+#
+#-----[ INCREMENT ]-------------------------------------------
+#
+%:1 +1
+#
+#-----[ FIND ]------------------------------------------------
+#
+# this is a partial search: the full lines are longer
+#
+<tr>
+{TOTAL_USERS_ONLINE}
+{WHOSONLINE_LEGEND}<br />
+{RECORD_USERS}<br />{LOGGED_IN_USER_LIST}</span></td>
+</tr>
+#
+#-----[ REPLACE WITH ]----------------------------------------
+#
+  <tr>
+	<td class="row1" align="left"><span class="gensmall">{TOTAL_USERS_ONLINE}<br />{RECORD_USERS}<br />{LOGGED_IN_USER_LIST}</span></td>
+  </tr>
+  <tr>
+  	<td class="row1" align="left"><span class="gensmall">
+  		<!-- BEGIN stats -->
+  		<b>{stats.L_LEGEND}:</b>
+  		<!-- BEGIN legend -->
+  		[&nbsp;<b><a href="{stats.legend.U_LEVEL}" class="gensmall"{stats.legend.STYLE}>{stats.legend.LEVEL_NAME}</a></b>&nbsp;]
+  		<!-- END legend -->
+		<!-- END stats -->
+  	</span></td>
+  </tr>
+#
+#-----[ OPEN ]------------------------------------------------
+#
+templates/subSilver/modcp_body.tpl
+#
+#-----[ FIND ]------------------------------------------------
+#
+{topicrow.LAST_POST_TIME}
+#
+#-----[ IN-LINE FIND ]----------------------------------------
+#
+{topicrow.LAST_POST_TIME}
+#
+#-----[ IN-LINE AFTER, ADD ]----------------------------------
+#
+<br />{topicrow.LAST_POST_AUTHOR} {topicrow.LAST_POST_IMG}
+#
+#-----[ OPEN ]------------------------------------------------
+#
+templates/subSilver/admin/board_config_body.tpl
+#
+#-----[ FIND ]------------------------------------------------
+#
+	<tr>
+		<td class="row1">{L_ALLOW_GROUP_INDEX}
+#
+#-----[ BEFORE, ADD ]-----------------------------------------
+#
+	<tr>
+		<td class="row2" colspan="2"><b class="gensmall">{L_ALLOW_TOTALLY_ERC_SETTINGS}</b></td>
+	</tr>
+	<tr>
+		<td class="row1">{L_ALLOW_TOTALLY_ERC}</td>
+		<td class="row2">
+			<input type="radio" name="allow_totally_erc" value="1" {ALLOW_TOTALLY_ERC_YES} /> {L_YES}&nbsp;
+			<input type="radio" name="allow_totally_erc" value="0" {ALLOW_TOTALLY_ERC_NO} /> {L_NO}
+		</td>
+	</tr>
+	<!-- BEGIN erc -->
+	</tr>
+		<td class="row1">{erc.L_CACHE_ERC}</td>
+		<td class="row2">
+			<input type="radio" name="cache_erc" value="1" {erc.CACHE_ERC_YES} /> {L_YES}&nbsp;
+			<input type="radio" name="cache_erc" value="0" {erc.CACHE_ERC_NO} /> {L_NO}
+		</td>
+	</tr>
+	<!-- END erc -->
+	<tr>
+		<td class="row1">{L_GROUP_ADMINMOD_ERC}</td>
+		<td class="row2"><table width="100%" cellspacing="0" cellpadding="0" border="0">
+		  <tr>
+		  	<td><span class="gensmall">{L_GROUP_ADMIN_ERC}</span></td>
+		  	<td width="100%">
+				<input type="radio" name="group_admin_erc" value="1" {GROUP_ADMIN_ERC_YES} /> {L_YES}&nbsp;
+				<input type="radio" name="group_admin_erc" value="0" {GROUP_ADMIN_ERC_NO} /> {L_NO}
+			</td>
+		  </tr>
+		  <tr>
+			<td><span class="gensmall">{L_GROUP_MOD_ERC}</span></td>
+			<td width="100%">
+				<input type="radio" name="group_mod_erc" value="1" {GROUP_MOD_ERC_YES} /> {L_YES}&nbsp;
+				<input type="radio" name="group_mod_erc" value="0" {GROUP_MOD_ERC_NO} /> {L_NO}
+			</td>
+		  </tr>
+		</table></td>
+	</tr>
+#
+#-----[ OPEN ]------------------------------------------------
+#
+templates/subSilver/admin/styles_edit_body.tpl
+#
+#-----[ FIND ]------------------------------------------------
+#
+<tr>
+{L_SAVE_SETTINGS}
+#
+#-----[ BEFORE, ADD ]-----------------------------------------
+#
+	<tr>
+		<td class="row2" colspan="3"><b class="gensmall">{L_ERC_SETTINGS}</b></td>
+	</tr>
+	<tr>
+		<td class="row1">{L_ERC_ADMINCOLOR}:</td>
+		<td class="row2"><input class="post" type="text" size="6" maxlength="6" name="erc_admincolor" value="{ERC_ADMINCOLOR}" /></td>
+		<td class="row2">&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="row1">{L_ERC_MODCOLOR}:</td>
+		<td class="row2"><input class="post" type="text" size="6" maxlength="6" name="erc_modcolor" value="{ERC_MODCOLOR}" /></td>
+		<td class="row2">&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="row1">{L_ERC_USERCOLOR}:</td>
+		<td class="row2"><input class="post" type="text" size="6" maxlength="6" name="erc_usercolor" value="{ERC_USERCOLOR}" /></td>
+		<td class="row2">&nbsp;</td>
+	</tr>
+#
+#-----[ SAVE/CLOSE ALL FILES ]--------------------------------
+#
+# EoM
+
+################################################## 
+## MOD Titre :            Mise a jour theme 
+## Fichier(s) à éditer :  
+##                            templates/subSilver/faq_body.tpl
+##                            templates/subSilver/overall_footer.tpl
+##                            templates/subSilver/simple_footer.tpl
+##                            templates/subSilver/admin/page_footer.tpl
+###################################################
+
+# 
+#-----[ OUVRIR ]---------------------------------------------- 
+#
+ templates/subSilver/faq_body.tpl
+
+# 
+#-----[ TROUVER ]--------------------------------------------- 
+#
+		<td class="{faq_block.faq_row.ROW_CLASS}" align="left" valign="top"><span class="postbody"><a name="{faq_block.faq_row.U_FAQ_ID}"></a><b>{faq_block.faq_row.FAQ_QUESTION}</b></span><br /><span class="postbody">{faq_block.faq_row.FAQ_ANSWER}<br /><a class="postlink" href="#Top">{L_BACK_TO_TOP}</a></span></td>
+# 
+#-----[ REMPLACER PAR ]--------------------------------------- 
+#
+		<td class="{faq_block.faq_row.ROW_CLASS}" align="left" valign="top"><span class="postbody"><a name="{faq_block.faq_row.U_FAQ_ID}"></a><b>{faq_block.faq_row.FAQ_QUESTION}</b></span><br /><span class="postbody">{faq_block.faq_row.FAQ_ANSWER}<br /><a class="postlink" href="#top">{L_BACK_TO_TOP}</a></span></td>
+# 
+#-----[ OUVRIR ]---------------------------------------------- 
+#
+ templates/subSilver/overall_footer.tpl
+
+# 
+#-----[ TROUVER ]--------------------------------------------- 
+#
+Powered by <a href="http://www.phpbb.com/" target="_phpbb" class="copyright">phpBB</a> © 2001, 2005 phpBB Group<br />
+# 
+#-----[ REMPLACER PAR ]--------------------------------------- 
+#
+Powered by <a href="http://www.phpbb.com/" target="_phpbb" class="copyright">phpBB</a> © 2001, 2005 phpBB Group<br /><b>{PHPBB_VERSION1}</b><br />
+# 
+#-----[ OUVRIR ]---------------------------------------------- 
+#
+ templates/subSilver/simple_footer.tpl
+
+# 
+#-----[ TROUVER ]--------------------------------------------- 
+#
+Powered by <a href="http://www.phpbb.com/" target="_phpbb" class="copyright">phpBB</a> © 2001, 2005 phpBB Group</span></div>
+# 
+#-----[ REMPLACER PAR ]--------------------------------------- 
+#
+Powered by <a href="http://www.phpbb.com/" target="_phpbb" class="copyright">phpBB</a> © 2001, 2005 phpBB Group<br /><b>{PHPBB_VERSION1}</b></span></div>
+# 
+#-----[ OUVRIR ]---------------------------------------------- 
+#
+ templates/subSilver/admin/page_footer.tpl
+
+# 
+#-----[ TROUVER ]--------------------------------------------- 
+#
+<div align="center"><span class="copyright">Powered by phpBB {PHPBB_VERSION} © 2001 <a href="http://www.phpbb.com/" target="_phpbb" class="copyright">phpBB Group</a><br />{TRANSLATION_INFO}</span></div>
+# 
+#-----[ REMPLACER PAR ]--------------------------------------- 
+#
+<div align="center"><span class="copyright">Powered by phpBB {PHPBB_VERSION} © 2001 <a href="http://www.phpbb.com/" target="_phpbb" class="copyright">phpBB Group</a><br />{TRANSLATION_INFO}<br /><b>{PHPBB_VERSION1}</b></span></div>
+
+# 
+#-----[ SAUVEGARDER/FERMER TOUS LES FICHIERS ]---------------- 
+# 
+#FdM 
+
+############################################################## 
+## MOD Titre: Garder le mouvement des smileys 
+## MOD Titre original: N/A
+## MOD Auteur: Bill Beardslee < webmaster@webxtractions.com > 
+## MOD Description: Le mod permet aux smileys de ne pas se figer une fois que l'on a cliqué sur l'un d'eux. 
+## MOD Traduction par < http://www.phpbb-fr.com > 
+##
+## MOD Version: 1.0.0 
+## 
+## Niveau d'installation: facile 
+## Temps d'installation: 2 Minutes 
+##
+## Fichiers à editer: 2 
+## 			templates/subSilver/posting_body.tpl 
+## 			templates/subSilver/posting_smilies.tpl 
+##
+## Fichiers à inclure: 0	
+
+
+# 
+#-----[ OUVRIR ]------------------------------------------ 
+# 
+templates/subSilver/posting_body.tpl 
+
+# 
+#-----[ TROUVER ]------------------------------------------ 
+# 
+<td><a href="javascript:emoticon('{smilies_row.smilies_col.SMILEY_CODE}')"><img src="{smilies_row.smilies_col.SMILEY_IMG}" border="0" alt="{smilies_row.smilies_col.SMILEY_DESC}" title="{smilies_row.smilies_col.SMILEY_DESC}" /></a></td> 
+
+# 
+#-----[ REMPLACER PAR ]---------------------------------- 
+# 
+<td><img src="{smilies_row.smilies_col.SMILEY_IMG}" border="0" onmouseover="this.style.cursor='hand';" onclick="emoticon('{smilies_row.smilies_col.SMILEY_CODE}');" alt="{smilies_row.smilies_col.SMILEY_DESC}" title="{smilies_row.smilies_col.SMILEY_DESC}" /></a></td> 
+
+# 
+#-----[ OUVRIR ]------------------------------------------ 
+# 
+templates/subSilver/posting_smilies.tpl 
+
+# 
+#-----[ TROUVER ]------------------------------------------ 
+# 
+<td><a href="javascript:emoticon('{smilies_row.smilies_col.SMILEY_CODE}')"><img src="{smilies_row.smilies_col.SMILEY_IMG}" border="0" alt="{smilies_row.smilies_col.SMILEY_DESC}" title="{smilies_row.smilies_col.SMILEY_DESC}" /></a></td> 
+
+# 
+#-----[ REMPLACER PAR ]---------------------------------- 
+# 
+<td><img src="{smilies_row.smilies_col.SMILEY_IMG}" border="0" onmouseover="this.style.cursor='hand';" onclick="emoticon('{smilies_row.smilies_col.SMILEY_CODE}');" alt="{smilies_row.smilies_col.SMILEY_DESC}" title="{smilies_row.smilies_col.SMILEY_DESC}" /></a></td> 
+
+
+######################################################## 
+## 
+## MOD Title: ADD-ON allow_pm_comments_system_arcade
+## MOD Version: 1.1 
+## MOD Description: 	Cet add-on ajoute une option dans le Profil pour autoriser ou pas l'envoi d'un MP
+## 			quand on perd le record d'un jeu dans la section Arcade.
+## PhpBB Version : testé sur 2.0.10 
+## Files To Edit : 1
+##
+##  - templates/subSilver/profile_add_body.tpl
+
+#
+#-----[ OPEN ]------------------------------------------------
+#
+templates/subSilver/profile_add_body.tpl
+
+#
+#-----[ FIND ]------------------------------------------------
+#
+<!-- BEGIN switch_avatar_block -->
+	<tr> 
+	  <td class="catSides" colspan="2" height="28">&nbsp;</td>
+	</tr>
+
+#
+#-----[ BEFORE, ADD ]------------------------------------------
+#
+<tr> 
+	  <th class="thSides" colspan="2" height="12" valign="middle">{L_ARCADE_OP}</th>
+	</tr>
+	<tr>
+	 <td class="row1"><span class="gen">{L_PM_ARCADE}:</span><br />
+		<span class="gensmall">{L_PM_ARCADE_EXPLAIN}</span></td>
+	  <td class="row2"> 
+		<input type="radio" name="pmarcade" value="1" {PM_ARCADE_YES} />
+		<span class="gen">{L_YES}</span>   
+		<input type="radio" name="pmarcade" value="0" {PM_ARCADE_NO} />
+		<span class="gen">{L_NO}</span></td>
+	</tr>
+
+#
+#-----[ SAVE/CLOSE ALL FILES ]--------------------------------
+#
+# EoM
+
+# 
+#-----[ SAUVEGARDER/FERMER TOUS LES FICHIERS ]---------------- 
+# 
+#FdM
+
+################################################################# 
+## MOD Titre : Gestion des utilisateurs depuis leur profil
+## MOD Titre original : User management 
+## MOD Auteur: Pilok < pilok@myway.com > 
+## MOD Description: Ajoute deux liens dans le profil des utilisateurs pour l'admin: 
+## Un pour gérer ses permissions l'autre pour changer ses paramètres.
+## MOD Version : 1.0 
+## Traduction par http://www.phpbb-fr.com (muse2001 <muse2001@wanadoo.fr>) 
+## Niveau de l'installation : Facile 
+## Temps d'installation : 2 minutes 
+## Fichiers à éditer : 3
+## --> profile_view_body.tpl
+## --> usercp_viewprofile.php
+## --> lang_main.php 
+## Fichiers inclus : *aucun*
+################################################################# 
+## Pour des raisons de sécurité, vous êtes prier de consulter régulièrement: 
+##    http://www.phpbb.com/mods/downloads/ 
+## afin d'obtenir la dernière version de ce MOD. Télécharger ce MOD à partir 
+## des sites autres que phpBB.com peut être dangereux pour votre forum phpBB. 
+## Par conséquent, phpBB.com n'assurera aucun support pour les MODs absents 
+## de leur base de données, consultable sur: 
+##    http://www.phpbb.com/mods/downloads/ 
+################################################################# 
+## Avant d'installer ce mod, il est conseiller de sauvegarder 
+## les fichiers qui vont être édités 
+################################################################# 
+# 
+#-----[ OUVRIR ]------------------------------------------ 
+# 
+templates/subSilver/profile_view_body.tpl 
+# 
+#-----[ TROUVER ]------------------------------------------ 
+# 
+td class="catRight" width="60%"><b><span class="gen">{L_ABOUT_USER}</span></b></td> 
+
+# 
+#-----[ REMPLACER PAR ]------------------------------------------ 
+# 
+<td class="catRight" width="60%"><b><span class="gen">{L_ABOUT_USER}</span></b> 
+    <!-- BEGIN switch_user_admin --> 
+    <span class="gen"> (<a target="_admin" href="{U_ADMIN_PROFILE}" class="gen">{L_USER_ADMIN_FOR}</a> - <a target="_admin" href="{U_PERM_PROFILE}" class="gen">{L_USER_PERM_FOR}</a>)</span> 
+    <!-- END switch_user_admin --> 
+</td> 
+
+
+####################################################
+##A cet endroit deux choix possible soit :
+##    
+##    un viewtopic_body.tpl classique
+##    un viewtopic_body.tpl 3 colonnes
+####################################################
+################################################## 
+## MOD Titre :            viewtopic_body.tpl classique 
+## Fichier(s) à éditer :  
+##                            templates/subSilver/viewtopic_body.tpl
+##################################################
+## Notes de l'auteur : 
+##       Affiche les infos du membre dans la colonne de gauche 
+##                                                                           
+##################################################
+ 
+ # 
+ #-----[ OUVRIR ]---------------------------------------------- 
+ #
+ templates/subSilver/viewtopic_body.tpl
+
+ # 
+ #-----[ TROUVER ]--------------------------------------------- 
+ #
+ <td width="150" align="left" valign="top" class="{postrow.ROW_CLASS}"><span class="name"><a name="{postrow.U_POST_ID}"></a><b>{postrow.POSTER_NAME}</b></span><br /><span class="postdetails">{postrow.POSTER_RANK}<br />{postrow.RANK_IMAGE}{postrow.POSTER_AVATAR}<br /><br />{postrow.POSTER_JOINED}<br />{postrow.POSTER_POSTS}<br />{postrow.POSTER_FROM}</span><br /></td>
+
+ # 
+ #-----[ REMPLACER PAR ]--------------------------------------- 
+ #
+ <td width="150" align="left" valign="top" class="{postrow.ROW_CLASS}"><span class="name"><a name="{postrow.U_POST_ID}">{postrow.POSTER_NAME}</span><br /><span class="postdetails"><b>{postrow.POSTER_RANK}</b><br />{postrow.RANK_IMAGE}{postrow.POSTER_AVATAR}<br /><br /><br /><b>{postrow.POSTER_MINILAND}</b><br /><br /><br /><b>{postrow.POSTER_MOOD}</b><br />{postrow.POSTER_JOINED}<br />{postrow.POSTER_POSTS}<br />{postrow.POSTER_FROM}<br /><b>{postrow.L_STYLE}</b>{postrow.STYLE_NAME} {postrow.THEME_NUM}<br /><b>{postrow.POSTER_GENDER}</b><br />{postrow.POSTER_AGE}<br /><b>{postrow.L_ZODIAC}</b>{postrow.ZODIAC_IMG}<br />
+<b>{postrow.L_CHINESE}</b>{postrow.CHINESE_IMG}<br />{postrow.CASH}<br /><br />
+               <!-- BEGIN num -->
+		<b>{postrow.num.L_WINNER} {postrow.num.NUM_WIN}</b> <img src="images/couronne.gif"><br />
+		<!-- END num -->
+		<!-- BEGIN trophee --> 
+		 <a href={postrow.trophee.U_GAME} class="nav" title="{postrow.trophee.L_SCORE} : {postrow.trophee.GAME_SCORE}">{postrow.trophee.GAME_PIC} {postrow.trophee.GAME_NAME}</a><br />
+		<!-- END trophee -->
+		<br /></span></td>
+#
+#-----[ TROUVER ]-----------------------------------------
+#
+<!-- END postrow -->
+#
+#----- [ AJOUTER APRES ]--------------------------------------
+#
+	<tr align="center"> 
+		<td class="row1" colspan="2" >
+			{QUICKREPLY_OUTPUT}
+		</td>
+	</tr>
+# 
+#-----[ SAUVEGARDER/FERMER TOUS LES FICHIERS ]---------------- 
+# 
+#FdM
+
+
+################################################## 
+## MOD Titre :            viewtopic_body.tpl 3 colonnes
+## Fichier(s) à éditer :  
+##                            templates/subSilver/viewtopic_body.tpl
+##################################################
+## Notes de l'auteur : 
+##       Affiche les infos du membre sur deux colonne (un a droite et une a gauche)
+##       Voir theme d'origine de la premod pour demo
+##                                                                           
+##################################################
+
+# 
+#-----[ OUVRIR ]---------------------------------------------- 
+#
+ templates/subSilver/viewtopic_body.tpl
+
+# 
+#-----[ TROUVER ]--------------------------------------------- 
+#
+			<td align="left" valign="bottom" colspan="2"><a class="maintitle" href="{U_VIEW_TOPIC}">{TOPIC_TITLE}</a><br />
+# 
+#-----[ REMPLACER PAR ]--------------------------------------- 
+#
+			<td align="left" valign="bottom" colspan="3"><a class="maintitle" href="{U_VIEW_TOPIC}">{TOPIC_TITLE}</a><br />
+
+# 
+#-----[ TROUVER ]--------------------------------------------- 
+#
+					<td class="catHead" colspan="2" height="28"><span class="nav"><a href="{U_VIEW_OLDER_TOPIC}" class="nav">{L_VIEW_PREVIOUS_TOPIC}</a> :: <a href="{U_VIEW_NEWER_TOPIC}" class="nav">{L_VIEW_NEXT_TOPIC}</a></span></td>
+# 
+#-----[ REMPLACER PAR ]--------------------------------------- 
+#
+                                       	<td class="catHead" colspan="3" height="28"><span class="nav"><a href="{U_VIEW_OLDER_TOPIC}" class="nav">{L_VIEW_PREVIOUS_TOPIC}</a> :: <a href="{U_VIEW_NEWER_TOPIC}" class="nav">{L_VIEW_NEXT_TOPIC}</a></span></td>
+
+
+# 
+#-----[ TROUVER ]--------------------------------------------- 
+#
+		<th class="thRight" nowrap="nowrap">{L_MESSAGE}</th>
+# 
+#-----[ REMPLACER PAR ]--------------------------------------- 
+#
+		<th class="thCenter" nowrap="nowrap">{L_MESSAGE}</th>
+		<th class="thRight" width="150" height="26" nowrap="nowrap">{L_COL_DRT}</th>
+
+# 
+#-----[ TROUVER ]--------------------------------------------- 
+#
+<td width="150" align="left" valign="top" class="{postrow.ROW_CLASS}"><span class="name"><a name="{postrow.U_POST_ID}"></a><b>{postrow.POSTER_NAME}</b></span><br /><span class="postdetails">{postrow.POSTER_RANK}<br />{postrow.RANK_IMAGE}{postrow.POSTER_AVATAR}<br /><br />{postrow.POSTER_JOINED}<br />{postrow.POSTER_POSTS}<br />{postrow.POSTER_FROM}</span><br /></td>
+
+# 
+#-----[ REMPLACER PAR ]--------------------------------------- 
+#
+<td width="150" align="center" valign="top" class="{postrow.ROW_CLASS}"><span class="name"><a name="{postrow.U_POST_ID}"></a><br /><br />{postrow.POSTER_NAME}</span><br /><span class="postdetails"><b>{postrow.POSTER_RANK}</b><br />{postrow.RANK_IMAGE}<br /><br /><br />{postrow.POSTER_AVATAR}<br /><br /><br /><b>{postrow.POSTER_MINILAND}</b><br /><br /><br /><b>{postrow.POSTER_MOOD}</b><br />{postrow.POSTER_FROM}<br />{postrow.CASH}</span><br /></td>
+
+# 
+#-----[ TROUVER ]--------------------------------------------- 
+#
+				<td colspan="2"><hr /></td>
+# 
+#-----[ REMPLACER PAR ]--------------------------------------- 
+#
+				<td colspan="3"><hr /></td>
+# 
+#-----[ TROUVER ]--------------------------------------------- 
+#
+			<td colspan="2"><span class="postbody">{postrow.MESSAGE}{postrow.SIGNATURE}</span><span class="gensmall">{postrow.EDITED_MESSAGE}</span></td>
+			</tr>
+		</table></td>
+
+# 
+#-----[ REMPLACER PAR ]--------------------------------------- 
+#
+			<td colspan="3"><span class="postbody">{postrow.MESSAGE}{postrow.SIGNATURE}</span><span class="gensmall">{postrow.EDITED_MESSAGE}</span></td>
+			</tr>		
+		</table></td>
+		<td width="150" align="left" valign="top" class="{postrow.ROW_CLASS}"><span class="postdetails"><br /><br /><br />{postrow.POSTER_JOINED}<br /><br />{postrow.POSTER_POSTS}<br /><b>{postrow.L_STYLE}</b>{postrow.STYLE_NAME} {postrow.THEME_NUM}<br /><b>{postrow.POSTER_GENDER}</b><br />{postrow.POSTER_AGE}<br /><b>{postrow.L_ZODIAC}</b>{postrow.ZODIAC_IMG}<br /><b>{postrow.L_CHINESE}</b>{postrow.CHINESE_IMG}<br /><br />
+		<!-- BEGIN num -->
+		<b>{postrow.num.L_WINNER} {postrow.num.NUM_WIN}</b> <img src="images/couronne.gif"><br />
+		<!-- END num -->
+		<!-- BEGIN trophee --> 
+		 <a href={postrow.trophee.U_GAME} class="nav" title="{postrow.trophee.L_SCORE} : {postrow.trophee.GAME_SCORE}">{postrow.trophee.GAME_PIC} {postrow.trophee.GAME_NAME}</a><br />
+		<!-- END trophee -->
+		<br /><br /></span></td>
+# 
+#-----[ TROUVER ]--------------------------------------------- 
+#
+		<td class="{postrow.ROW_CLASS}" width="150" align="left" valign="middle"><span class="nav"><a href="#top" class="nav">{L_BACK_TO_TOP}</a></span></td>
+		<td class="{postrow.ROW_CLASS}" width="100%" height="28" valign="bottom" nowrap="nowrap"><table cellspacing="0" cellpadding="0" border="0" height="18" width="18">
+	
+# 
+#-----[ REMPLACER PAR ]--------------------------------------- 
+#
+		<td class="{postrow.ROW_CLASS}" width="150" align="center" valign="middle"><span class="nav"><a href="#top" class="nav">{L_BACK_TO_TOP}</a></span></td>
+		<td class="{postrow.ROW_CLASS}" width="100%" height="28" valign="bottom" nowrap="nowrap"><table cellspacing="0" cellpadding="0" border="0" height="18" width="18"align="center">
+# 
+#-----[ TROUVER ]--------------------------------------------- 
+#
+//--></script><noscript>{postrow.ICQ_IMG}</noscript></td>
+			</tr>
+		</table></td>
+# 
+#-----[ APRES, AJOUTER ]-------------------------------------- 
+#
+		<td class="{postrow.ROW_CLASS}" width="150" align="center" valign="middle"><span class="nav"><a href="#top" class="nav">{L_BACK_TO_TOP}</a></span></td>
+
+# 
+#-----[ TROUVER ]--------------------------------------------- 
+#
+		<td class="spaceRow" colspan="2" height="1"><img src="templates/subSilver/images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	<!-- END postrow -->
+	<tr align="center"> 
+		<td class="catBottom" colspan="2" height="28"><table cellspacing="0" cellpadding="0" border="0">
+# 
+#-----[ REMPLACER PAR ]--------------------------------------- 
+#
+		<td class="spaceRow" colspan="3" height="1"><img src="templates/subSilver/images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	<!-- END postrow -->
+<tr align="center"> 
+		<td class="row1" colspan="3" >
+			{QUICKREPLY_OUTPUT}
+		</td>
+	</tr>
+	<tr align="center"> 
+		<td class="catBottom" colspan="3" height="28"><table cellspacing="0" cellpadding="0" border="0">
+
+# 
+#-----[ OUVRIR ]---------------------------------------------- 
+# templates/subSilver/overall_header.tpl				
+				
+# 
+#-----[ TROUVER ]--------------------------------------------- 
+#
+th.thHead,th.thSides,th.thTop,th.thLeft,th.thRight,th.thBottom,th.thCornerL,th.thCornerR {
+
+# 
+#-----[ REMPLACER PAR ]--------------------------------------- 
+#
+th.thHead,th.thSides,th.thTop,th.thLeft,th.thCenter,th.thRight,th.thBottom,th.thCornerL,th.thCornerR {
+
+# 
+#-----[ TROUVER ]--------------------------------------------- 
+#
+th.thLeft,td.catLeft	  { border-width: 0px 0px 0px 1px; }
+# 
+#-----[ APRES, AJOUTER ]-------------------------------------- 
+#
+th.thCenter	  { border-width: 0px 0px 0px 0px; }
+
+# 
+#-----[ OUVRIR ]---------------------------------------------- 
+#
+ templates/subSilver/viewtopic_poll_ballot.tpl
+
+# 
+#-----[ TROUVER ]--------------------------------------------- 
+#
+ <td class="row2" colspan="2"><br clear="all" />
+
+# 
+#-----[ REMPLACER PAR ]--------------------------------------- 
+#
+<td class="row2" colspan="3"><br clear="all" />
+
+# 
+#-----[ OUVRIR ]---------------------------------------------- 
+#
+ templates/subSilver/viewtopic_poll_result.tpl
+
+# 
+#-----[ TROUVER ]--------------------------------------------- 
+#
+ <td class="row2" colspan="2"><br clear="all" />
+
+# 
+#-----[ REMPLACER PAR ]--------------------------------------- 
+#
+ <td class="row2" colspan="3"><br clear="all" />
+
+
+
+
+Passage a la version phpBB 2.0.18
+
+
+#
+#-----[ OPEN ]---------------------------------------------
+# NOTE --- Remember to do this for all your installed styles!
+#
+templates/subSilver/bbcode.tpl
+
+#
+#
+# NOTE --- The following action fixes a bug in the subSilver template
+#
+#-----[ FIND ]---------------------------------------------
+# NOTE --- This is a partial match, the whole line on a fresh subSilver template looks like this:
+#	<!-- BEGIN email --><a href="mailto:{EMAIL}">{EMAIL}</A><!-- END email -->
+#
+<!-- BEGIN email -->
+
+#
+#-----[ IN-LINE FIND ]---------------------------------------------
+#
+</A>
+
+#
+#-----[ IN-LINE REPLACE WITH ]---------------------------------------------
+#
+</a>
+
+#
+#-----[ OPEN ]---------------------------------------------
+# NOTE --- Remember to do this for all your installed styles!
+#
+templates/subSilver/groupcp_info_body.tpl
+
+#
+#
+# NOTE --- The following action fixes a bug in the subSilver template
+#
+#-----[ FIND ]---------------------------------------------
+# NOTE --- This is a partial match, the whole line on a fresh subSilver template looks like this:
+#		<td class="row2"><span class="gen"><span class="gen"><input type="radio" name="group_type" value="{S_GROUP_OPEN_TYPE}" {S_GROUP_OPEN_CHECKED} /> {L_GROUP_OPEN} &nbsp;&nbsp;<input type="radio" name="group_type" value="{S_GROUP_CLOSED_TYPE}" {S_GROUP_CLOSED_CHECKED} />	{L_GROUP_CLOSED} &nbsp;&nbsp;<input type="radio" name="group_type" value="{S_GROUP_HIDDEN_TYPE}" {S_GROUP_HIDDEN_CHECKED} />	{L_GROUP_HIDDEN} &nbsp;&nbsp; <input class="mainoption" type="submit" name="groupstatus" value="{L_UPDATE}" /></span></td>
+#
+		<td class="row2"><span class="gen"><span class="gen">
+
+#
+#-----[ IN-LINE FIND ]---------------------------------------------
+#
+<span class="gen"><span class="gen">
+
+#
+#-----[ IN-LINE REPLACE WITH ]---------------------------------------------
+#
+<span class="gen">
+
+#
+#
+# NOTE --- The following action fixes a bug in the subSilver template
+#
+#-----[ FIND ]---------------------------------------------
+#
+		<td class="catBottom" colspan="8" align="right"><span class="cattitle">
+			<input type="submit" name="remove" value="{L_REMOVE_SELECTED}" class="mainoption" />
+
+#
+#-----[ REPLACE WITH ]---------------------------------------------
+#
+		<td class="catBottom" colspan="8" align="right">
+			<span class="cattitle"><input type="submit" name="remove" value="{L_REMOVE_SELECTED}" class="mainoption" /></span>
+
+#
+#-----[ OPEN ]---------------------------------------------
+# NOTE --- Remember to do this for all your installed styles!
+#
+templates/subSilver/index_body.tpl
+
+#
+#
+# NOTE --- The following action adds the ability to show the 'Mark forums read' link to logged in users only.
+#
+#-----[ FIND ]---------------------------------------------
+#
+	<td align="left"><span class="gensmall"><a href="{U_MARK_READ}" class="gensmall">{L_MARK_FORUMS_READ}</a></span></td>
+
+#
+#-----[ REPLACE WITH ]---------------------------------------------
+#
+ 	<td align="left">
+ 	<!-- BEGIN switch_user_logged_in -->
+ 		<span class="gensmall"><a href="{U_MARK_READ}" class="gensmall">{L_MARK_FORUMS_READ}</a></span>
+ 	<!-- END switch_user_logged_in -->
+ 	</td>
+
+#
+#
+# NOTE --- The following action is related to the new autologin option (it can be disabled from the ACP).
+#
+#-----[ FIND ]---------------------------------------------
+#
+		&nbsp;&nbsp; &nbsp;&nbsp;{L_AUTO_LOGIN} 
+		<input class="text" type="checkbox" name="autologin" />
+
+#
+#-----[ BEFORE, ADD ]---------------------------------------------
+#
+		<!-- BEGIN switch_allow_autologin -->
+
+#
+#-----[ AFTER, ADD ]---------------------------------------------
+#
+		<!-- END switch_allow_autologin -->
+
+#
+#-----[ OPEN ]---------------------------------------------
+# NOTE --- Remember to do this for all your installed styles!
+#
+templates/subSilver/login_body.tpl
+
+#
+#
+# NOTE --- The following action is related to the new autologin option (it can be disabled from the ACP).
+#
+#-----[ FIND ]---------------------------------------------
+#
+		  <tr align="center"> 
+			<td colspan="2"><span class="gen">{L_AUTO_LOGIN}: <input type="checkbox" name="autologin" /></span></td>
+		  </tr>
+
+#
+#-----[ BEFORE, ADD ]---------------------------------------------
+#
+		  <!-- BEGIN switch_allow_autologin -->
+
+#
+#-----[ AFTER, ADD ]---------------------------------------------
+#
+		  <!-- END switch_allow_autologin -->
+
+#
+#-----[ OPEN ]---------------------------------------------
+# NOTE --- Remember to do this for all your installed styles!
+#
+templates/subSilver/overall_header.tpl
+
+#
+#
+# NOTE --- The following action fixes a bug in the subSilver template
+#
+#-----[ FIND ]---------------------------------------------
+# NOTE --- This is a partial match, the whole line on a fresh subSilver template looks like this:
+#						<td align="center" valign="top" nowrap="nowrap"><span class="mainmenu">&nbsp;<a href="{U_FAQ}" class="mainmenu"><img src="templates/subSilver/images/icon_mini_faq.gif" width="12" height="13" border="0" alt="{L_FAQ}" hspace="3" />{L_FAQ}</a></span><span class="mainmenu">&nbsp; &nbsp;<a href="{U_SEARCH}" class="mainmenu"><img src="templates/subSilver/images/icon_mini_search.gif" width="12" height="13" border="0" alt="{L_SEARCH}" hspace="3" />{L_SEARCH}</a>&nbsp; &nbsp;<a href="{U_MEMBERLIST}" class="mainmenu"><img src="templates/subSilver/images/icon_mini_members.gif" width="12" height="13" border="0" alt="{L_MEMBERLIST}" hspace="3" />{L_MEMBERLIST}</a>&nbsp; &nbsp;<a href="{U_GROUP_CP}" class="mainmenu"><img src="templates/subSilver/images/icon_mini_groups.gif" width="12" height="13" border="0" alt="{L_USERGROUPS}" hspace="3" />{L_USERGROUPS}</a>&nbsp; 
+#
+{L_FAQ}</a></span><span class="mainmenu">
+
+#
+#-----[ IN-LINE FIND ]---------------------------------------------
+#
+{L_FAQ}</a></span><span class="mainmenu">
+
+#
+#-----[ IN-LINE REPLACE WITH ]---------------------------------------------
+#
+{L_FAQ}</a>
+
+#
+#
+# NOTE --- The following actions fix a bug in the subSilver template
+#
+#-----[ FIND ]---------------------------------------------
+# NOTE --- This is a partial match, the whole line on a fresh subSilver template looks like this:
+#						&nbsp;<a href="{U_REGISTER}" class="mainmenu"><img src="templates/subSilver/images/icon_mini_register.gif" width="12" height="13" border="0" alt="{L_REGISTER}" hspace="3" />{L_REGISTER}</a></span>&nbsp;
+#
+{L_REGISTER}</a></span>
+
+#
+#-----[ IN-LINE FIND ]---------------------------------------------
+#
+{L_REGISTER}</a></span>
+
+#
+#-----[ IN-LINE REPLACE WITH ]---------------------------------------------
+#
+{L_REGISTER}</a>
+
+#
+#-----[ FIND ]---------------------------------------------
+#
+						</td>
+
+#
+#-----[ REPLACE WITH ]---------------------------------------------
+#
+						</span></td>
+
+#
+#-----[ OPEN ]---------------------------------------------
+# NOTE --- Remember to do this for all your installed styles!
+#
+templates/subSilver/profile_add_body.tpl
+
+#
+#
+# NOTE --- The following actions fix a bug in the subSilver template
+#
+#-----[ FIND ]---------------------------------------------
+#
+		<input type="text" name="icq" class="post"style="width: 100px"  size="10" maxlength="15" value="{ICQ}" />
+
+#
+#-----[ REPLACE WITH ]---------------------------------------------
+#
+		<input type="text" name="icq" class="post" style="width: 100px"  size="10" maxlength="15" value="{ICQ}" />
+
+#
+#-----[ FIND ]---------------------------------------------
+#
+		<input type="text" class="post"style="width: 150px"  name="aim" size="20" maxlength="255" value="{AIM}" />
+
+#
+#-----[ REPLACE WITH ]---------------------------------------------
+#
+		<input type="text" class="post" style="width: 150px"  name="aim" size="20" maxlength="255" value="{AIM}" />
+
+#
+#-----[ FIND ]---------------------------------------------
+#
+		<input type="text" class="post"style="width: 150px"  name="msn" size="20" maxlength="255" value="{MSN}" />
+
+#
+#-----[ REPLACE WITH ]---------------------------------------------
+#
+		<input type="text" class="post" style="width: 150px"  name="msn" size="20" maxlength="255" value="{MSN}" />
+
+#
+#-----[ FIND ]---------------------------------------------
+#
+		<input type="text" class="post"style="width: 150px"  name="yim" size="20" maxlength="255" value="{YIM}" />
+
+#
+#-----[ REPLACE WITH ]---------------------------------------------
+#
+		<input type="text" class="post" style="width: 150px"  name="yim" size="20" maxlength="255" value="{YIM}" />
+
+#
+#-----[ FIND ]---------------------------------------------
+#
+		<input type="text" class="post"style="width: 200px"  name="website" size="25" maxlength="255" value="{WEBSITE}" />
+
+#
+#-----[ REPLACE WITH ]---------------------------------------------
+#
+		<input type="text" class="post" style="width: 200px"  name="website" size="25" maxlength="255" value="{WEBSITE}" />
+
+#
+#-----[ FIND ]---------------------------------------------
+#
+		<input type="text" class="post"style="width: 200px"  name="location" size="25" maxlength="100" value="{LOCATION}" />
+
+#
+#-----[ REPLACE WITH ]---------------------------------------------
+#
+		<input type="text" class="post" style="width: 200px"  name="location" size="25" maxlength="100" value="{LOCATION}" />
+
+#
+#-----[ FIND ]---------------------------------------------
+#
+		<input type="text" class="post"style="width: 200px"  name="occupation" size="25" maxlength="100" value="{OCCUPATION}" />
+
+#
+#-----[ REPLACE WITH ]---------------------------------------------
+#
+		<input type="text" class="post" style="width: 200px"  name="occupation" size="25" maxlength="100" value="{OCCUPATION}" />
+
+#
+#-----[ FIND ]---------------------------------------------
+#
+		<input type="text" class="post"style="width: 200px"  name="interests" size="35" maxlength="150" value="{INTERESTS}" />
+
+#
+#-----[ REPLACE WITH ]---------------------------------------------
+#
+		<input type="text" class="post" style="width: 200px"  name="interests" size="35" maxlength="150" value="{INTERESTS}" />
+
+#
+#-----[ FIND ]---------------------------------------------
+#
+		<textarea name="signature"style="width: 300px"  rows="6" cols="30" class="post">{SIGNATURE}</textarea>
+
+#
+#-----[ REPLACE WITH ]---------------------------------------------
+#
+		<textarea name="signature" style="width: 300px" rows="6" cols="30" class="post">{SIGNATURE}</textarea>
+
+#
+#-----[ OPEN ]---------------------------------------------
+# NOTE --- Remember to do this for all your installed styles!
+#
+templates/subSilver/search_body.tpl
+
+#
+#
+# NOTE --- The following action fixes a bug in the subSilver template
+#
+#-----[ FIND ]---------------------------------------------
+# NOTE --- This is a partial match, the whole line on a fresh subSilver template looks like this:
+#		<td class="row2" valign="middle" nowrap="nowrap"><span class="genmed"><select class="post" name="sort_by">{S_SORT_OPTIONS}</select><br /><input type="radio" name="sort_dir" value="ASC" /> {L_SORT_ASCENDING}<br /><input type="radio" name="sort_dir" value="DESC" checked /> {L_SORT_DESCENDING}</span>&nbsp;</td>
+#
+{S_SORT_OPTIONS}
+
+#
+#-----[ IN-LINE FIND ]---------------------------------------------
+#
+checked />
+
+#
+#-----[ IN-LINE REPLACE WITH ]---------------------------------------------
+#
+checked="checked" />
+
+#
+#-----[ OPEN ]---------------------------------------------
+# NOTE --- Remember to do this for all your installed styles!
+#
+templates/subSilver/search_results_posts.tpl
+
+#
+#
+# NOTE --- The following action fixes a bug in the subSilver template
+#
+#-----[ FIND ]---------------------------------------------
+# NOTE --- This is a partial match, the whole line on a fresh subSilver template looks like this:
+#	<td class="catHead" colspan="2" height="28"><span class="topictitle"><img src="templates/subSilver/images/folder.gif" align="absmiddle">&nbsp; {L_TOPIC}:&nbsp;<a href="{searchresults.U_TOPIC}" class="topictitle">{searchresults.TOPIC_TITLE}</a></span></td>
+#
+align="absmiddle">
+
+#
+#-----[ IN-LINE FIND ]---------------------------------------------
+#
+align="absmiddle">
+
+#
+#-----[ IN-LINE REPLACE WITH ]---------------------------------------------
+#
+align="absmiddle" />
+
+#
+#-----[ OPEN ]---------------------------------------------
+# NOTE --- The following action fixes a bug in the subSilver template that might be present on other styles as well
+#
+templates/subSilver/subSilver.cfg
+
+#
+#-----[ FIND ]---------------------------------------------
+# NOTE --- This is a partial match, the whole line on a fresh subSilver template looks like this:
+#	$images['topic_watch'] = "";
+#
+$images['topic_watch'] =
+
+#
+#-----[ IN-LINE FIND ]---------------------------------------------
+#
+'topic_watch'
+
+#
+#-----[ IN-LINE REPLACE WITH ]---------------------------------------------
+#
+'Topic_watch'
+
+#
+#-----[ OPEN ]---------------------------------------------
+# NOTE --- Remember to do this for all your installed styles!
+# NOTE --- The following action is related to the new autologin option (this is where it can be enabled or disabled).
+#
+templates/subSilver/admin/board_config_body.tpl
+
+#
+#
+#-----[ FIND ]---------------------------------------------
+# NOTE --- This is a partial match, the whole lines on a fresh subSilver template look like this:
+#		<td class="row1">{L_VISUAL_CONFIRM}<br /><span class="gensmall">{L_VISUAL_CONFIRM_EXPLAIN}</span></td>
+#		<td class="row2"><input type="radio" name="enable_confirm" value="1" {CONFIRM_ENABLE} />{L_YES}&nbsp; &nbsp;<input type="radio" name="enable_confirm" value="0" {CONFIRM_DISABLE} />{L_NO}</td>
+#	</tr>
+#
+{L_VISUAL_CONFIRM_EXPLAIN}
+{CONFIRM_ENABLE}
+</tr>
+
+#
+#-----[ AFTER, ADD ]---------------------------------------------
+#
+	<tr>
+		<td class="row1">{L_ALLOW_AUTOLOGIN}<br /><span class="gensmall">{L_ALLOW_AUTOLOGIN_EXPLAIN}</span></td>
+		<td class="row2"><input type="radio" name="allow_autologin" value="1" {ALLOW_AUTOLOGIN_YES} />{L_YES}&nbsp; &nbsp;<input type="radio" name="allow_autologin" value="0" {ALLOW_AUTOLOGIN_NO} />{L_NO}</td>
+	</tr>
+	<tr>
+		<td class="row1">{L_AUTOLOGIN_TIME} <br /><span class="gensmall">{L_AUTOLOGIN_TIME_EXPLAIN}</span></td>
+		<td class="row2"><input class="post" type="text" size="3" maxlength="4" name="max_autologin_time" value="{AUTOLOGIN_TIME}" /></td>
+	</tr>
+
+#
+#-----[ OPEN ]---------------------------------------------
+# NOTE --- Remember to do this for all your installed styles!
+#
+templates/subSilver/admin/forum_admin_body.tpl
+
+#
+#
+# NOTE --- The following action fixes a bug in the subSilver template
+#
+#-----[ FIND ]---------------------------------------------
+#
+		<td class="catRight" align="center" valign="middle"><span class="gen">&nbsp</span></td>
+
+#
+#-----[ REPLACE WITH ]---------------------------------------------
+#
+		<td class="catRight" align="center" valign="middle"><span class="gen">&nbsp;</span></td>
+
+#
+#-----[ OPEN ]---------------------------------------------
+# NOTE --- Remember to do this for all your installed styles!
+#
+templates/subSilver/admin/index_frameset.tpl
+
+#
+#
+# NOTE --- The following action fixes a bug in the subSilver template that might be present on other styles as well
+#
+#-----[ FIND ]---------------------------------------------
+#
+<html>
+
+#
+#-----[ REPLACE WITH ]---------------------------------------------
+#
+<html dir="{S_CONTENT_DIRECTION}">
+
+#
+#-----[ OPEN ]---------------------------------------------
+# NOTE --- Remember to do this for all your installed styles!
+#
+templates/subSilver/admin/page_header.tpl
+
+#
+#
+# NOTE --- The following action fixes a bug in the subSilver template that might be present on other styles as well
+#
+#-----[ FIND ]---------------------------------------------
+#
+<html>
+
+#
+#-----[ REPLACE WITH ]---------------------------------------------
+#
+<html dir="{S_CONTENT_DIRECTION}">
+
+#
+#-----[ OPEN ]---------------------------------------------
+# NOTE --- Remember to do this for all your installed styles!
+#
+templates/subSilver/admin/styles_addnew_body.tpl
+
+#
+#
+# NOTE --- The following actions fix a bug in the subSilver template
+#
+#-----[ FIND ]---------------------------------------------
+#
+<P>{L_STYLES_ADD_TEXT}</p>
+
+#
+#-----[ REPLACE WITH ]---------------------------------------------
+#
+<p>{L_STYLES_ADD_TEXT}</p>
+
+#
+#-----[ FIND ]---------------------------------------------
+#
+</table></form>
+
+#
+#-----[ REPLACE WITH ]---------------------------------------------
+#
+</table>
+
+#
+#-----[ OPEN ]---------------------------------------------
+# NOTE --- Remember to do this for all your installed styles!
+#
+templates/subSilver/admin/styles_edit_body.tpl
+
+#
+#
+# NOTE --- The following action fixes a bug in the subSilver template that might be present on other styles as well
+# NOTE --- A new template variable is now defined to replace a hardcoded language string
+#
+#-----[ FIND ]---------------------------------------------
+# NOTE --- This is a partial match, the whole line on a fresh subSilver template looks like this:
+#		<td class="row1">{L_STYLESHEET}:<br /><span class="gensmall">Filename for CSS stylesheet to use for this theme.</span></td>
+#
+Filename for CSS stylesheet to use for this theme.
+
+#
+#-----[ IN-LINE FIND ]---------------------------------------------
+#
+Filename for CSS stylesheet to use for this theme.
+
+#
+#-----[ IN-LINE REPLACE WITH ]---------------------------------------------
+#
+{L_STYLESHEET_EXPLAIN}
+
+#
+#-----[ OPEN ]---------------------------------------------
+# NOTE --- Remember to do this for all your installed styles!
+#
+templates/subSilver/admin/styles_list_body.tpl
+
+#
+#
+# NOTE --- The following actions fix a bug in the subSilver template
+#
+#-----[ FIND ]---------------------------------------------
+#
+<P>{L_STYLES_TEXT}</p>
+
+#
+#-----[ REPLACE WITH ]---------------------------------------------
+#
+<p>{L_STYLES_TEXT}</p>
+
+#
+#-----[ FIND ]---------------------------------------------
+#
+</table></form>
+
+#
+#-----[ REPLACE WITH ]---------------------------------------------
+#
+</table>
+
+#
+#-----[ OPEN ]---------------------------------------------
+# NOTE --- Remember to do this for all your installed styles!
+#
+templates/subSilver/admin/user_edit_body.tpl
+
+#
+#
+# NOTE --- The following actions fix a bug in the subSilver template
+#
+#-----[ FIND ]---------------------------------------------
+#
+		<input class="post" type="text" name="avatarurl" size="40" class="post" style="width: 200px"  />
+
+#
+#-----[ REPLACE WITH ]---------------------------------------------
+#
+		<input class="post" type="text" name="avatarurl" size="40" style="width: 200px"  />
+
+#
+#-----[ FIND ]---------------------------------------------
+#
+		<input class="post" type="text" name="avatarremoteurl" size="40" class="post" style="width: 200px"  />
+
+#
+#-----[ REPLACE WITH ]---------------------------------------------
+#
+		<input class="post" type="text" name="avatarremoteurl" size="40" style="width: 200px"  />
+
+#
+#-----[ SAVE/CLOSE ALL FILES ]------------------------------------------
+#
+# EoM
+
+
+
+# 
+#-----[ SAUVEGARDER/FERMER TOUS LES FICHIERS ]---------------- 
+# 
+#FdM
+
+
+Passage a la version phpBB 2.0.19
+
+# 
+#-----[ OPEN ]--------------------------------------------- 
+# 
+templates/subSilver/admin/board_config_body.tpl
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 59
+		<td class="row2"><input class="post" type="text" size="3" maxlength="4" name="flood_interval" value="{FLOOD_INTERVAL}" /></td>
+	</tr>
+
+#
+#-----[ AFTER, ADD ]---------------------------------------------
+# 
+	<tr>
+		<td class="row1">{L_MAX_LOGIN_ATTEMPTS}<br /><span class="gensmall">{L_MAX_LOGIN_ATTEMPTS_EXPLAIN}</span></td>
+		<td class="row2"><input class="post" type="text" size="3" maxlength="4" name="max_login_attempts" value="{MAX_LOGIN_ATTEMPTS}" /></td>
+	</tr>
+	<tr>
+		<td class="row1">{L_LOGIN_RESET_TIME}<br /><span class="gensmall">{L_LOGIN_RESET_TIME_EXPLAIN}</span></td>
+		<td class="row2"><input class="post" type="text" size="3" maxlength="4" name="login_reset_time" value="{LOGIN_RESET_TIME}" /></td>
+	</tr>
+
+
+# 
+#-----[ OPEN ]--------------------------------------------- 
+# 
+templates/subSilver/admin/index_body.tpl
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 46
+	<td class="row2"><b>{GZIP_COMPRESSION}</b></td>
+  </tr>
+</table>
+
+#
+#-----[ AFTER, ADD ]---------------------------------------------
+# 
+
+<h1>{L_VERSION_INFORMATION}</h1>
+
+{VERSION_INFO}
+
+<br />
+
+
+#
+#-----[ FIND ]---------------------------------------------
+# Line 87
+
+<h1>{L_VERSION_INFORMATION}</h1>
+
+{VERSION_INFO}
+
+<br />
+
+#
+#-----[ REPLACE WITH ]---------------------------------------------
+# (just remove the lines)
+
+
+# 
+#-----[ SAVE/CLOSE ALL FILES ]------------------------------------------ 
+# 
+
+# EoM
+
+############################################################## 
+## MOD Title:          Arcade Championnat Par EQUIPE
+## MOD Author:         aurélien WILLEM (aurelien.willem@team-azerty.com) http://www.team-azerty.com
+## MOD Description:    Ce mod vous permet de proposer un championnat par équipe sur tous les jeux du mod arcade
+##		       le nombre de victoire de l'équipe ainsi qu'un graphique de répartition des points
+## MOD Version:        2.0.3
+## MOD Compatibility:  2.0.6->2.0.15 AND Arcade Championnat 1.0.x
+##
+## Installation Level: Easy
+## Installation Time:  2 Minutes
+## Files To Edit:      2
+##	templates/subSilver/arcade_cat_body.tpl
+##	templates/subSilver/arcade_body.tpl
+
+# 
+#--[ OPEN ]
+#
+
+templates/subSilver/arcade_body.tpl
+
+#
+#--[ FIND ]
+#
+
+{CHAMPIONNATARCADE}
+
+# 
+#--[ AFTER, ADD ]
+#
+
+{CHAMPIONNATEQUIPE}
+
+# 
+#--[ OPEN ]
+#
+
+templates/subSilver/arcade_cat_body.tpl
+
+#
+#--[ FIND ]
+#
+
+{CHAMPIONNATARCADE}
+
+# 
+#--[ AFTER, ADD ]
+#
+
+{CHAMPIONNATEQUIPE}
+
+
+# 
+#-----[ SAVE/CLOSE ALL FILES ]------------------------------------------ 
+# 
+# EoM
+
+##############################################################
+## MOD Title: Separate Announcements & Sticky
+## MOD Author: Aiencran < cranportal@katamail.com > 
+## MOD Description: This hack separates Announcements and Sticky Topics from other topics in viewforum page. 
+## MOD Version: 2.0.0
+##
+## Installation Level: Easy
+## Installation Time: 3 Minutes
+##		  templates/subSilver/viewforum_body.tpl
+
+# 
+#-----[ OPEN ]------------------------------------------ 
+# 
+templates/subSilver/viewforum_body.tpl
+
+# 
+#-----[ FIND ]------------------------------------------ 
+# 
+<!-- BEGIN topicrow -->
+
+# 
+#-----[ AFTER, ADD ]------------------------------------------ 
+# 
+<!-- BEGIN divider -->
+<tr> 
+   <td class="catHead" colspan="6" height="28"><span class="cattitle">{topicrow.divider.L_DIV_HEADERS}</span></td>
+</tr>
+<!-- END divider -->
+
+#
+#-----[ SAVE/CLOSE ALL FILES ]------------------------------------------
+#
+# EoM 
+
+##############################################################
+## MOD Titre :  Mod reason
+## MOD Titre traduit : Mod raison
+## MOD Auteur : jeannicolas <  jean-nicolas.setier@wanadoo.fr > (setier jean-nicolas) http://jwecity.tonsite.biz/forum_phpbb
+## 
+## MOD Description : Permet de changer ou de donner une raison à la fermeture du forum
+##
+## MOD Version : 1.0.0
+##
+## Niveau d'installation : facile 
+## Temps d'installation :  5 minute(s)
+## Fichier(s) à éditer :  
+
+##     templats/subSilver/admin/ board_config_body.tpl     
+
+ #
+#-----[ OPEN ]------------------------------------------
+#
+
+ templats/subSilver/admin/ board_config_body.tpl
+
+#
+#-----[ FIND ]------------------------------------------
+#
+
+<td class="row2"><input type="radio" name="board_disable" value="1" {S_DISABLE_BOARD_YES} /> {L_YES}&nbsp;&nbsp;<input type="radio" name="board_disable" value="0" {S_DISABLE_BOARD_NO} /> {L_NO}</td>
+	</tr>
+
+#
+#-----[ AFTER, ADD ]------------------------------------------
+#
+
+<tr>
+<td class="row1">{L_REASON}</td>
+<td class="row2">
+<input type="text" size="40" maxlength="255" name="reason" value="{REASON}" class="post" />
+</td>
+</tr>
+
+
+#
+#-----[ SAVE/CLOSE ALL FILES ]------------------------------------------
+#
+# EoM 
+
+############################################################## 
+## MOD Title: Lottery Modification
+## MOD Author: Zarath < zarath@knightsofchaos.com > (N/A) http://www.ffsource.net
+## MOD Traductor: Galixte < Galixte@gmail.com > (N/A) http://www.phpbb-project.info
+## MOD Description: Permet de mettre en place un tombola/loterie sur votre forum.
+## MOD Version: 2.0.4
+## 
+## Installation Level: Easy
+
+#
+#-----[ OPEN ]------------------------------------------ 
+#
+templates/subSilver/overall_header.tpl
+
+# 
+#-----[ FIND ]------------------------------------------ 
+# La ligne est plus longue
+<a href="{U_LOGIN_LOGOUT}"..
+
+#
+#-----[ BEFORE, ADD ]------------------------------------------ 
+# Sur une nouvelle ligne, pour les thèmes FI...
+<a href="{U_LOTTERY}" class="mainmenu">{L_LOTTERY}</a>
+
+#
+#-----[ BEFORE, ADD ]------------------------------------------ 
+# Sur une nouvelle ligne pour les thèmes sub...
+<a href="{U_LOTTERY}" class="mainmenu"><img src="templates/subSilver/images/icon_mini_lottery.gif" width="12" height="13" border="0" alt="{L_LOTTERY}" hspace="3" />{L_LOTTERY}</a>
+
+# 
+#-----[ SAVE/CLOSE ALL FILES ]------------------------------------------ 
+# 
+# EoM
+
+
+##############################################################
+## MOD Titre :  Arcade Cheater Tracker
+## MOD Auteur : Ours < bigours@hotmail.fr >
+## MOD Version : 1.1.0  (02/01/2006)
+##
+## MOD Description :
+## Ce mod est un addon au mod arcade < http://www.gf-phpbb.com/viewtopic.php?t=6096 > de Giefca
+## Il permet de tracker les tentatives de triche utilisant des softs permettant
+## de ralentir l'horloge interne du PC comme Spead Gear ou des softs permettant l'édition
+## du score en mémoire.
+## La détection de la triche se base sur une comparaison entre le temps de jeu donné
+## par le jeu flash et celui calculé sur le serveur. Si la différence est trop importante
+## (utilisation d'une tolérance paramétrable depuis l'acp), alors le score sera ou pas
+## enregistré (selon le choix de l'admin) et la tentative de triche sera tracée dans une table.
+## Cette table est visualisable au travers d'un formulaire depuis l'acp.
+## Il est possible d'activer ou pas ce contrôle pour chaque jeu.
+## La détection de triche par modification du score en mémoire est basée sur une adaptation
+## très particulière du jeu lui-même.
+##
+## Cet add-on prend en compte uniquement les jeux adaptés en type 4 et comportant le code nécessaire
+## pour l'envoi des valeurs temps, session et id du jeu (ceci pourra être spécifié dans le fichier d'install du jeu)
+
+#
+#-----[ OUVRIR ]-----------------------------------------
+#
+templates/subSilver/games_body.tpl
+
+#
+#-----[ TROUVER ]----------------------------------------
+#
+<!-- BEGIN game_type_V2 -->
+		 <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" width="{GAME_WIDTH}" height="{GAME_HEIGHT}">
+			<param name="movie" value="games/{SWF_GAME}"/>
+                        <param name="type" value="application/x-shockwave-flash" />
+                        <param name="pluginspage" value="http://www.macromedia.com/go/getflashplayer/" />
+                        <param name="menu" value="false" />
+
+#
+#-----[ APRES AJOUTER ]----------------------------------
+#
+                        <param name="FlashVars" value="gamesessid={GSID}&gid={GID}" />
+
+#
+#-----[ TROUVER ]----------------------------------------
+#
+         <embed src="games/{SWF_GAME}" menu="false" type="application/x-shockwave-flash" width="{GAME_WIDTH}" height="{GAME_HEIGHT}" pluginspage="http://www.macromedia.com/go/getflashplayer">
+
+#
+#-----[ REMPLACER PAR ]----------------------------------
+#
+         <embed src="games/{SWF_GAME}" menu="false" type="application/x-shockwave-flash" FlashVars="gamesessid={GSID}&gid={GID}" width="{GAME_WIDTH}" height="{GAME_HEIGHT}" pluginspage="http://www.macromedia.com/go/getflashplayer">
+
+#
+#-----[ OUVRIR ]-----------------------------------------
+#
+templates/subSilver/admin/arcade_config_body.tpl
+
+#
+#-----[ TROUVER ]----------------------------------------
+#
+
+
+
+#
+#-----[ APRES AJOUTER ]----------------------------------
+#
+<!-- games_cheater_submit -->
+<tr>
+<td class="row1" width="38%">{L_GAMES_CHEATER_SUBMIT}<br />
+<span class="gensmall">{L_GAMES_CHEATER_SUBMIT_EXPLAIN}</span>
+</td>
+<td class="row2" width="62%">
+<input type="radio" name="games_cheater_submit" value="1" {S_GAMES_CHEATER_SUBMIT_YES} />
+{L_YES}&nbsp;&nbsp;
+<input type="radio" name="games_cheater_submit" value="0" {S_GAMES_CHEATER_SUBMIT_NO} />
+{L_NO}
+</td>
+</tr>
+
+#
+#-----[ TROUVER ]----------------------------------------
+#
+<!-- games_par_page -->
+<tr>
+<td class="row1" width="38%">{L_GAMES_PAR_PAGE}<br />
+<span class="gensmall">{L_GAMES_PAR_PAGE_EXPLAIN}</span>
+</td>
+<td class="row2" width="62%">
+<input type="text" maxlength="100" size="5" name="games_par_page" value="{S_GAMES_PAR_PAGE}" class="post" />
+</td>
+</tr>
+
+#
+#-----[ APRES AJOUTER ]----------------------------------
+#
+<!-- games_time_tolerance -->
+<tr>
+<td class="row1" width="38%">{L_GAMES_TIME_TOLERANCE}<br />
+<span class="gensmall">{L_GAMES_TIME_TOLERANCE_EXPLAIN}</span>
+</td>
+<td class="row2" width="62%">
+<input type="text" maxlength="100" size="5" name="games_time_tolerance" value="{S_GAMES_TIME_TOLERANCE}" class="post" />
+</td>
+</tr>
+
+#
+#-----[ OUVRIR ]-----------------------------------------
+#
+templates/subSilver/admin/admin_edit_games.tpl
+
+#
+#-----[ TROUVER ]----------------------------------------
+#
+<tr>
+<td class="row1">{L_CATEGORIE}<br />
+<span class="gensmall">{L_CATEGORIE_EXPLAIN}</span></td>
+<td class="row2">
+<select name="arcade_catid" class="post">
+{S_CATEGORIE}
+</select>
+</td>
+</tr>
+
+#
+#-----[ APRES AJOUTER ]----------------------------------
+#
+<tr>
+<td class="row1">{L_CHEAT_CONTROL}<br />
+<span class="gensmall">{L_CHEAT_CONTROL_EXPLAIN}</span></td>
+<td class="row2" width="62%">
+<input type="radio" name="game_cheat_control" value="1" {CHEAT_CONTROL_YES} />
+{L_YES}&nbsp;&nbsp;
+<input type="radio" name="game_cheat_control" value="0" {CHEAT_CONTROL_NO} />
+{L_NO}
+</td>
+</tr>
+
+#
+#-----[ SAUVEGARDER/FERMER/UPLOADER TOUS LES FICHIERS ]------------------------------------------
+#
+# EoM
+
+
+######################################################## 
+## 
+## MOD Title: ADDON - Favoris Arcade
+## MOD Version: 1.3' 
+## MOD Description: Cet addon permet d'ajouter ses jeux préférés dans la catégorie des Favoris (activable dans le PC).
+## PhpBB Version : testé sur 2.0.10 
+## MOD Date : 27.08.2004 
+## MOD Require:		Arcade V2 (Etape 3) Giefca <giefca@hotmail.com> http://www.gf-phpbb.com
+## Autor : KaZ < kaz@ttmt-spirit.com > http://www.ttmt-spirit.com 
+## Démonstration : http://www.ttmt-spirit.com/arcade.php
+
+#
+#-----[ OPEN ]------------------------------------------------
+#
+templates/subSilver/arcade_body.tpl
+
+#
+#-----[ FIND ]------------------------------------------------
+#
+<th class="thTop" colspan="5" nowrap="nowrap">
+
+#
+#-----[ REPLACE WITH ]---------------------------------------- 
+#
+<th class="thTop" colspan="{ARCADE_COL}" nowrap="nowrap">
+
+#
+#-----[ FIND ]------------------------------------------------
+#
+<td class="cat" colspan="5" nowrap="nowrap" align="center">
+
+#
+#-----[ REPLACE WITH ]---------------------------------------- 
+#
+<td class="cat" colspan="{ARCADE_COL}" nowrap="nowrap" align="center">
+
+#
+#-----[ FIND ]------------------------------------------------
+#
+<td class="cat" nowrap="nowrap" align="center"><span class="cattitle">{L_DESC}</span></td>
+
+#
+#-----[ REPLACE WITH ]---------------------------------------- 
+#
+<td class="cat" colspan="{ARCADE_COL1}" nowrap="nowrap" align="center"><span class="cattitle">{L_DESC}</span></td>
+
+#
+#-----[ FIND ]------------------------------------------------
+#
+<!-- BEGIN gamerow -->
+
+#
+#-----[ BEFORE, ADD ]------------------------------------------
+#
+{ARCADE_FAVORIS}
+
+#
+#-----[ FIND ]------------------------------------------------
+#
+<td width="25">{gamerow.URL_SCOREBOARD}</td>
+	    </tr>
+		</table>
+	</td>
+
+#
+#-----[ AFTER, ADD ]------------------------------------------
+#
+{gamerow.ADD_FAV}
+
+
+#
+#-----[ OPEN ]------------------------------------------------
+#
+templates/subSilver/arcade_cat_body.tpl
+
+#
+#-----[ FIND ]------------------------------------------------
+#
+<table width="100%" cellpadding="2" cellspacing="3" border="0"> 
+<!-- BEGIN cat_row -->
+
+#
+#-----[ BEFORE, ADD ]------------------------------------------
+#
+<table width="100%" cellpadding="2" cellspacing="3" border="0">
+	<tr>
+	<td width="100%">
+		<table width="100%" cellpadding="2" cellspacing="1" border="0" class="bodyline">
+		{ARCADE_FAVORIS}
+		</table>
+	</td></tr>
+	</table>
+
+#
+#-----[ FIND ]------------------------------------------------
+#
+<td class="cat" colspan="5">
+
+#
+#-----[ REPLACE WITH ]---------------------------------------- 
+#
+<td class="cat" colspan="{ARCADE_COL}">
+
+#
+#-----[ FIND ]------------------------------------------------
+#
+<td width="25">{cat_row.game_row.URL_SCOREBOARD}</td>
+	    </tr>
+		</table>
+	  </td>
+
+#
+#-----[ AFTER, ADD ]------------------------------------------
+#
+	 {cat_row.game_row.ADD_FAV}
+
+#
+#-----[ FIND ]------------------------------------------------
+#
+<td class="row2" colspan="5" align="{cat_row.LINKCAT_ALIGN}">
+
+#
+#-----[ REPLACE WITH ]---------------------------------------- 
+#
+<td class="row2" colspan="{ARCADE_COL}" align="{cat_row.LINKCAT_ALIGN}">
+
+
+#
+#-----[ OPEN ]------------------------------------------------
+# 
+templates/subSilver/games_body.tpl
+
+#
+#-----[ FIND ]------------------------------------------------
+#
+<tr> 
+	<th class="thTop" height="28" align="center">{L_GAME}</th>
+  </tr>
+
+#
+#-----[ AFTER, ADD ]------------------------------------------
+#
+{ADD_FAV}
+
+
+#
+#-----[ OPEN ]------------------------------------------------
+#
+templates/subSilver/admin/arcade_config_body.tpl
+
+#
+#-----[ FIND ]------------------------------------------------
+#
+<input type="text" maxlength="10" size="5" name="maxsize_avatar" value="{S_MAXSIZE_AVATAR}" class="post" />
+</td>
+</tr>
+
+#
+#-----[ AFTER, ADD ]------------------------------------------
+#
+<tr> 
+<th colspan="2">{L_FAV_SETTINGS}</th>
+</tr>
+<!-- use_fav_category -->
+<tr> 
+<td class="row1" width="38%">{L_USE_FAV_CATEGORY}<br />
+<span class="gensmall">{L_USE_FAV_CATEGORY_EXPLAIN}</span>
+</td>
+<td class="row2" width="62%"> 
+<input type="radio" name="use_fav_category" value="1" {S_USE_FAV_CATEGORY_YES} />
+{L_YES}   
+<input type="radio" name="use_fav_category" value="0" {S_USE_FAV_CATEGORY_NO} />
+{L_NO}
+</td>
+</tr>
+<!-- nbr_games_fav -->
+<tr> 
+<td class="row1" width="38%">{L_NBR_GAMES_FAV}<br />
+<span class="gensmall">{L_NBR_GAMES_FAV_EXPLAIN}</span>
+</td>
+<td class="row2" width="62%"> 
+<input type="text" maxlength="100" size="5" name="nbr_games_fav" value="{S_NBR_GAMES_FAV}" class="post" />
+</td>
+</tr>
+<!-- use_hide_fav -->
+<tr> 
+<td class="row1" width="38%">{L_USE_HIDE_FAV}<br />
+<span class="gensmall">{L_USE_HIDE_FAV_EXPLAIN}</span>
+</td>
+<td class="row2" width="62%"> 
+<input type="radio" name="use_hide_fav" value="1" {S_USE_HIDE_FAV_YES} />
+{L_YES}   
+<input type="radio" name="use_hide_fav" value="0" {S_USE_HIDE_FAV_NO} />
+{L_NO}
+</td>
+</tr>
+<!-- fav_nbr_in_page -->
+<tr> 
+<td class="row1" width="38%">{L_FAV_NBR_IN_PAGE}<br />
+<span class="gensmall">{L_FAV_NBR_IN_PAGE_EXPLAIN}</span>
+</td>
+<td class="row2" width="62%"> 
+<input type="text" maxlength="100" size="5" name="fav_nbr_in_page" value="{S_FAV_NBR_IN_PAGE}" class="post" />
+</td>
+</tr>
+
+#
+#-----[ SAVE/CLOSE ALL FILES ]--------------------------------
+#
+# EoM
+
+############################################################## 
+## MOD Title: Modo-adminrecords  v4.0.0
+## MOD Author: Solaris < contact@pauseflash.com > http://www.pauseflash.com 
+## MOD Description: 
+
+Bonjour,
+Modoadminrecord permet aux administrateurs et aux modérateurs du site de supprimer les records dans les jeux.
+Une fois ce mod installé, un bouton "Supprimer ce record" apparait dans chaque jeu sous le commentaire du champion. 
+Seuls les admins et les modérateurs peuvent le voir!
+Il ne vous restera plus qu'à cliquer dessus pour supprimer le record du jeu où vous vous trouvez. 
+Rassurez-vous, en cas de clic indésiré sur ce bouton, vous pourrez revenir en arrière.
+Par contre, si vous confirmez l'effacement, celui-ci est irréversible!
+Les modérateurs donnent, via un champs de saisie, la raison pour laquelle il supprime le record.
+Cette nouvelle version (3ème du nom) inclue un système de traçage des suppressions pour informer le ou les administrateurs.
+Ajout dans la version 3.2, un système de notification par message privé au champion déchu avec envoi automatique du texte saisi par
+le modérateur qui a supprimé le record.
+Version 4.0.0, suppression de quelques petits bugs minueurs et ajout de la possibilité de choisir de retirer ou 
+non le gain gagné lors de l'obtention du record.
+
+27 Avril 2006
+
+
+
+-----OUVREZ-----
+
+games_body.tpl
+
+-----TROUVEZ-----
+
+----------------- NOTA BENE: A faire deux fois pour le thème SubSilver -----------------
+
+                <tr>
+                  <td align="center" colspan="3"><span class="genmed"><b>{BEST_USER_NAME}</b></span></td>
+                </tr>
+
+-----A LA SUITE, AJOUTEZ-----
+
+                <tr>
+                  <td align="center" colspan="3">{MODOADMINRECORD}</td>
+                </tr>

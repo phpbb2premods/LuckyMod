@@ -1,0 +1,123 @@
+<HTML id=dlgImage STYLE="width:300px; Height: 60px;">
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta http-equiv="MSThemeCompatible" content="Yes">
+<TITLE>Date du jour</TITLE>
+<style>
+  html, body, button, div, input, select, fieldset { font-family: MS Shell Dlg; font-size: 8pt; position: absolute; };
+</style>
+<SCRIPT LANGUAGE="javascript">  
+  <!-- 
+function shortMonthArray() {
+this[0] = "Janvier"; this[1] = "Fev"; this[2] = "Mar"; this[3] = "Avr"; this[4] = "Mai"; this[5] = "Jun";
+this[6] = "Juillet"; this[7] = "Août"; this[8] = "Sept"; this[9] = "Oct"; this[10] = "Nov"; this[11] = "Dec";
+return (this);
+}
+function longMonthArray() {
+this[0] = "Janvier"; this[1] = "Fevrier"; this[2] = "Mars"; this[3] = "Avril"; this[4] = "Mai"; this[5] = "Juin";
+this[6] = "Juillet"; this[7] = "Août"; this[8] = "Septembre"; this[9] = "Oktobre"; this[10] = "Novembre"; this[11] = "Decembre";
+return (this);
+}
+function NumMonthArray() {
+this[0] = "01"; this[1] = "02"; this[2] = "03"; this[3] = "04"; this[4] = "05"; this[5] = "06";
+this[6] = "07"; this[7] = "08"; this[8] = "09"; this[9] = "10"; this[10] = "11"; this[11] = "decembre";
+return (this);
+}
+
+function getLongYear(year){
+year = d.getYear();
+if (year < 1000)
+year+=1900;
+return year;
+}
+function writeLongDate(){
+longMonths = new longMonthArray();
+d = new Date();
+day = d.getDate();
+month = d.getMonth();
+year = d.getYear();
+str =day + " " +longMonths[month]+ " " +getLongYear(year);
+document.writeln(str);
+}
+function writeShortDate(){
+shortMonths = new shortMonthArray();
+d = new Date();
+day = d.getDate();
+month = d.getMonth();
+year = d.getYear();
+str = day +"/" +shortMonths[month]+ "/" +getLongYear(year);
+document.writeln(str);
+}
+
+function NumAmerDate(){
+NumMonths = new NumMonthArray();
+d = new Date();
+day = d.getDate();
+month = d.getMonth();
+year = d.getYear();
+str =day + "-" +NumMonths[month]+ "-" +getLongYear(year);
+document.writeln(str);
+}
+function NumMexDate(){
+NumMonths = new NumMonthArray();
+d = new Date();
+day = d.getDate();
+month = d.getMonth();
+year = d.getYear();
+str = day + "/" +NumMonths[month]+ "/" +getLongYear(year);
+document.writeln(str);
+}
+// -->
+</SCRIPT>
+<SCRIPT LANGUAGE="javascript">
+
+var myDate = window.dialogArguments;
+document.title = myDate;
+
+
+function returnSelected() {
+  var idx  = document.all.textPulldown.selectedIndex;
+  var text = document.all.textPulldown[idx].text;
+
+  window.returnValue = text;          // set return value
+  window.close();                     // close dialog
+}
+
+</SCRIPT>
+</HEAD>
+<BODY style="background: threedface; color: windowtext;" scroll=no TOPMARGIN=15 LEFTMARGIN=0>
+<FORM METHOD=GET onSubmit="Set(document.all.ColorHex.value); return false;">
+  <TABLE WIDTH="100%" BORDER="1" CELLSPACING="0" CELLPADDING="2" ALIGN="center">
+    <TR VALIGN="middle"> 
+      <TD>&nbsp;<font face="Arial,Helvetica,sans-serif" size="2" color="#000000"><B>Insérer date</B>&nbsp;&nbsp;</FONT> 
+        <SELECT NAME="textPulldown">
+          <OPTION> 
+          <SCRIPT LANGUAGE="javascript">writeLongDate();</SCRIPT>
+          </OPTION>
+          <OPTION> 
+		  <SCRIPT LANGUAGE="javascript">writeShortDate();</SCRIPT>          
+          </OPTION>
+          <OPTION> 
+          <SCRIPT LANGUAGE="javascript">NumAmerDate();</SCRIPT>
+          </OPTION>
+          <OPTION> 
+          <SCRIPT LANGUAGE="javascript">NumMexDate();</SCRIPT>
+          </OPTION>
+        </SELECT>
+      </TD>
+    </TR>
+  
+  </TABLE>
+  <center><TABLE WIDTH="100" BORDER="0" CELLSPACING="0" CELLPADDING="0" ALIGN="center">
+    <TR> 
+          <TR> 
+      <TD> 
+       
+          <INPUT TYPE="button" VALUE="Insérer la date" onClick="returnSelected()" TITLE="Insérer une date dans le document">
+       
+      </TD>
+    </TR>
+  </TABLE></center>
+</FORM>
+</BODY>
+</HTML>

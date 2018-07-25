@@ -1,0 +1,196 @@
+<!-- note: this version of the special character inserter is optimized for IE 5.5+ only -->
+<html style='width:260px; Height: 240px;'>
+<head>
+<title>Insert Special Character</title>
+<script language="javascript">
+function _CloseOnEsc() {
+if (event.keyCode == 27) { window.close(); return; }
+}
+
+function Init() {                                                       // run on page load
+document.body.onkeypress = _CloseOnEsc;
+}
+
+function View(charcode) {   
+                                           // preview character
+document.all.Chars.value =  '&' + charcode + ';';
+document.all.Preview.innerHTML= '&' + charcode + ';';
+document.all.Preview.style.width="40px";
+document.all.Preview.style.height="40px";
+document.all.Preview.style.borderWidth ="1px";
+document.all.Preview.style.borderStyle="solid";
+document.all.Preview.style.fontSize="30px";
+document.all.Preview.style.backgroundColor="#FFFFFF";
+document.all.Preview.style.textAlign="center";
+document.all.Preview.style.borderColor="red";
+}
+function UndoView() {   
+                                           // preview character
+document.all.Chars.value =  "";
+document.all.Preview.removeAttribute("style");
+document.all.Preview.innerHTML="";
+}
+
+function Set(code) {                                                    // select character
+window.returnValue = code;                                           // set return value
+window.close();                                                      // close dialog
+}
+</script>
+<style type="text/css">
+<!--
+
+.spchars { font-family: MS Shell, Arial, Verdana; font-size: 8pt; font-weight:bold;width:16px;background-color:#FFFFFF}
+td { font-family: MS Shell, Arial, Verdana; font-size: 8pt;}
+
+-->
+</style>
+</head>
+<body bgcolor="threedface" topmargin=0 leftmargin=0 onload="Init()">
+<form name="sel" method=get onSubmit="Set(document.all.Chars.value); return false;">
+<table align="center" name="distab" border=0 cellspacing=0 cellpadding=4 width=240>
+<tr name="t1">
+<td name="c1" id="c1" bgcolor="buttonface" valign="middle" height="50">Character code:&nbsp;<INPUT TYPE="text" NAME="Chars" SIZE="8" STYLE="border:1px; border-color: #909090; border-style: solid;" disabled></td>
+<td align="right" height="50">&nbsp;<SPAN ID="Preview"></SPAN></td>
+</tr>
+</table>
+<table width=240 align="center" border=0 cellspacing=1 cellpadding=2 bgcolor="#808080" style="cursor: hand;">
+<tr>
+<td class="spchars" align="center" onMouseOver="View('Yuml')" onClick="Set('&Yuml;')" OnMouseOut="UndoView()">&Yuml;</td>
+<td class="spchars" align="center" onMouseOver="View('scaron')" onClick="Set('&scaron;')" OnMouseOut="UndoView()">&scaron;</td>
+<td class="spchars" align="center" onMouseOver="View('#064')" onClick="Set('&#064;')" OnMouseOut="UndoView()">@</td>
+<td class="spchars" align="center" onMouseOver="View('quot')" onClick="Set('&quot;')" OnMouseOut="UndoView()">&quot;</td>
+<td class="spchars" align="center" onMouseOver="View('iexcl')" onClick="Set('&iexcl;')" OnMouseOut="UndoView()">&iexcl;</td>
+<td class="spchars" align="center" onMouseOver="View('cent')" onClick="Set('&cent;')" OnMouseOut="UndoView()">&cent;</td>
+<td class="spchars" align="center" onMouseOver="View('pound')" onClick="Set('&pound;')" OnMouseOut="UndoView()">&pound;</td>
+<td class="spchars" align="center" onMouseOver="View('curren')" onClick="Set('&curren;')" OnMouseOut="UndoView()">&curren;</td>
+<td class="spchars" align="center" onMouseOver="View('yen')" onClick="Set('&yen;')" OnMouseOut="UndoView()">&yen;</td>
+<td class="spchars" align="center" onMouseOver="View('brvbar')" onClick="Set('&brvbar;')" OnMouseOut="UndoView()">&brvbar;</td>
+<td class="spchars" align="center" onMouseOver="View('sect')" onClick="Set('&sect;')" OnMouseOut="UndoView()">&sect;</td>
+<td class="spchars" align="center" onMouseOver="View('uml')" onClick="Set('&uml;')" OnMouseOut="UndoView()">&uml;</td>
+<td class="spchars" align="center" onMouseOver="View('copy')" onClick="Set('&copy;')" OnMouseOut="UndoView()">&copy;</td>
+<td class="spchars" align="center" onMouseOver="View('ordf')" onClick="Set('&ordf;')" OnMouseOut="UndoView()">&ordf;</td>
+<td class="spchars" align="center" onMouseOver="View('laquo')" onClick="Set('&laquo;')" OnMouseOut="UndoView()">&laquo;</td>
+<td class="spchars" align="center" onMouseOver="View('not')" onClick="Set('&not;')" OnMouseOut="UndoView()">&not</td>
+</tr><tr>
+<td class="spchars" align="center" onMouseOver="View('macr')" onClick="Set('&macr;')" OnMouseOut="UndoView()">&macr;</td>
+<td class="spchars" align="center" onMouseOver="View('deg')" onClick="Set('&deg;')" OnMouseOut="UndoView()">&deg;</td>
+<td class="spchars" align="center" onMouseOver="View('plusmn')" onClick="Set('&plusmn;')" OnMouseOut="UndoView()">&plusmn;</td>
+<td class="spchars" align="center" onMouseOver="View('sup2')" onClick="Set('&sup2;')" OnMouseOut="UndoView()">&sup2;</td>
+<td class="spchars" align="center" onMouseOver="View('sup3')" onClick="Set('&sup3;')" OnMouseOut="UndoView()">&sup3;</td>
+<td class="spchars" align="center" onMouseOver="View('acute')" onClick="Set('&acute;')" OnMouseOut="UndoView()">&acute;</td>
+<td class="spchars" align="center" onMouseOver="View('micro')" onClick="Set('&micro;')" OnMouseOut="UndoView()">&micro;</td>    
+<td class="spchars" align="center" onMouseOver="View('para')" onClick="Set('&para;')" OnMouseOut="UndoView()">&para;</td>
+<td class="spchars" align="center" onMouseOver="View('middot')" onClick="Set('&middot;')" OnMouseOut="UndoView()">&middot;</td>
+<td class="spchars" align="center" onMouseOver="View('cedil')" onClick="Set('&cedil;')" OnMouseOut="UndoView()">&cedil;</td>
+<td class="spchars" align="center" onMouseOver="View('sup1')" onClick="Set('&sup1;')" OnMouseOut="UndoView()">&sup1;</td>
+<td class="spchars" align="center" onMouseOver="View('ordm')" onClick="Set('&ordm;')" OnMouseOut="UndoView()">&ordm;</td>
+<td class="spchars" align="center" onMouseOver="View('raquo')" onClick="Set('&raquo;')" OnMouseOut="UndoView()">&raquo;</td>
+<td class="spchars" align="center" onMouseOver="View('frac14')" onClick="Set('&frac14;')" OnMouseOut="UndoView()">&frac14;</td>
+<td class="spchars" align="center" onMouseOver="View('frac12')" onClick="Set('&frac12;')" OnMouseOut="UndoView()">&frac12;</td>
+<td class="spchars" align="center" onMouseOver="View('frac34')" onClick="Set('&frac34;')" OnMouseOut="UndoView()">&frac34;</td>
+</tr><tr>
+<td class="spchars" align="center" onMouseOver="View('iquest')" onClick="Set('&iquest;')" OnMouseOut="UndoView()">&iquest;</td>
+<td class="spchars" align="center" onMouseOver="View('times')" onClick="Set('&times;')" OnMouseOut="UndoView()">&times;</td>
+<td class="spchars" align="center" onMouseOver="View('Oslash')" onClick="Set('&Oslash;')" OnMouseOut="UndoView()">&Oslash;</td>
+<td class="spchars" align="center" onMouseOver="View('divide')" onClick="Set('&divide;')" OnMouseOut="UndoView()">&divide;</td>
+<td class="spchars" align="center" onMouseOver="View('oslash')" onClick="Set('&oslash;')" OnMouseOut="UndoView()">&oslash;</td>
+<td class="spchars" align="center" onMouseOver="View('fnof')" onClick="Set('&fnof;')" OnMouseOut="UndoView()">&fnof;</td>
+<td class="spchars" align="center" onMouseOver="View('circ')" onClick="Set('&circ;')" OnMouseOut="UndoView()">&circ;</td>
+<td class="spchars" align="center" onMouseOver="View('tilde')" onClick="Set('&tilde;')" OnMouseOut="UndoView()">&tilde;</td>
+<td class="spchars" align="center" onMouseOver="View('ndash')" onClick="Set('&ndash;')" OnMouseOut="UndoView()">&ndash;</td>
+<td class="spchars" align="center" onMouseOver="View('mdash')" onClick="Set('&mdash;')" OnMouseOut="UndoView()">&mdash;</td>
+<td class="spchars" align="center" onMouseOver="View('lsquo')" onClick="Set('&lsquo;')" OnMouseOut="UndoView()">&lsquo;</td>
+<td class="spchars" align="center" onMouseOver="View('rsquo')" onClick="Set('&rsquo;')" OnMouseOut="UndoView()">&rsquo;</td>
+<td class="spchars" align="center" onMouseOver="View('sbquo')" onClick="Set('&sbquo;')" OnMouseOut="UndoView()">&sbquo;</td>
+<td class="spchars" align="center" onMouseOver="View('ldquo')" onClick="Set('&ldquo;')" OnMouseOut="UndoView()">&ldquo;</td>
+<td class="spchars" align="center" onMouseOver="View('rdquo')" onClick="Set('&rdquo;')" OnMouseOut="UndoView()">&rdquo;</td>
+<td class="spchars" align="center" onMouseOver="View('bdquo')" onClick="Set('&bdquo;')" OnMouseOut="UndoView()">&bdquo;</td>
+</tr><tr>
+<td class="spchars" align="center" onMouseOver="View('dagger')" onClick="Set('&dagger;')" OnMouseOut="UndoView()">&dagger;</td>
+<td class="spchars" align="center" onMouseOver="View('Dagger')" onClick="Set('&Dagger;')" OnMouseOut="UndoView()">&Dagger;</td>
+<td class="spchars" align="center" onMouseOver="View('bull')" onClick="Set('&bull;')" OnMouseOut="UndoView()">&bull;</td>
+<td class="spchars" align="center" onMouseOver="View('hellip')" onClick="Set('&hellip;')" OnMouseOut="UndoView()">&hellip;</td>
+<td class="spchars" align="center" onMouseOver="View('permil')" onClick="Set('&permil;')" OnMouseOut="UndoView()">&permil;</td>
+<td class="spchars" align="center" onMouseOver="View('lsaquo')" onClick="Set('&lsaquo;')" OnMouseOut="UndoView()">&lsaquo;</td>
+<td class="spchars" align="center" onMouseOver="View('rsaquo')" onClick="Set('&rsaquo;')" OnMouseOut="UndoView()">&rsaquo;</td>
+<td class="spchars" align="center" onMouseOver="View('euro')" onClick="Set('&euro;')" OnMouseOut="UndoView()">&euro;</td>
+<td class="spchars" align="center" onMouseOver="View('trade')" onClick="Set('&trade;')" OnMouseOut="UndoView()">&trade;</td>
+<td class="spchars" align="center" onMouseOver="View('Agrave')" onClick="Set('&Agrave;')" OnMouseOut="UndoView()">&Agrave;</td>
+<td class="spchars" align="center" onMouseOver="View('Aacute')" onClick="Set('&Aacute;')" OnMouseOut="UndoView()">&Aacute;</td>
+<td class="spchars" align="center" onMouseOver="View('Acirc')" onClick="Set('&Acirc;')" OnMouseOut="UndoView()">&Acirc;</td>
+<td class="spchars" align="center" onMouseOver="View('Atilde')" onClick="Set('&Atilde;')" OnMouseOut="UndoView()">&Atilde;</td>
+<td class="spchars" align="center" onMouseOver="View('Auml')" onClick="Set('&Auml;')" OnMouseOut="UndoView()">&Auml;</td>
+<td class="spchars" align="center" onMouseOver="View('Aring')" onClick="Set('&Aring;')" OnMouseOut="UndoView()">&Aring;</td>
+<td class="spchars" align="center" onMouseOver="View('AElig')" onClick="Set('&AElig;')" OnMouseOut="UndoView()">&AElig;</td>
+</tr><tr>
+<td class="spchars" align="center" onMouseOver="View('Ccedil')" onClick="Set('&Ccedil;')" OnMouseOut="UndoView()">&Ccedil;</td>
+<td class="spchars" align="center" onMouseOver="View('Egrave')" onClick="Set('&Egrave;')" OnMouseOut="UndoView()">&Egrave;</td>
+<td class="spchars" align="center" onMouseOver="View('Eacute')" onClick="Set('&Eacute;')" OnMouseOut="UndoView()">&Eacute;</td>
+<td class="spchars" align="center" onMouseOver="View('Ecirc')" onClick="Set('&Ecirc;')" OnMouseOut="UndoView()">&Ecirc;</td>
+<td class="spchars" align="center" onMouseOver="View('Euml')" onClick="Set('&Euml;')" OnMouseOut="UndoView()">&Euml;</td>
+<td class="spchars" align="center" onMouseOver="View('Igrave')" onClick="Set('&Igrave;')" OnMouseOut="UndoView()">&Igrave;</td>
+<td class="spchars" align="center" onMouseOver="View('Iacute')" onClick="Set('&Iacute;')" OnMouseOut="UndoView()">&Iacute;</td>
+<td class="spchars" align="center" onMouseOver="View('Icirc')" onClick="Set('&Icirc;')" OnMouseOut="UndoView()">&Icirc;</td>
+<td class="spchars" align="center" onMouseOver="View('Iuml')" onClick="Set('&Iuml;')" OnMouseOut="UndoView()">&Iuml;</td>
+<td class="spchars" align="center" onMouseOver="View('ETH')" onClick="Set('&ETH;')" OnMouseOut="UndoView()">&ETH;</td>
+<td class="spchars" align="center" onMouseOver="View('Ntilde')" onClick="Set('&Ntilde;')" OnMouseOut="UndoView()">&Ntilde;</td>
+<td class="spchars" align="center" onMouseOver="View('Ograve')" onClick="Set('&Ograve;')" OnMouseOut="UndoView()">&Ograve;</td>
+<td class="spchars" align="center" onMouseOver="View('Oacute')" onClick="Set('&Oacute;')" OnMouseOut="UndoView()">&Oacute;</td>
+<td class="spchars" align="center" onMouseOver="View('Ocirc')" onClick="Set('&Ocirc;')" OnMouseOut="UndoView()">&Ocirc;</td>
+<td class="spchars" align="center" onMouseOver="View('Otilde')" onClick="Set('&Otilde;')" OnMouseOut="UndoView()">&Otilde;</td>
+<td class="spchars" align="center" onMouseOver="View('Ouml')" onClick="Set('&Ouml;')" OnMouseOut="UndoView()">&Ouml;</td>
+</tr><tr>
+<td class="spchars" align="center" onMouseOver="View('reg')" onClick="Set('&reg;')" OnMouseOut="UndoView()">&reg;</td>
+<td class="spchars" align="center" onMouseOver="View('times')" onClick="Set('&times;')" OnMouseOut="UndoView()">&times;</td>
+<td class="spchars" align="center" onMouseOver="View('Ugrave')" onClick="Set('&Ugrave;')" OnMouseOut="UndoView()">&Ugrave;</td>
+<td class="spchars" align="center" onMouseOver="View('Uacute')" onClick="Set('&Uacute;')" OnMouseOut="UndoView()">&Uacute;</td>
+<td class="spchars" align="center" onMouseOver="View('Ucirc')" onClick="Set('&Ucirc;')" OnMouseOut="UndoView()">&Ucirc;</td>
+<td class="spchars" align="center" onMouseOver="View('Uuml')" onClick="Set('&Uuml;')" OnMouseOut="UndoView()">&Uuml;</td>
+<td class="spchars" align="center" onMouseOver="View('Yacute')" onClick="Set('&Yacute;')" OnMouseOut="UndoView()">&Yacute;</td>
+<td class="spchars" align="center" onMouseOver="View('THORN')" onClick="Set('&THORN;')" OnMouseOut="UndoView()">&THORN;</td>
+<td class="spchars" align="center" onMouseOver="View('szlig')" onClick="Set('&szlig;')" OnMouseOut="UndoView()">&szlig;</td>
+<td class="spchars" align="center" onMouseOver="View('agrave')" onClick="Set('&agrave;')" OnMouseOut="UndoView()">&agrave;</td>
+<td class="spchars" align="center" onMouseOver="View('aacute')" onClick="Set('&aacute;')" OnMouseOut="UndoView()">&aacute;</td>
+<td class="spchars" align="center" onMouseOver="View('acirc')" onClick="Set('&acirc;')" OnMouseOut="UndoView()">&acirc;</td>
+<td class="spchars" align="center" onMouseOver="View('atilde')" onClick="Set('&atilde;')" OnMouseOut="UndoView()">&atilde;</td>
+<td class="spchars" align="center" onMouseOver="View('auml')" onClick="Set('&auml;')" OnMouseOut="UndoView()">&auml;</td>
+<td class="spchars" align="center" onMouseOver="View('aring')" onClick="Set('&aring;')" OnMouseOut="UndoView()">&aring;</td>
+<td class="spchars" align="center" onMouseOver="View('aelig')" onClick="Set('&aelig;')" OnMouseOut="UndoView()">&aelig;</td>
+</tr><tr>
+<td class="spchars" align="center" onMouseOver="View('ccedil')" onClick="Set('&ccedil;')" OnMouseOut="UndoView()">&ccedil;</td>
+<td class="spchars" align="center" onMouseOver="View('egrave')" onClick="Set('&egrave;')" OnMouseOut="UndoView()">&egrave;</td>
+<td class="spchars" align="center" onMouseOver="View('eacute')" onClick="Set('&eacute;')" OnMouseOut="UndoView()">&eacute;</td>
+<td class="spchars" align="center" onMouseOver="View('ecirc')" onClick="Set('&ecirc;')" OnMouseOut="UndoView()">&ecirc;</td>
+<td class="spchars" align="center" onMouseOver="View('euml')" onClick="Set('&euml;')" OnMouseOut="UndoView()">&euml;</td>
+<td class="spchars" align="center" onMouseOver="View('igrave')" onClick="Set('&igrave;')" OnMouseOut="UndoView()">&igrave;</td>
+<td class="spchars" align="center" onMouseOver="View('iacute')" onClick="Set('&iacute;')" OnMouseOut="UndoView()">&iacute;</td>
+<td class="spchars" align="center" onMouseOver="View('icirc')" onClick="Set('&icirc;')" OnMouseOut="UndoView()">&icirc;</td>
+<td class="spchars" align="center" onMouseOver="View('iuml')" onClick="Set('&iuml;')" OnMouseOut="UndoView()">&iuml;</td>
+<td class="spchars" align="center" onMouseOver="View('eth')" onClick="Set('&eth;')" OnMouseOut="UndoView()">&eth;</td>
+<td class="spchars" align="center" onMouseOver="View('ntilde')" onClick="Set('&ntilde;')" OnMouseOut="UndoView()">&ntilde;</td>
+<td class="spchars" align="center" onMouseOver="View('ograve')" onClick="Set('&ograve;')" OnMouseOut="UndoView()">&ograve;</td>
+<td class="spchars" align="center" onMouseOver="View('oacute')" onClick="Set('&oacute;')" OnMouseOut="UndoView()">&oacute;</td>
+<td class="spchars" align="center" onMouseOver="View('ocirc')" onClick="Set('&ocirc;')" OnMouseOut="UndoView()">&ocirc;</td>
+<td class="spchars" align="center" onMouseOver="View('otilde')" onClick="Set('&otilde;')" OnMouseOut="UndoView()">&otilde;</td>
+<td class="spchars" align="center" onMouseOver="View('ouml')" onClick="Set('&ouml;')" OnMouseOut="UndoView()">&ouml;</td>
+</tr><tr>
+<td class="spchars" align="center" onMouseOver="View('divide')" onClick="Set('&divide;')" OnMouseOut="UndoView()">&divide;</td>
+<td class="spchars" align="center" onMouseOver="View('oslash')" onClick="Set('&oslash;')" OnMouseOut="UndoView()">&oslash;</td>
+<td class="spchars" align="center" onMouseOver="View('ugrave')" onClick="Set('&ugrave;')" OnMouseOut="UndoView()">&ugrave;</td>
+<td class="spchars" align="center" onMouseOver="View('uacute')" onClick="Set('&uacute;')" OnMouseOut="UndoView()">&uacute;</td>
+<td class="spchars" align="center" onMouseOver="View('ucirc')" onClick="Set('&ucirc;')" OnMouseOut="UndoView()">&ucirc;</td>
+<td class="spchars" align="center" onMouseOver="View('uuml')" onClick="Set('&uuml;')" OnMouseOut="UndoView()">&uuml;</td>
+<td class="spchars" align="center" onMouseOver="View('yacute')" onClick="Set('&yacute;')" OnMouseOut="UndoView()">&yacute;</td>
+<td class="spchars" align="center" onMouseOver="View('thorn')" onClick="Set('&thorn;')" OnMouseOut="UndoView()">&thorn;</td>
+<td class="spchars" align="center" onMouseOver="View('yuml')" onClick="Set('&yuml;')" OnMouseOut="UndoView()">&yuml;</td>
+<td class="spchars" align="center" onMouseOver="View('OElig')" onClick="Set('&OElig;')" OnMouseOut="UndoView()">&OElig;</td>
+<td class="spchars" align="center" onMouseOver="View('oelig')" onClick="Set('&oelig;')" OnMouseOut="UndoView()">&oelig;</td>
+<td class="spchars" align="center" onMouseOver="View('Scaron')" onClick="Set('&Scaron;')" OnMouseOut="UndoView()">&Scaron;</td>
+<td class="spchars">&nbsp;</td>
+<td class="spchars">&nbsp;</td>
+<td class="spchars">&nbsp;</td>
+<td class="spchars">&nbsp;</td>
+</table>
+</table>
+</form>
+</body></html>

@@ -1,0 +1,62 @@
+#################################################################
+## NOM de la Premod : LuckyMod
+## Version: 1.7.7
+## Démo sur http://www.chez-clomax.com/ezcom/luckymod
+##
+## Auteur prémod : Clomax <admin@chez-clomax.com> http://www.ezcom-fr.com
+##
+## © http://www.jyl.be/ pour le logo
+##
+############################################################## 
+## 
+##   Installation automatique, comme un phpBB de base :
+##
+##   Copier tous les fichiers et dossiers de root sur votre ftp 
+##   Mettre le fichier config.php en CHMOD 666
+##   Lancer l'install en tapant l'adresse dans votre navigateur : http://votresite.com/install/install.php
+##   (remplacer http://votresite.com/ par le chemin où vous avez copié la prémod)
+##   Une fois le forum installé, remettre config.php en CHMOD 644
+##   Supprimer le dossier install du ftp
+##   Mettre le dossier cache  en CHMOD 777
+##   Mettre le dossier cache/index en CHMOD 777 
+##   Mettre le repertoire editeur en CHMOD 777
+##   Faire un CHMOD 777 sur le répertoire sess_arcade 
+##############################################################
+## Historique :
+##
+## 2006-25-06 - version 1.7.7 ( passage a la version phpBB 2.0.22 )
+##
+## 2006-14-06 - Version 1.6.7 ( mise a jour du mod's Attachment Files en version 2.4.5 )
+##
+## 2006-19-06 - Version 1.6.6 ( Ajout des Mod's Arcade Vote Arcade Game Restriction )
+##
+## 2006-18-06 _ Version 1.6.5 ( Mise à jour de l'ADDON - Favoris Arcade passage en V 1.4 )
+##
+## 2006-15-06 - Version 1.6.4 ( passage a la version phpBB 2.0.21 )
+##
+## 2006-28-05 - Version 1.5.4 ( Ajout des Mod's Arcade Championnat Par EQUIPE, Separate Announcements & Sticky, Reason, suppression du mod new bbcodes/ ajout du mod BBcode Box Reloaded (BBcBxR) MOD  Lottery, Arcade Cheater Tracker, ADDON - Favoris Arcade,Modo-adminrecords)
+##
+## 2006-04-29 - Version 1.4.4 ( Mise à Jour du mod's Attachment Files en version 2.4.3   )
+##
+## 2006-04-11 - Version 1.3.4 ( passage a la version phpBB 2.0.20 )
+##
+## 2006-03-29 - Version 1.2.4 ( Mise a jour du mod Arcade Comments System v3.0.4)
+## 
+## 2006-03-11 - Version 1.2.3 ( Mise a jour du mod Totally ERC 119 )
+##
+## 2005-01-12 - Version 1.2.2 ( Ajout de mod's Mood - MiniLand - AttachMod - Garder le mouvement des smileys  - ADD-ON allow_pm_comments_system_arcade  
+##                                          -Overall Forums Permission - Today At/Yesterday At)
+##
+## 2005-12-31 - Version 1.1.2 ( passage a la version phpBB 2.0.19 )
+##
+## 2005-12-16 - Version 1.1.1 ( Mise a jour mod-totally_erc_118 et cash Mod 223)   
+## 
+## 2005-10-31 - Version 1.1 ( passage a la version phpBB 2.0.18)
+##
+## 2005-09-25 - Version 1.1 (phpBB 2.0.17 French Language Pack)
+##
+## 2005-08-01 - Version 1.0.0
+##
+############################################################## 
+
+

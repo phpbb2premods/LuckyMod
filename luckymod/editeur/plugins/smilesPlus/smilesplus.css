@@ -1,0 +1,78 @@
+html, body {
+  background: ButtonFace;
+  color: ButtonText;
+  font: 11px Tahoma,Verdana,sans-serif;
+  margin: 0px;
+  padding: 0px;
+}
+body { padding: 5px; }
+table {
+  font: 11px Tahoma,Verdana,sans-serif;
+}
+form p {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.fl { width: 9em; float: left; padding: 2px 5px; text-align: right; }
+.fr { width: 6em; float: left; padding: 2px 5px; text-align: right; }
+fieldset { padding: 0px 10px 5px 5px; }
+select, input, button { font: 11px Tahoma,Verdana,sans-serif; }
+button { width: 70px; }
+.space { padding: 2px; }
+
+.loadmsg {
+   filter: progid:DXImageTransform.Microsoft.dropShadow( Color=666666,offX=6,offY=7,positive=true)alpha(opacity = 40);
+   -moz-opacity: 0.4;
+}
+
+.title { 
+       background: #ddf; 
+       color: #000; font-weight: bold; 
+       font-size: 130%; 
+       padding: 3px 10px; 
+       margin-bottom: 10px;
+       border-bottom: 1px solid black; 
+       letter-spacing: 2px;             
+}
+.shadowt{ 
+ 		font-weight: bold ; 
+		color: #FFFFFF ; 
+		width:100%; 
+		filter:dropshadow(color=#000000,offx=1, offy=1, positive=1), glow(color=#000000, strength=0) ; 
+		height: 1 ; }
+}
+form { padding: 0px; margin: 0px; }
+.buttonHover {
+	border: 1px solid;
+	border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight;
+	cursor: hand;
+}
+.buttonOut
+{
+	border: 1px solid ButtonFace;
+}
+
+.separator {
+  position: relative;
+  margin: 3px;
+  border-left: 1px solid ButtonShadow;
+  border-right: 1px solid ButtonHighlight;
+  width: 0px;
+  height: 16px;
+  padding: 0px;
+}
+.manager
+{
+}
+.statusLayer
+{
+	background:#FFFFFF;
+	border: 1px solid #CCCCCC;
+}
+.statusText {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 15px;
+	font-weight: bold;
+	color: #6699CC;
+	text-decoration: none;
+}

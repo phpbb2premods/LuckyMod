@@ -1,0 +1,578 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html STYLE="width: 432px; height: 168px; ">
+<head>
+<title>Editor: Help</title>
+<style>
+
+table {font: 8pt Tahoma;}
+.btn { height: 22px; border: 1px solid buttonface; margin: 0; padding: 0;font: 8pt Tahoma; }
+.btnOver { height: 22px; border: 1px outset;font: 8pt Tahoma; }
+body {background: #d4d0c8; margin:0px;}
+.btnDown {height: 22px; border: 1px inset; background-color: buttonface;font: 8pt Tahoma; }
+.text1{display:inline;}
+.text2{display:none;}
+.title{font:14pt Arial;}
+.icon{ cursor:help
+</style>
+<script type="text/javascript" language="javascript">
+function expandText(spanID)
+	{document.all[spanID+2].style.display="inline"; document.all[spanID+1].style.display="none";}
+
+function collapseText(spanID)
+	{document.all[spanID+2].style.display="none"; document.all[spanID+1].style.display="inline";}
+</script>
+<script language="javascript">
+function expandAllText() {
+expandText("word","refresh","preview","print","about","help","html","maximize","minimize","spell","instable","showborders","tableprop","rowprop","insrowabove","insrowbelow","delrow","splitrow","inscolleft","inscolright","delcol","cellprop","inscellbefore","inscellafter","delcell","splitcell","mergecell","selectall","cut","copy","paste","delete","remove","undo","redo","find","bold","italics","underline","strike","super","sub","forecolor","backcolor","alignleft","aligncenter","alignright","alignjustify","alignnone","numlist","bulllist","unindent","indent","line","spchar","today","link","anchor","unlink","rtl","ltr");
+} 
+ </script>
+</head>
+<BODY BGCOLOR="#FFFFFF" unselectable="on">
+<table width="100%" border=1 cellspacing=0 cellpadding=0 style="float: left;"  unselectable="on">
+<tr><td style="height: 30px; border: none; padding: 1 0 0 0; font-family: MS Shell Dlg;">
+
+&nbsp;<BUTTON class=btn onClick="document.execCommand('Print');" onmouseover="if(this.className=='btn'){this.className='btnOver'}"  onmouseout="if(this.className=='btnOver'){this.className='btn'}" onmousedown="if(this.className=='btnOver'){this.className='btnDown'}" onmouseup="if(this.className=='btnDown'){this.className='btn'}"><IMG src="images/ed_print.gif" ALT="Print" WIDTH="23" HEIGHT="22" BORDER="0" ALIGN="middle">&nbsp;Imprimer&nbsp;</BUTTON>
+
+</td></tr></table>
+<A HREF="#home"></A>
+<table bgcolor="#FFFFFF" width="100%" border=0 cellspacing=0 cellpadding=6>
+<tr valign="middle">
+    <td> <B CLASS="title">Aide pour l'editeur</B><BR>
+&nbsp;<B>• Actions des boutons</B>
+<P>Cliquer sur les icones pour obtenir de l'aide.
+</td></tr></table>
+<table width="100%" border="1" cellspacing="0" cellpadding="3" style="float: left;">
+<tr>
+    <td> 
+      <table border="0" cellspacing="2" cellpadding="2" width="268">
+        <tr valign="top"><span id="refresh1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('refresh')"><img class="icon" height=16 alt="Refresh" src="images/ed_refresh.gif" width=16 border=0></a></td>
+          </span> 
+          <td width="217"><span id="refresh1" class="text1"><b>Effacer</b></span><span id="refresh2" class="text2"> 
+            <p>Efface le contenu de l'éditeur.
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('refresh')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="preview1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('preview')"><img class="icon" height=22 alt="Preview" src="images/ed_preview.gif" width=24 border=0></a></td>
+          </span> 
+          <td width="217"><span id="preview1" class="text1"><b>Prévisualiser</b></span><span id="preview2" class="text2"> 
+            <p>Permet de prévisualiser votre page avant la sauvegarde définitive 
+              (Titre, Nombre, Date et Auteur ne sont pas visibles dans ce mode).
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('preview')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="print1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('print')"><img class="icon" height=22 alt="Print" src="images/ed_print.gif" width=23 border=0></a></td>
+          </span> 
+          <td width="217"><span id="print1" class="text1"><b>Imprimer</b></span><span id="print2" class="text2"> 
+            <p>Cette fonction permet l'impression de votre travail.
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('print')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="help1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('help')"><img class="icon" height=17 alt="Help" src="images/ed_help.gif" width=17 border=0></a></td>
+          </span> 
+          <td width="217"><span id="help1" class="text1"><b>Aide</b></span><span id="help2" class="text2"> 
+            <p>Ouvre une page d'aide 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('help')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="html1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('html')"><img class="icon" height=17 alt="View HTML Source" src="images/ed_html.gif" width=17 border=0></a></td>
+          </span> 
+          <td width="217"><span id="html1" class="text1"><b>Html</b></span><span id="html2" class="text2"> 
+            <p>Permet de passer en mode HTML, pour les experts. 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('html')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="maximize1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('maximize')"><img class="icon" height=17 alt="Enlarge Editor" src="images/fullscreen_maximize.gif" width=17 border=0></a></td>
+          </span> 
+          <td width="217"><span id="maximize1" class="text1"><b>Agrandir l'éditeur</b></span><span id="maximize2" class="text2"> 
+            <p>Permet de passer en mode plein &eacute;cran. 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('maximize')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="minimize1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('minimize')"><img class="icon" height=17 alt="Normal Editor" src="images/fullscreen_minimize.gif" width=17 border=0></a></td>
+          </span> 
+          <td width="217"><span id="minimize1" class="text1"><b>Editeur standard</b></span><span id="minimize2" class="text2"> 
+            <p>Permet de revenir en mode standard 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('minimize')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="instable1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('instable')"><img class="icon" height=18 alt="Insert Table" src="images/insert_table.gif" width=18 border=0></a></td>
+          </span> 
+          <td width="217"><span id="instable1" class="text1"><b>Insérer un tableau</b></span><span id="instable2" class="text2"> 
+            <p>Ouvre une boîte de dialogue permettant d'insérer un tableau, ou 
+              de modifier un tableau.
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('instable')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="showborders1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('showborders')"><img class="icon" height=18 alt="Show Table Borders" src="images/ed_show_border.gif" width=18 border=0></a></td>
+          </span> 
+          <td width="217"><span id="showborders1" class="text1"><b>Montrer les 
+            bordures</b></span><span id="showborders2" class="text2"> 
+            <p>Montre ou efface les bordures 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('showborders')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="tableprop1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('tableprop')"><img class="icon" height=18 alt="Table Properties" src="images/ed_tableprop.gif" width=18 border=0></a></td>
+          </span> 
+          <td width="217"><span id="tableprop1" class="text1"><b>Propriétés du 
+            tableau</b></span><span id="tableprop2" class="text2"> 
+            <p>Ouvre la boîte de dialogue permettant de modifier les propriétés 
+              du tableau.
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('tableprop')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="rowprop1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('rowprop')"><img class="icon" height=18 alt="Row Properties" src="images/ed_rowprop.gif" width=18 border=0></a></td>
+          </span> 
+          <td width="217"><span id="rowprop1" class="text1"><b>Propriétés des 
+            lignes</b></span><span id="rowprop2" class="text2"> 
+            <p>Ouvre une page de dialogues permettant de modifier les propri&eacute;t&eacute;s 
+              des lignes 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('rowprop')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="insrowabove1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('insrowabove')"><img class="icon" height=22 alt="Insert Row Before" src="images/ed_insabove.gif" width=23 border=0></a></td>
+          </span> 
+          <td width="217"><span id="insrowabove1" class="text1"><b>Insérer lignes 
+            avant</b></span><span id="insrowabove2" class="text2"> 
+            <p>Ins&egrave;re une ligne avant la s&eacute;lection. 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('insrowabove')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="insrowbelow1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('insrowbelow')"><img class="icon" height=22 alt="Insert Row After" src="images/ed_insunder.gif" width=23 border=0></a></td>
+          </span> 
+          <td width="217"><span id="insrowbelow1" class="text1"><b>Insérer lignes 
+            après</b></span><span id="insrowbelow2" class="text2"> 
+            <p>Ins&eacute;rer une ligne apr&egrave;s la s&eacute;lection 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('insrowbelow')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="delrow1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('delrow')"><img class="icon" height=22 alt="Delete Row" src="images/ed_delrow.gif" width=23 border=0></a></td>
+          </span> 
+          <td width="217"><span id="delrow1" class="text1"><b>Effacer ligne</b></span><span id="delrow2" class="text2"> 
+            <p>Efface une ligne et son contenu 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('delrow')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="splitrow1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('splitrow')"><img class="icon" height=22 alt="Split Row" src="images/ed_splitrow.gif" width=23 border=0></a></td>
+          </span> 
+          <td width="217"><span id="splitrow1" class="text1"><b>Diviser cellule</b></span><span id="splitrow2" class="text2"> 
+            <p>Divise une ligne en deux cellules 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('splitrow')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="inscolleft1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('inscolleft')"><img class="icon" height=22 alt="Insert Column Before" src="images/ed_insleft.gif" width=23 border=0></a></td>
+          </span> 
+          <td width="217"><span id="inscolleft1" class="text1"><b>Insérer colonne 
+            à droite</b></span><span id="inscolleft2" class="text2"> 
+            <p>Insérer un colonne à gauche de celle sélectionnée.
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('inscolleft')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="inscolright1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('inscolright')"><img class="icon" height=22 alt="Insert Column After" src="images/ed_insright.gif" width=23 border=0></a></td>
+          </span> 
+          <td width="217"><span id="inscolright1" class="text1"><b>Insérer colonne 
+            à gauche</b></span><span id="inscolright2" class="text2"> 
+            <p>Ins&egrave;re une colonne &agrave; gauche de la s&eacute;lection.. 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('inscolright')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="delcol1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('delcol')"><img class="icon" height=22 alt="Delete Column" src="images/ed_delcol.gif" width=23 border=0></a></td>
+          </span> 
+          <td width="217"><span id="delcol1" class="text1"><b>Efface la colonne</b></span><span id="delcol2" class="text2"> 
+            <p>Efface la colonne et son conenu. 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('delcol')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="cellprop1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('cellprop')"><img class="icon" height=18 alt="Cell Properties" src="images/ed_cellprop.gif" width=18 border=0></a></td>
+          </span> 
+          <td width="217"><span id="cellprop1" class="text1"><b>Propri&eacute;t&eacute;s 
+            des cellules </b></span><span id="cellprop2" class="text2"> 
+            <p>Ouvre une page de dialogue permettant de modifier les caract&eacute;ristiques 
+              des cellules.. 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('cellprop')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="inscellbefore1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('inscellbefore')"><img class="icon" height=22 alt="Insert Cell Before" src="images/ed_inscellft.gif" width=23 border=0></a></td>
+          </span> 
+          <td width="217"><span id="inscellbefore1" class="text1"><b>Insérer cellule 
+            avant</b></span><span id="inscellbefore2" class="text2"> 
+            <p>Ins&egrave;re une nouvelle cellule &agrave; gauche de la s&eacute;lectionl. 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('inscellbefore')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="inscellafter1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('inscellafter')"><img class="icon" height=22 alt="Insert Cell After" src="images/ed_inscelrgt.gif" width=23 border=0></a></td>
+          </span> 
+          <td width="217"><span id="inscellafter1" class="text1"><b>Insérer cellule 
+            après</b></span><span id="inscellafter2" class="text2"> 
+            <p>Ins&egrave;re une nouvelle cellule &agrave; droite de la s&eacute;lectionl. 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('inscellafter')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="delcell1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('delcell')"><img class="icon" height=22 alt="Delete Cell" src="images/ed_delcel.gif" width=23 border=0></a></td>
+          </span> 
+          <td width="217"><span id="delcell1" class="text1"><b>Effacer la cellule</b></span><span id="delcell2" class="text2"> 
+            <p>Efface la cellule s&eacute;lectionn&eacute;e et son contenus. 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('delcell')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="splitcell1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('splitcell')"><img class="icon" height=22 alt="Split Cell" src="images/ed_splitcel.gif" width=23 border=0></a></td>
+          </span> 
+          <td width="217"><span id="splitcell1" class="text1"><b>Diviser la cellule</b></span><span id="splitcell2" class="text2"> 
+            <p>Divise la cellule s&eacute;lectionn&eacute;e en deux cellules.. 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('splitcell')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="mergecell1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('mergecell')"><img class="icon" height=22 alt="Merge Cells" src="images/ed_mergecels.gif" width=23 border=0></a></td>
+          </span> 
+          <td width="217"><span id="mergecell1" class="text1"><b>Fusionner les 
+            cellules</b></span><span id="mergecell2" class="text2"> 
+            <p>Fusionne les cellules s&eacute;lectionn&eacute;es. 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('mergecell')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="selectall1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('selectall')"><img class="icon" height=18 alt="Select All" src="images/ed_selectall.gif" width=18 border=0></a></td>
+          </span> 
+          <td width="217"><span id="selectall1" class="text1"><b>Selectinner tout</b></span><span id="selectall2" class="text2"> 
+            <p>S&eacute;lectionne tout le contenu de l'&eacute;diteur 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('selectall')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="cut1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('cut')"><img class="icon" height=17 alt="Cut" src="images/ed_cut.gif" width=17 border=0></a></td>
+          </span> 
+          <td width="217"><span id="cut1" class="text1"><b>Couper</b></span><span id="cut2" class="text2"> 
+            <p>Coupe toute la zone s&eacute;lectionn&eacute;e et la place en m&eacute;moire 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('cut')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="copy1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('copy')"><img class="icon" height=17 alt="Cipy" src="images/ed_copy.gif" width=17 border=0></a></td>
+          </span> 
+          <td width="217"><span id="copy1" class="text1"><b>Copier</b></span><span id="copy2" class="text2"> 
+            <p>Copie la selection
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('copy')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="paste1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('paste')"><img class="icon" height=17 alt="Paste" src="images/ed_paste.gif" width=17 border=0></a></td>
+          </span> 
+          <td width="217"><span id="paste1" class="text1"><b>Coller</b></span><span id="paste2" class="text2"> 
+            <p>Coller la selection
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('paste')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="delete1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('delete')"><img class="icon" height=17 alt="Delete" src="images/ed_delete.gif" width=17 border=0></a></td>
+          </span> 
+          <td width="217"><span id="delete1" class="text1"><b>Effacer la s&eacute;lection</b></span><span id="delete2" class="text2"> 
+            <p>Efface la zone s&eacute;lectionn&eacute;e de l'&eacute;diteur. 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('delete')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="undo1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('undo')"><img class="icon" height=17 alt="Undo" src="images/ed_undo.gif" width=17 border=0></a></td>
+          </span> 
+          <td width="217"><span id="undo1" class="text1"><b>Annuler</b></span><span id="undo2" class="text2"> 
+            <p>Annule les actions pr&eacute;c&eacute;dentes. 
+            <p><b>Attention :</b><br>
+              Le passage en mode HTML efface l'historique de actions, et ne permet 
+              donc plus d'utiliser cette fonction. 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('undo')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="redo1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('redo')"><img class="icon" height=17 alt="Redo" src="images/ed_redo.gif" width=17 border=0></a></td>
+          </span> 
+          <td width="217"><span id="redo1" class="text1"><b>refaire</b></span><span id="redo2" class="text2"> 
+            <p>R&eacute;tablit la derni&egrave;re action dans l'&eacute;diteur. 
+              Elle permet d'annuler une annulation. 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('redo')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="find1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('find')"><img class="icon" src="images/ed_find.gif" alt="Find" width="22" height="23" border="0"></a></td>
+          </span> 
+          <td width="217"><span id="find1" class="text1"><b>Chercher/remplacer</b></span><span id="find2" class="text2"> 
+            <p>Ouvre une page de dialogue vous permettant de chercher et remplacer 
+              des mots ou expressions dans l'&eacute;diteur. 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('find')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="bold1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('bold')"><img class="icon" height=17 alt="Bold" src="images/ed_format_bold.gif" width=17 border=0></a></td>
+          </span> 
+          <td width="217"><span id="bold1" class="text1"><b>Gras</b></span><span id="bold2" class="text2"> 
+            <p>Permet de définir un texte en caractères gras
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('bold')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"> 
+        <span id="italics1" class="text1"> 
+        <tr valign="top"><span id="italics1" class="text1">
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('italics')"><img class="icon" height=17 alt="Italic" src="images/ed_format_italic.gif" width=17 border=0></a></td>
+          </span> 
+          <td width="217"><span id="italics1" class="text1"><b>Italique</b></span><span id="italics2" class="text2"> 
+            </span><span id="italics1" class="text1"><span id="italics2" class="text2"> 
+            </span><span id="italics2" class="text2"> </span></span><span id="italics2" class="text2"> 
+            <p>Permet de d&eacute;finir un texte en italique
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('italics')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              CLOSE</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="underline1" class="text1">
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('underline')"><img class="icon" height=17 alt="Underline" src="images/ed_format_underline.gif" width=17 border=0></a></td>
+          </span> 
+          <td width="217"><span id="underline1" class="text1"><b>Soulign&eacute;</b></span><span id="underline2" class="text2"> 
+            <p>Permet de souligner le texte
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('underline')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              CLOSE</b></a></div>
+            </span></td>
+        </tr>
+          
+        
+        </span> 
+          <td width="37" height="4"><span id="underline1" class="text1"></span> 
+            <p> <span id="underline2" class="text2">&nbsp;</span>
+          </td>
+        </tr>
+        <tr valign="top"><span id="strike1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('strike')"><img class="icon" height=17 alt="Strikethrough" src="images/ed_format_strike.gif" width=17 border=0></a></td>
+          </span> 
+          <td width="217"><span id="strike1" class="text1"><b>Barré</b></span><span id="strike2" class="text2"> 
+            <p>Met le texte s&eacute;lectionn&eacute; en caract&egrave;res barr&eacute;s 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('strike')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="super1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('super')"><img class="icon" height=17 alt="Superscript" src="images/ed_format_sup.gif" width=17 border=0></a></td>
+          </span> 
+          <td width="217"><span id="super1" class="text1"><b>Exposant</b></span><span id="super2" class="text2"> 
+            <p>Met le texte s&eacute;lectionnn&eacute; en exposant 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('super')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b>FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="sub1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('sub')"><img class="icon" height=17 alt="Subscript" src="images/ed_format_sub.gif" width=17 border=0></a></td>
+          </span> 
+          <td width="217"><span id="sub1" class="text1"><b>Indice</b></span><span id="sub2" class="text2"> 
+            <p>Met le texte s&eacute;lectionn&eacute; en indice. 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('sub')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="forecolor1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('forecolor')"><img class="icon" height=17 alt="Foreground Color" src="images/ed_color_fg.gif" width=17 border=0></a></td>
+          </span> 
+          <td width="217"><span id="forecolor1" class="text1"><b>Couleur de caractères</b></span><span id="forecolor2" class="text2"> 
+            <p>Ouvre une page de dialogue permettant de choisir la couleur des 
+              caract&egrave;res. 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('forecolor')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="backcolor1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('backcolor')"><img class="icon" height=17 alt="Background" src="images/ed_color_bg.gif" width=17 border=0></a></td>
+          </span> 
+          <td width="217"><span id="backcolor1" class="text1"><b>Couleur de fond 
+            des caractères</b></span><span id="backcolor2" class="text2"> 
+            <p>Ouvre une page de dialogue permettant de choisir une couleur de 
+              fond pour le texte. 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('backcolor')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="alignleft1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('alignleft')"><img class="icon" height=17 alt="Align Left" src="images/ed_align_left.gif" width=17 border=0></a></td>
+          </span> 
+          <td width="217"><span id="alignleft1" class="text1"><b>Alignement à 
+            gauche</b></span><span id="alignleft2" class="text2"> 
+            <p>Aligne la s&eacute;lection &agrave; gauche 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('alignleft')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b>FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="aligncenter1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('aligncenter')"><img class="icon" height=17 alt="Align Center" src="images/ed_align_center.gif" width=17 border=0></a></td>
+          </span> 
+          <td width="217"><span id="aligncenter1" class="text1"><b>Alignement 
+            centré</b></span><span id="aligncenter2" class="text2"> 
+            <p>Centre la s&eacute;lection.. 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('aligncenter')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="alignright1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('alignright')"><img class="icon" height=17 alt="Align Right" src="images/ed_align_right.gif" width=17 border=0></a></td>
+          </span> 
+          <td width="217"><span id="alignright1" class="text1"><b>Alignement à 
+            droite</b></span><span id="alignright2" class="text2"> 
+            <p>Aligne la s&eacute;lection &agrave; droite. 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('alignright')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="alignjustify1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('alignjustify')"><img class="icon" height=17 alt="Justify Full" src="images/ed_align_justify.gif" width=17 border=0></a></td>
+          </span> 
+          <td width="217"><span id="alignjustify1" class="text1"><b> Justifié</b></span><span id="alignjustify2" class="text2"> 
+            <p>Justifie le paragraphe s&eacute;lectionn&eacute;. 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('alignjustify')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="numlist1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('numlist')"><img class="icon" height=17 alt="Ordered List" src="images/ed_list_num.gif" width=17 border=0></a></td>
+          </span> 
+          <td width="217"><span id="numlist1" class="text1"><b>Liste numérotée</b></span><span id="numlist2" class="text2"> 
+            <p>Ins&egrave;re une liste num&eacute;rot&eacute;e. 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('numlist')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="bulllist1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('bulllist')"><img class="icon" height=17 alt="Bulleted list" src="images/ed_list_bullet.gif" width=17 border=0></a></td>
+          </span> 
+          <td width="217"><span id="bulllist1" class="text1"><b>Liste à puces</b></span><span id="bulllist2" class="text2"> 
+            <p>Ins&egrave;re une liste &agrave; puces 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('bulllist')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="unindent1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('unindent')"><img class="icon" height=17 alt="Unindent" src="images/ed_indent_less.gif" width=17 border=0></a></td>
+          </span> 
+          <td width="217"><span id="unindent1" class="text1"><b>Tabulation Gauche</b></span><span id="unindent2" class="text2"> 
+            <p>Tabulation gauche 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('unindent')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="indent1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('indent')"><img class="icon" height=17 alt="Indent" src="images/ed_indent_more.gif" width=17 border=0></a></td>
+          </span> 
+          <td width="217"><span id="indent1" class="text1"><b>Tabulation droite</b></span><span id="indent2" class="text2"> 
+            <p>Tabulation droite 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('indent')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="line1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('line')"><img class="icon" height=17 alt="Horizontal Rule" src="images/ed_line.gif" width=17 border=0></a></td>
+          </span> 
+          <td width="217"><span id="line1" class="text1"><b>Insérer ligne horizontale</b></span><span id="line2" class="text2"> 
+            <p>Ouvre une page de dialogue permettant d'ins&eacute;rer une ligne 
+              de s&eacute;paration horizontale. 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('line')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="spchar1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('spchar')"><img class="icon" height=17 alt="Special Characters" src="images/ed_spec_char.gif" width=17 border=0></a></td>
+          </span> 
+          <td width="217"><span id="spchar1" class="text1"><b>Charactères spéciaux</b></span><span id="spchar2" class="text2"> 
+            <p>Ouvre une page de dialogue permettant d'ins&eacute;rer une caract&egrave;re 
+              sp&eacute;cial. 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('spchar')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="today1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('today')"><img class="icon" height=17 alt="Insert Today's Date" src="images/ed_date.gif" width=17 border=0></a></td>
+          </span> 
+          <td width="217"><span id="today1" class="text1"><b>Insérer la date</b></span><span id="today2" class="text2"> 
+            <p>Ins&egrave;re la date du jour au format s&eacute;lectionn&eacute;. 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('today')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="link1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('link')"><img class="icon" height=17 alt="Hyperlink" src="images/ed_link.gif" width=17 border=0></a></td>
+          </span> 
+          <td width="217"><span id="link1" class="text1"><b>Lien hypertexte</b></span><span id="link2" class="text2"> 
+            <p>Ouvre une boite de dialogue permettant d'ins&eacute;rer un lien 
+              hypertexte sur le texte ou l'image s&eacute;lectionn&eacute;s. 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('link')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="anchor1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('anchor')"><img class="icon" height=17 alt="Anchor" src="images/ed_anchor.gif" width=17 border=0></a></td>
+          </span> 
+          <td width="217"><span id="anchor1" class="text1"><b>Ancre</b></span><span id="anchor2" class="text2"> 
+            <p>Permet d'ins&eacute;rer une ancre &agrave; l'endroit s&eacute;lectionn&eacute;. 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('anchor')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+        <tr valign="top"><span id="unlink1" class="text1"> 
+          <td class="ui" width="37"><a href="javascript:void(0)" onClick="expandText('unlink')"><img class="icon" height=17 alt="Unlink" src="images/ed_unlink.gif" width=17 border=0></a></td>
+          </span> 
+          <td width="217"><span id="unlink1" class="text1"><b>Supprimer un lien</b></span><span id="unlink2" class="text2"> 
+            <p>Supprime le lien hypertexte de la zone s&eacute;lectionn&eacute;e. 
+            <div align="right"><a href="javascript:void(0)" class="text1" onClick="collapseText('unlink')" style="color:red; font-size:8pt;font-family:Tahoma; text-decoration:none;"><img src="images/parent.gif" alt="Collapse" width="20" height="16" border="0"><b> 
+              FERMER</b></a></div>
+            </span></td>
+        </tr>
+      </table>
+    </td>
+</tr>
+</table>
+</body>
+</html>

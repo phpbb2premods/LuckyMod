@@ -1,0 +1,403 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html STYLE="width: 340px; height: 190px">
+<head>
+<title>Color Picker</title>
+<script type="text/javascript" src="slidebar.js"></script>
+<style type="text/css">
+<!--
+td, input   		    { font-family: MS Shell Dlg; font-size: 9pt;}
+.outerSlideContainer	{width: 150; height: 10;  margin-left: 0; border: 0px;}
+.gradContainer			{width: 140; height: 10; border: 1px inset window; position: absolute; z-index: 4; font-size: 1; overflow: hidden;margin-left: 5px;}
+.sliderHandle			{width: 11; height: 14; cursor: default; overflow: hidden;z-index: 5;}
+.sliderHandle img		{width: 11; height: 14;}
+.lineContainer			{position: absolute; width: 139; height: 10; z-index: 0; margin-left: 5px;}
+.line					{width: 139; height: 10; z-index: 0;overflow: hidden; filter: alpha(style=1)}
+#colorBox				{width: 20; height: 20; border: 1 inset window; margin-left: 2px;visibility:hidden}
+#colorImage				{width: 100; height: 130; border: 1px inset window; cursor: url('../images/picker.cur');}
+body					{background: threedface; border: 0; margin: 5px;}
+-->
+</style>
+
+<script type="text/javascript">
+function stoperror(){
+return true
+} 
+window.onerror=stoperror; 
+
+function _CloseOnEsc() {
+  if (event.keyCode == 27) { window.close(); return; }
+}
+
+//Begin Code by Erik Arvidsson http://webfx.eae.net/dhtml/colorpickerscriptlets/cp.html
+function hsvToRgb(hsv) {
+var rgb = new Object();
+var i, f, p, q, t;
+
+// achromatic (grey)
+if (hsv.s == 0) {rgb.r = rgb.g = rgb.b = hsv.v;return rgb;}
+
+	hsv.h /= 60;			// sector 0 to 5
+	i = Math.floor( hsv.h );
+	f = hsv.h - i;			// factorial part of h
+	p = hsv.v * ( 1 - hsv.s );
+	q = hsv.v * ( 1 - hsv.s * f );
+	t = hsv.v * ( 1 - hsv.s * ( 1 - f ) );
+
+switch( i ) {
+	case 0:
+		rgb.r = hsv.v;
+		rgb.g = t;
+		rgb.b = p;
+			break;
+	case 1:
+		rgb.r = q;
+		rgb.g = hsv.v;
+		rgb.b = p;
+			break;
+	case 2:
+		rgb.r = p;
+		rgb.g = hsv.v;
+		rgb.b = t;
+			break;
+	case 3:
+		rgb.r = p;
+		rgb.g = q;
+		rgb.b = hsv.v;
+			break;
+	case 4:
+		rgb.r = t;
+		rgb.g = p;
+		rgb.b = hsv.v;
+			break;
+	default:		
+		rgb.r = hsv.v;
+		rgb.g = p;
+		rgb.b = q;
+			break;
+}
+
+return rgb;
+}
+
+function calculateRGB() {
+if (window.event.button == 1 && dragobject == null) {
+var hsv = new Object();
+var h = window.event.srcElement.offsetHeight;
+var y = window.event.offsetY;
+
+hsv.h = 360 * window.event.offsetX / window.event.srcElement.offsetWidth;
+
+if (y > h/2) {
+hsv.s = 1.0;
+hsv.v = 2 * (h - y) / h;
+}
+else {
+hsv.v = 1.0;
+hsv.s = y / (h/2);
+}
+
+var rgb = hsvToRgb(hsv);
+public_setColor(rgb.r, rgb.g, rgb.b);
+//Added by Luis to stop slider on values lesser than zero.
+if(rgb.r<0){redSlider.style.left=0}
+if(rgb.g<0){greenSlider.style.left=0}
+if(rgb.b<0){blueSlider.style.left=0}
+}
+}
+
+function update(el) {
+var red   = Math.round(255*redSlider.value);
+var green = Math.round(255*greenSlider.value);
+var blue  = Math.round(255*blueSlider.value);
+var color = "RGB(" + red + "," + green + "," + blue + ")";
+
+colorBox.style.backgroundColor = color;
+
+redLeft.style.background = "RGB(" + 0 + "," + green + "," + blue + ")";
+redRight.style.background = "RGB(" + 255 + "," + green + "," + blue + ")";
+greenLeft.style.background = "RGB(" + red + "," + 0 + "," + blue + ")";
+greenRight.style.background = "RGB(" + red + "," + 255 + "," + blue + ")";
+blueLeft.style.background = "RGB(" + red + "," + green + "," + 0 + ")";
+blueRight.style.background = "RGB(" + red + "," + green + "," + 255 + ")";
+
+document.rgbform.redInput.value = Math.round(red);
+document.rgbform.greenInput.value = Math.round(green);
+document.rgbform.blueInput.value = Math.round(blue);
+
+raiseIt();
+}
+
+function updateInput(slider) {
+var v = parseInt(window.event.srcElement.value);
+
+if (!isNaN(v)) {
+setValue(slider, Math.min(256, v)/256);
+raiseIt();
+}
+}
+
+function clickOnGrad(sliderEl) {
+setValue(sliderEl, Math.min(Math.abs((event.offsetX+1)/event.srcElement.offsetWidth), 1.0));
+showRGB();
+}
+
+function Dec(Hex){
+	 if(Hex == "A") Value = 10;
+else if(Hex == "B") Value = 11;
+else if(Hex == "C") Value = 12;
+else if(Hex == "D") Value = 13;
+else if(Hex == "E") Value = 14;
+else if(Hex == "F") Value = 15;
+else
+Value = eval(Hex);
+return Value;
+}
+//Ends Code by Erik Arvidsson
+//Begin Code by Luis Eufracio
+function Init() {
+document.body.onkeypress = _CloseOnEsc;
+color = window.dialogArguments;
+color=color.replace(/\#/, '');
+oldcolor = color.toUpperCase();
+
+	   a = Dec(oldcolor.substring(0, 1));
+	   b = Dec(oldcolor.substring(1, 2));
+	   c = Dec(oldcolor.substring(2, 3));
+	   d = Dec(oldcolor.substring(3, 4));
+	   e = Dec(oldcolor.substring(4, 5));
+	   f = Dec(oldcolor.substring(5, 6));
+	
+	   x = (a * 16) + b;
+	   y = (c * 16) + d;
+	   z = (e * 16) + f;
+
+public_setColor(x/255, y/255, z/255);
+}
+//Ends Code by Luis Eufracio
+//Begin Code by Erik Arvidsson
+function public_setColor(r, g, b) {
+setValue(redSlider, Math.min(1.0, r));
+setValue(greenSlider, Math.min(1.0, g));
+setValue(blueSlider, Math.min(1.0, b));
+raiseIt();
+}
+
+function public_getColor() {
+var o = new Object();
+o.r = redSlider.value;
+o.g = greenSlider.value;
+o.b = blueSlider.value;	
+
+return o;
+}
+
+function raiseIt() {
+var o = new Object();
+o.r = redSlider.value;
+o.g = greenSlider.value;
+o.b = blueSlider.value;
+
+if (window.external.raiseEvent)
+window.external.raiseEvent("oncolorchange", o);
+}
+//Ends Code by Erik Arvidsson
+//Begin Code by Luis Eufracio
+function showRGB() {
+r = document.rgbform.redInput.value;
+g = document.rgbform.greenInput.value;
+b = document.rgbform.blueInput.value;
+
+//Convert negative rgb values to zero to prevent #undefined hex color
+if (r<0){r=0;document.rgbform.redInput.value=0;}
+if (g<0){g=0;document.rgbform.greenInput.value=0}
+if (b<0){b=0;document.rgbform.blueInput.value=0}
+
+var hexarray= new Array(256);
+hexarray[0]="00"; hexarray[1]="01"; hexarray[2]="02";
+hexarray[3]="03"; hexarray[4]="04"; hexarray[5]="05";
+hexarray[6]="06"; hexarray[7]="07"; hexarray[8]="08";
+hexarray[9]="09"; hexarray[10]="0A"; hexarray[11]="0B"; 
+hexarray[12]="0C"; hexarray[13]="0D"; hexarray[14]="0E";
+hexarray[15]="0F"; hexarray[16]="10"; hexarray[17]="11";
+hexarray[18]="12"; hexarray[19]="13"; hexarray[20]="14";
+hexarray[21]="15"; hexarray[22]="16"; hexarray[23]="17";
+hexarray[24]="18"; hexarray[25]="19"; hexarray[26]="1A";
+hexarray[27]="1B"; hexarray[28]="1C"; hexarray[29]="1D";
+hexarray[30]="1E"; hexarray[31]="1F"; hexarray[32]="20";
+hexarray[33]="21"; hexarray[34]="22"; hexarray[35]="23";
+hexarray[36]="24"; hexarray[37]="25"; hexarray[38]="26";
+hexarray[39]="27"; hexarray[40]="28"; hexarray[41]="29"; 
+hexarray[42]="2A"; hexarray[43]="2B"; hexarray[44]="2C";
+hexarray[45]="2D"; hexarray[46]="2E"; hexarray[47]="2F";
+hexarray[48]="30"; hexarray[49]="31"; hexarray[50]="32";
+hexarray[51]="33"; hexarray[52]="34"; hexarray[53]="35";
+hexarray[54]="36"; hexarray[55]="37"; hexarray[56]="38";
+hexarray[57]="39"; hexarray[58]="3A"; hexarray[59]="3B";
+hexarray[60]="3C"; hexarray[61]="3D"; hexarray[62]="3E";
+hexarray[63]="3F"; hexarray[64]="40"; hexarray[65]="41";
+hexarray[66]="42"; hexarray[67]="43"; hexarray[68]="44";
+hexarray[69]="45"; hexarray[70]="46"; hexarray[71]="47";
+hexarray[72]="48"; hexarray[73]="49"; hexarray[74]="4A";
+hexarray[75]="4B"; hexarray[76]="4C"; hexarray[77]="4D";
+hexarray[78]="4E"; hexarray[79]="4F"; hexarray[80]="50";
+hexarray[81]="51"; hexarray[82]="52"; hexarray[83]="53";
+hexarray[84]="54"; hexarray[85]="55"; hexarray[86]="56";
+hexarray[87]="57"; hexarray[88]="58"; hexarray[89]="59";
+hexarray[90]="5A"; hexarray[91]="5B"; hexarray[92]="5C";
+hexarray[93]="5D"; hexarray[94]="5E"; hexarray[95]="6F";
+hexarray[96]="60"; hexarray[97]="61"; hexarray[98]="62";
+hexarray[99]="63"; hexarray[100]="64"; hexarray[101]="65";
+hexarray[102]="66"; hexarray[103]="67"; hexarray[104]="68";
+hexarray[105]="69"; hexarray[106]="6A"; hexarray[107]="6B";
+hexarray[108]="6C"; hexarray[109]="6D"; hexarray[110]="6E";
+hexarray[111]="6F"; hexarray[112]="70"; hexarray[113]="71";
+hexarray[114]="72"; hexarray[115]="73"; hexarray[116]="74";
+hexarray[117]="75"; hexarray[118]="76"; hexarray[119]="77";
+hexarray[120]="78"; hexarray[121]="79"; hexarray[122]="7A";
+hexarray[123]="7B"; hexarray[124]="7C"; hexarray[125]="7D";
+hexarray[126]="7E"; hexarray[127]="7F"; hexarray[128]="80";
+hexarray[129]="81"; hexarray[130]="82"; hexarray[131]="83";
+hexarray[132]="84"; hexarray[133]="85"; hexarray[134]="86";
+hexarray[135]="87"; hexarray[136]="88"; hexarray[137]="89";
+hexarray[138]="8A"; hexarray[139]="8B"; hexarray[140]="8C";
+hexarray[141]="8D"; hexarray[142]="8E"; hexarray[143]="8F";
+hexarray[144]="90"; hexarray[145]="91"; hexarray[146]="92"; 
+hexarray[147]="93"; hexarray[148]="94"; hexarray[149]="95";
+hexarray[150]="96"; hexarray[151]="97"; hexarray[152]="98";
+hexarray[153]="99"; hexarray[154]="9A"; hexarray[155]="9B";
+hexarray[156]="9C"; hexarray[157]="9D"; hexarray[158]="9E";
+hexarray[159]="9F"; hexarray[160]="A0"; hexarray[161]="A1";
+hexarray[162]="A2"; hexarray[163]="A3"; hexarray[164]="A4";
+hexarray[165]="A5"; hexarray[166]="A6"; hexarray[167]="A7";
+hexarray[168]="A8"; hexarray[169]="A9"; hexarray[170]="AA";
+hexarray[171]="AB"; hexarray[172]="AC"; hexarray[173]="AD";
+hexarray[174]="AE"; hexarray[175]="AF"; hexarray[176]="B0";
+hexarray[177]="B1"; hexarray[178]="B2"; hexarray[179]="B3";
+hexarray[180]="B4"; hexarray[181]="B5"; hexarray[182]="B6";
+hexarray[183]="B7"; hexarray[184]="B8"; hexarray[185]="B9";
+hexarray[186]="BA"; hexarray[187]="BB"; hexarray[188]="BC";
+hexarray[189]="BD"; hexarray[190]="BE"; hexarray[191]="BF";
+hexarray[192]="C0"; hexarray[193]="C1"; hexarray[194]="C2";
+hexarray[195]="C3"; hexarray[196]="C4"; hexarray[197]="C5";
+hexarray[198]="C6"; hexarray[199]="C7"; hexarray[200]="C8";
+hexarray[201]="C9"; hexarray[202]="CA"; hexarray[203]="CB";
+hexarray[204]="CC"; hexarray[205]="CD"; hexarray[206]="CE";
+hexarray[207]="CF"; hexarray[208]="D0"; hexarray[209]="D1";
+hexarray[210]="D2"; hexarray[211]="D3"; hexarray[212]="D4";
+hexarray[213]="D5"; hexarray[214]="D6"; hexarray[215]="D7";
+hexarray[216]="D8"; hexarray[217]="D9"; hexarray[218]="DA";
+hexarray[219]="DB"; hexarray[220]="DC"; hexarray[221]="DD";
+hexarray[222]="DE"; hexarray[223]="DF"; hexarray[224]="E0";
+hexarray[225]="E1"; hexarray[226]="E2"; hexarray[227]="E3";
+hexarray[228]="E4"; hexarray[229]="E5"; hexarray[230]="E6";
+hexarray[231]="E7"; hexarray[232]="E8"; hexarray[233]="E9";
+hexarray[234]="EA"; hexarray[235]="EB"; hexarray[236]="EC";
+hexarray[237]="ED"; hexarray[238]="EE"; hexarray[239]="EF";
+hexarray[240]="F0"; hexarray[241]="F1"; hexarray[242]="F2";
+hexarray[243]="F3"; hexarray[244]="F4"; hexarray[245]="F5";
+hexarray[246]="F6"; hexarray[247]="F7"; hexarray[248]="F8";
+hexarray[249]="F9"; hexarray[250]="FA"; hexarray[251]="FB";
+hexarray[252]="FC"; hexarray[253]="FD"; hexarray[254]="FE"; 
+hexarray[255]="FF";
+hexcode = "#" + hexarray[r] + hexarray[g] + hexarray[b];
+
+document.rgbform.hexval.value=hexcode;
+document.rgbform.hexval.style.backgroundColor=hexcode;
+colorlabel.innerText=hexcode;
+colorlabel.style.color=hexcode;
+}
+
+function returnSelected(){
+newcolor=document.rgbform.hexval.value;
+newcolor=newcolor.replace(/\#/, '');
+	window.returnValue = newcolor; 
+	window.close();
+}
+//EndsCode by Luis Eufracio
+</script>
+</head>
+<body onselectstart="window.event.returnValue = false; window.event.cancelBubble = true;" oncontextmenu="return false;"
+ondragstart="return false" onload="Init();" scroll="no">
+<form name=rgbform>
+<table><tr>
+<td valign="top"><table>
+<!-- Red -->
+<tr>
+<td style="text-align: right">R</td>
+<td>
+<span class="outerSlideContainer">
+<div class="gradContainer" onclick="clickOnGrad(redSlider)"></div>
+<div class="lineContainer" id="redRight" style="background: RGB(255, 0, 0);">
+<div class="line" id="redLeft" style="background: RGB(0,0,0);">
+</div>
+</div>
+<div id="redSlider" class="sliderHandle" type="x" value="0" title="Drag me to change the amount of red"
+onchange="update(this);showRGB();" onmouseup="showRGB();"><img src="../images/arrowred.gif"></div>
+</span>
+</td>
+<td>
+<input type="text" id="redInput" onchange="updateInput(redSlider)" onselectstart="window.event.cancelBubble = true" size="3">
+</td>
+</tr>
+<!-- green -->
+<tr>
+<td style="text-align: right">G</td>
+<td>
+<span class="outerSlideContainer">
+<div class="gradContainer" onclick="clickOnGrad(greenSlider)"></div>
+<div class="lineContainer" id="greenRight" style="background: RGB(0, 255, 0);">
+<div class="line" id="greenLeft" style="background: RGB(0, 0, 0);">
+</div>
+</div>
+<div id="greenSlider" class="sliderHandle" type="x" value="0" title="Drag me to change the amount of green"
+onchange="update(this);showRGB();" onmouseup="showRGB();"><img src="../images/arrowgreen.gif"></div>
+</span></td>
+<td>
+<input type="text" id="greenInput" onchange="updateInput(greenSlider)" onselectstart="window.event.cancelBubble = true" size="3">
+</td>
+</tr>
+<!-- Blue -->
+<tr>
+<td style="text-align: right">B</td>
+<td>
+<span class="outerSlideContainer">
+<div class="gradContainer" onclick="clickOnGrad(blueSlider)"></div>
+<div class="lineContainer" id="blueRight" style="background: RGB(0, 0, 255);">
+<div class="line" id="blueLeft" style="background: RGB(0, 0, 0);">
+</div>
+</div>
+<div id="blueSlider" class="sliderHandle" type="x" value="0" title="Drag me to change the amount of blue"
+onchange="update(this);showRGB();" onmouseup="showRGB();"><img src="../images/arrowblue.gif"></div>
+</span>
+</td>
+<td>
+<input type="text" id="blueInput" onchange="updateInput(blueSlider);" onselectstart="window.event.cancelBubble = true" size="3">
+</td>
+</tr>
+</table>
+<table>
+<tr>
+<td style="margin-left: 5px;">
+Hexadecimal code: <input type=text name="hexval" size=7 style="border: 1px inset" maxsize="7">&nbsp;
+<span id="colorlabel"></span>
+</td>
+</tr>
+</table>
+<table width="100%">
+<tr><td align="center">
+<hr>
+<input value=" OK "  type="button" onClick="returnSelected()">
+<input value="Cancel" type="button" onClick="window.close()">
+<input value="Reset" type="button" onClick="Init()">
+</td></tr>
+</table>
+</td>
+<td>
+<img src="../images/color.jpg" id="colorImage" onmousemove="calculateRGB();showRGB();" onmousedown="calculateRGB();showRGB();" onmouseup="showRGB();" title="Click to select color from this palette" onselectstart="window.event.returnValue = false; window.event.cancelBubble = true;">
+</td>
+</tr>
+</table>
+<span id="colorBox" onclick="showRGB()"></span>
+</form>
+</body>
+</html>

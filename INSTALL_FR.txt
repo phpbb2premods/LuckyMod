@@ -1,0 +1,252 @@
+#################################################################
+## NOM de la Premod : LuckyMod
+## Version: 1.7.7
+## Démo sur http://www.chez-clomax.com/ezcom/luckymod
+##
+## Auteur prémod : Clomax <admin@chez-clomax.com> http://www.ezcom-fr.com
+##
+## © http://www.jyl.be/ pour le logo
+##
+###############################################################
+## Historique :
+##
+## 2006-25-06 - version 1.7.7 ( passage a la version phpBB 2.0.22 )
+##
+## 2006-14-06 - Version 1.6.7 ( mise a jour du mod's Attachment Files en version 2.4.5 )
+##
+## 2006-19-06 - Version 1.6.6 ( Ajout des Mod's Arcade Vote Arcade Game Restriction )
+##
+## 2006-18-06 _ Version 1.6.5 ( Mise à jour de l'ADDON - Favoris Arcade passage en V 1.4 )
+##
+## 2006-15-06 - Version 1.6.4 ( passage a la version phpBB 2.0.21 )
+##
+## 2006-28-05 - Version 1.5.4 ( Ajout des Mod's Arcade Championnat Par EQUIPE, Separate Announcements & Sticky, Reason, suppression du mod new bbcodes/ ajout du mod BBcode Box Reloaded (BBcBxR) MOD  Lottery,Arcade Cheater Tracker,ADDON - Favoris Arcade,Modo-adminrecords )
+##
+## 2006-04-29 - Version 1.4.4 ( Mise à Jour du mod's Attachment Files en version 2.4.3 )
+##
+## 2006-04-11 - Version 1.3.4 ( passage a la version phpBB 2.0.20 )
+##
+## 2006-03-29 - Version 1.2.4 ( Mise a jour du mod Arcade Comments System v3.0.4)
+##
+## 2006-03-11 - Version 1.2.3 ( Mise a jour du mod Totally ERC 119 )
+##
+## 2005-01-12 - Version 1.2.2 ( Ajout de mod's Mood - MiniLand - AttachMod - Garder le mouvement des smileys - ADD-ON allow_pm_comments_system_arcade 
+##                                          -Overall Forums Permission - Today At/Yesterday At)
+##                                         
+## 2005-12-31 - Version 1.1.2 ( passage a la version phpBB 2.0.19 )
+## 
+## 2005-12-16 - Version 1.1.1 ( Mise a jour mod-totally_erc_118 + cash mod 223)
+##
+## 2005-10-31 - Version 1.1 ( passage a la version phpBB 2.0.18)
+##
+## 2005-09-25 - Version 1.1 (phpBB 2.0.17 French Language Pack)
+##
+## 2005-08-01 - Version 1.0.0
+##
+############################################################## 
+##                  
+## Description: 
+##
+##	Cette premod comprend
+## 
+##              * le forum phpBB 2.0.22
+##
+##              * Gf portal ( + addon activation/ desactivation portail ) (Ce mod installe une version du portail 'Gf-Portail' sur votre forum phpbb.Cette version de portail est entièrement 
+##                  paramétrable et customisable depuis le panneau d'administration.) 
+##                                                                                                                     Auteur: Giefca <giefca@hotmail.com> (Giefca) http://www.gf-phpbb.com
+##              * Pseudo sub-forums                                                                      
+##                                                                                                                     Auteur: niekas <> () http://www.freedomlist.com 
+##
+##              * Style Under Username ( Affiche le thème utilisé par les utilisateurs et le nombre de personnes, sur le profil et dans les messages .)
+##                                                                                                                  Auteur: Inconnu < thoul@users.sourceforge.net > http://darkmods.sourceforge.net
+##
+##              * Birthday_1.5.8em ( + addon zodiac + Chinese_zodiac + cache ) 
+##                                                                                                                     Auteur : Niels < ncr@db9.dk > (Niels Chr. Rød) http://mods.db9.dk 
+##
+##              * Arcade V2 (Permet d'ajouter des jeux en flash sur votre forum en gérant les différents scores des membres.) 
+##                                                                                                                  Auteur: Giefca - giefca@hotmail.com - http://www.gf-phpbb.com
+##              * Last visit 1.2.8 ( + cache )                                                             
+##                                                                                                                     Niels < ncr@db9.dk > http://mods.db9.dk
+## 
+##              * User membres (Ajoute deux liens dans le profil des utilisateurs pour l'admin: Un pour gérer ses permissions l'autre pour changer ses paramètres.) 
+##                                                                                                                  Auteur :  Pilok < pilok@myway.com > 
+##
+##              * Admin Userlist Affiche la liste des membres dans ACP                   
+##                                                                                                                    Auteur : Smartor < smartor_xp@hotmail.com > (Hoang Ngoc Tu) http://smartor.is-root.com
+##
+##              * Editeur_html_bloc_custom_gfportal (ce mod. ajoute au dessus du textarea dans nouveaux bloc custom , un lien qui ouvre une popup contenant un éditeur Html. ) 
+##                                                                                                                  Auteur :  sjpphpbb <http://sjpphpbb.net> Jefekoi <http://www.jefekoi.com/forum/>
+##
+##              * Quick Reply (Permet aux Utilisateurs d'utiliser le formulaire de Réponse rapide qui est placé au-dessous chaque sujet.) 
+##                                                                                                                  Auteur : RustyDragon < dev@RustyDragon.com > < http://www.phpbbhacks.com >
+##
+##              * Offline Fade Avatar : Ce Mod affiche l'avatar de vos membres avec un effet "fade" (transparent à 50%) quand ceux-ci sont hors-ligne dans les sujets, dans la liste des membres, et dans viewprofil               ##                                          
+##                                                                                                                     Auteur: VINS    E-mail : vincent111@wanadoo.fr
+##
+##              * Send PM On User Registration ( Ce MOD enverra un PM aux nouveaux utilisateurs de bienvenue.)
+##                                                                                                                    Auteur: AbelaJohnB < abela@phpbb.com > (John B. Abela) http://www.JohnAbela.Com/
+##
+##              * Sender's name in PM notification (Ce MOD permet, que lorsqu'un mp vous est envoyé, dans le notification par mail soit inclus le nom du posteur.) 
+##                                                                                                                    Auteur: DanielJarrett < daniel@nospam.team.4webhelp.net > http://www.4webhelp.net/
+## 
+##
+##                 * Page generation time FR_v2.0.1 (Ce MOD affichera les informations de génération de la page dans le pied de page 
+##                                                                                                                    Auteur: Smartor < smartor_xp@hotmail.com > (Hoang Ngoc Tu) http://smartor.is-root.com
+##
+##                 * Zone restriction avancée (vous permet d'ajouter des restrictions sur des zones de votre forum via le panneau d'administration)
+##                                                                                                                   Auteur :      Dark_Génova < genovakiller@yahoo.fr > (raph)
+##
+##                                                                                                                  
+##                 * Cash Mod (Mod Argent permettant aux utilisateurs de gagner de l'argent/des points en postant ) 
+##                                                                                                                   Auteur : Xore < mods@xore.ca > (Robert Hetzler) http://www.xore.ca
+##
+##                * Points Arcade (Ce mod vous permet d'utiliser le points system avec le mod arcade)
+##                                                                                                                   Auteur : NiCo[L-aS] < neointhematrix@fr.st > (http://www.neointhematrix.fr.st) 
+##                                                                                                                   
+##                * Arcade Championnat (Ce mod vous permet de proposer un championnat sur tous les jeux du mod arcade ) 
+##                                                                                                                   Auteur :  NiCo[L-aS] < neointhematrix@fr.st > (http://www.neointhematrix.fr.st)
+##
+##                * Prune users ( suppression automatique des membres inactifs ) 
+##                                                                                                                  Auteur :  Niels < ncr@db9.dk > (Niels Chr. Rød) http://mods.db9.dk
+##
+##               * Gender ( ajoute une icone homme/femme) 
+##                                                                                                                  Auteur : Niels < ncr@db9.dk > (Niels Chr. Rød) http://mods.db9.dk
+##
+##               * Extend rank color (Ce mod vous permet d'ajouter des couleurs dans le who is online et dans la partie utilisateurs connectés en bas de l'index. Vous pouvez créer des types  d'utilisteurs via l'ACP. 
+##                                                                                                                 Auteur : BigZ  < bigz@denturax.com > (Romain R.) http://www.denturax.com
+##
+##               * Trophées dans viewtopic (Cet addon affiche les coupes que possède le posteur dans le viewtopic.) 
+##                                                                                                                 Auteur :  KaZ < webmaster@asianpower-td.com > http://www.asianpower-td.com 
+##
+##               * Add-on TopStat Arcade (Il rajoute un entete dans la page arcade contenant des statistiques concernant le mod arcade il y 3 catégories affichés dans un tableau 
+##                                                                                                                 Auteur : gikel < gikel@nomade.fr >   
+##
+##               * Arcade Comments System v3.0.4 (Le champion d'un jeu peut saisir un commentaire qui sera visible par chaque personne jouant au jeu. ) 
+##                                                                                                                 Auteur : JRSweets < JRSweets@gmail.com > (J. Russo) http://jeffrusso.net 
+##
+##               * Add-on Heading Arcade (Le mod est un add-on pour le mod Arcade version. Il rajoute un entete dans la page arcade.) 
+##                                                                                                                 Auteur : CanoScan < CanoScan_102@hotmail.com > 
+##
+##               * Totally ERC 
+##                                                                                                                 Auteur : reddog (n/a) http://www.reddevboard.com/  
+##
+## 
+##               * Mood ( Ce mod ajoute l'humeur du moment dans le profil ainsi que dans le topic posté. (9 possibilités au choix) 
+##                                                                                                                 Auteur: caro1978   <caro7800@hotmail.com> http://www.phpbb.biz/
+##
+##
+##               * Miniland ( Ce mod ajoute le drapeaux du pays francophone du membre dans le profil ainsi que dans le topic posté. (5 possibilités au choix)
+##                                                                                                                Auteur: caro1978   <caro7800@hotmail.com> http://www.phpbb.biz/
+##                                                                                                            
+##               * File Attachment Mod v2 ( permet d'attacher des pieces jointes)
+##                                                                                                                Acyd Burn < N/A > (Meik Sievertsen) http://www.opentools.de/       
+##
+##              * Garder le mouvement des smileys  ( Le mod permet aux smileys de ne pas se figer une fois que l'on a cliqué sur l'un d'eux.)
+##                                                                                                                Auteur: Bill Beardslee < webmaster@webxtractions.com > 
+##	
+##              * ADD-ON allow_pm_comments_system_arcade
+##                                                                                                                Autor : KaZ < webmaster@asianpower-td.com > http://www.asianpower-td.com 
+##
+##            
+##             * Overall Forums Permission ( Permet de configurer toutes les perms des forums en meme temps )
+##                                                                                                                Auteur du MOD : Smartor < smartor_xp@hotmail.com > (Hoang Ngoc Tu) http://smartor.is-root.com 
+##
+##
+##            * Today At/Yesterday At (Remplace la date d'un sujet en mettant soit "hier", si le message a été posté la veille, soit "aujourd'hui" si le message a été posté dans la journée)
+##                                                                                                               Auteur du MOD : netclectic < adrian@netclectic.com > (Adrian Cockburn) http://www.netclectic.com  
+##
+##
+##            *   Arcade Championnat Par EQUIPE  Version: 2.0.3 ( Ce mod vous permet de proposer un championnat par équipe sur tous les jeux du mod arcade
+##		       le nombre de victoire de l'équipe ainsi qu'un graphique de répartition des points)	
+##                                                                                                             MOD Author:   aurélien WILLEM (aurelien.willem@team-azerty.com) http://www.team-azerty.com
+##
+##	
+##	* Separate Announcements & Sticky version 2.0.0 (Ce mod's permet de separer les annonces et les post it )
+##     						                            MOD Author: Aiencran < cranportal@katamail.com > 
+##
+##
+##           *  Mod reason Version : 1.0.0 (  Permet de changer ou de donner une raison à la fermeture du forum)
+##                                                                                                            MOD Auteur : jeannicolas <  jean-nicolas.setier@wanadoo.fr > (setier jean-nicolas) http://jwecity.tonsite.biz/forum_phpbb
+##
+##
+##          * MOD BBcode Box Reloaded (BBcBxR) ( Mod remplaçant les BBCode classic avec beaucoup d'option et réglable dans l'ACP.)
+##                                                                                                            MOD Author: reddog < N/A > (N/A) http://www.reddevboard.com
+##
+##          * Mod  Lottery (Permet de mettre en place un tombola/loterie sur votre forum.)
+##                                                                                                            MOD Author: Zarath < zarath@knightsofchaos.com > (N/A) http://www.ffsource.net
+##                                                                                                            MOD Traductor: Galixte < Galixte@gmail.com > (N/A) http://www.phpbb-project.info
+##
+##          * Arcade Cheater Tracker ( Il permet de tracker les tentatives de triche utilisant des softs permettant de ralentir l'horloge interne du PC comme Spead Gear ou des softs permettant l'édition)
+##             du score en mémoire.
+##                                                                                                            MOD Auteur : Ours < bigours@hotmail.fr > // MOD Version : 1.1.0  (02/01/2006)
+##
+##
+##          * ADDON - Favoris Arcade ( Cet addon permet d'ajouter ses jeux préférés dans la catégorie des Favoris (activable dans le PC).
+##                                                                                                           MOD Autor : KaZ < kaz@ttmt-spirit.com > http://www.ttmt-spirit.com  //  MOD Version: 1.4' 
+##
+##
+##          * Modo-adminrecords  ( Modoadminrecord permet aux administrateurs et aux modérateurs du site de supprimer les records dans les jeux.....]
+##
+##
+##                                                                                                         MOD Author: Solaris < contact@pauseflash.com > http://www.pauseflash.com  // MOD version : v4.0.0
+##
+##
+##
+##
+##
+##          * Arcade Vote (Cet addon permet d'ajouter un système de vote sur les jeux.)
+##                                                                                                          MOD Autor :NiCo[L_aS] - neointhematrix@fr.st - http://www.neoinzematrix.dafun.com  // MOD Version: 1.0 
+##
+##
+##
+##         * Arcade Game Restriction ( permet de limiter l'accés aux jeux de l'arcade si aucun ou peu de post, parametrable dans l'ACP )
+##                                                                                                         MOD Author: JRSweets < JRSweets@gmail.com > (J. Russo) http://jeffrusso.net // MOD Version: 1.0.0 
+##
+##############################################################		
+##		
+## Notes: 
+##
+## La LuckyMod doit garder son nom, meme si par la suite des mod's y sont  ajoutés,
+## (<div align="center"><span class="copyright">Powered by phpBB {PHPBB_VERSION} © 2001 <a href="http://www.phpbb.com/" target="_phpbb" 
+## class="copyright">phpBB Group</a><br />{TRANSLATION_INFO}<br /><b>{PHPBB_VERSION1}</b></span></div> )
+## Elle ne peut servir de base en aucun cas pour la création d'une autre premod sous quel nom que  ce soit
+##
+## Plusieurs blocs Gf-Portail sont déjà compris dans cette installation :
+##
+##
+##                        bienvenue   
+##                        birthday   
+##                        championnat  
+##                        change_style   
+##                        entete 
+##                        lastvisite  
+##                        liens   
+##                        login   
+##                        navigation  
+##                        news  
+##                        recent_topics  
+##                        sondage   
+##                        statistiques 
+##                        toparcade  
+##                        welcome  
+##                        whoisonline  
+##
+##
+## Des centaines de jeux peuvent être téléchargés sur http://action-flash.nuxit.net/index.php  &  http://crazyarcade.org/forum/index.php	
+##
+## Merci a toute l'equipe de http://www.ezcom-fr.com et de http://forum.phpbb.biz de m'avoir fait confiance,  ainsi qu'aux createurs des mod's qui ont fait que  cette premod existe
+##
+##############################################################
+## Evolution prevue :
+##
+## AtlasMod
+## 
+##
+############################################################## 
+##
+## Après l'installation, aller dans le Panneau d'administration, puis dans : 
+## - Gestion des jeux d'arcade, cliquer sur Resynchroniser
+## - Administration des permissions / Gestion pour accorder les droits sur le forum Arcade
+## - Administration du portail / configuration pour régler les paramètres du portail
+####################################################################################
+

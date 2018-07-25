@@ -1,0 +1,124 @@
+<html>
+<head>
+<title>Editeur html</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> -->
+<!-- load the main HTMLArea files -->
+<script type="text/javascript" src="htmlarea.js"></script>
+<script type="text/javascript" src="lang/fr.js"></script>
+<script type="text/javascript" src="dialog.js"></script>
+<script type="text/javascript" src="popupdiv.js"></script>
+<script type="text/javascript" src="popupwin.js"></script>
+<script type="text/javascript" src="plugins/SmilesPlus/lang/en.js"></script>
+<script type="text/javascript" src="plugins/SmilesPlus/smilesplus.js"></script>
+
+<!-- load the plugins -->
+<script type="text/javascript">
+      // WARNING: using this interface to load plugin
+      // will _NOT_ work if plugins do not have the language
+      // loaded by HTMLArea.
+
+      // In other words, this function generates SCRIPT tags
+      // that load the plugin and the language file, based on the
+      // global variable HTMLArea.I18N.lang (defined in the lang file,
+      // in our case "lang/en.js" loaded above).
+
+      // If this lang file is not found the plugin will fail to
+      // load correctly and nothing will work.
+
+      HTMLArea.loadPlugin("TableOperations");
+      HTMLArea.loadPlugin("SpellChecker");
+      HTMLArea.loadPlugin("SmilesPlus");
+</script>
+
+<style type="text/css">
+@import url(htmlarea.css);
+
+html, body {
+  font-family: Verdana,sans-serif;
+  background-color: #D4D0C8;
+  color: #000;
+}
+a:link, a:visited { color: #00; }
+a:hover { color: #048; }
+a:active { color: #f00; }
+
+textarea { background-color: #fff; border: 1px solid 00f; }
+</style>
+
+<script type="text/javascript">
+var editor = null;
+function initEditor() {
+  // create an editor for the "ta" textbox
+  editor = new HTMLArea("ta");
+
+  // register the SpellChecker plugin
+  editor.registerPlugin("TableOperations");
+
+  // register the SpellChecker plugin
+  editor.registerPlugin("SpellChecker");
+
+  editor.generate();
+  return false;
+}
+
+function insertHTML() {
+  var html = prompt("Enter some HTML code here");
+  if (html) {
+    editor.insertHTML(html);
+  }
+}
+
+function highlight() {
+  editor.surroundHTML('<span style="background-color: yellow">', '</span>');
+}
+
+  // BEGIN: code that adds a custom button
+  // uncomment it to test
+  var cfg = editor.config; // this is the default configuration
+  /*
+  cfg.registerButton({
+    id        : "my-hilite",
+    tooltip   : "Highlight text",
+    image     : "ed_custom.gif",
+    textMode  : false,
+    action    : function(editor) {
+                  editor.surroundHTML("<span class=\"hilite\">", "</span>");
+                }
+  });
+  */
+
+
+</script>
+</head>
+<body background="images/fond.jpg" onload="initEditor()">
+<b>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" background="images/haut.jpg">
+  <tr> 
+    <td> 
+      <div align="left"><font color="#FFFFFF" size="2"><b>Programmer votre bloc 
+        en html</b></font></div>
+    </td>
+  </tr>
+</table>
+
+<form action="test.cgi" method="post" id="edit" name="edit"><center>
+
+<textarea id="ta" name="ta" style="width:100%" rows="22" cols="80">
+</textarea>
+<br><center><b>
+<font size="2">Programmer votre bloc en html.Pour l'inserer dans votre bloc custom.<br>
+Cliquer sur le bouton <img border="0" src="http://sjpphpbb.net/editeur/images/ed_html.gif"> et faite un copier coller du code source.</font><br></b>
+<br></b>
+  <font size="-2">Mods par <a href="http://sjpphpbb.net/portal.php" target="_blank">SjpphpBB</a>* 
+  &amp; Jefekoi</font><br>
+  <font size="-2">Copyright &copy; 1999-2004 <a href="http://www.interactivetools.com/" target="_blank">interactivetools.com</a>, 
+  inc.</font><br>
+  <font size="-2">* <a href="http://sjpphpbb.net/portal.php" target="_blank">Entraide au phpBB</a></font>
+<p />
+
+</form>
+
+</body>
+</html>
